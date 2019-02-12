@@ -309,7 +309,10 @@
 <ul>
 <li>HTTP 的作用就是指导浏览器和服务器如何进行沟通。</li>
 <li>使用 curl 命令发送请求：<pre><code>curl -s -v -H “key: value” -- &quot;https://www.baidu.com&quot;
-</code></pre><h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2>  请求格式：<pre><code>1 动词 路径 协议/版本
+</code></pre></li>
+<li>-v显示请求详细信息</li>
+<li>-X 指定请求方式<br>  curl -X POST -s -v -H “Frank: xxx” – “<a href="https://www.baidu.com&quot;" target="_blank" rel="noopener">https://www.baidu.com&quot;</a></li>
+<li>-H增加头部信息<h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2>  请求格式：<pre><code>1 动词 路径 协议/版本
 2 Key1: value1
 2 Key2: value2
 2 Key3: value3
