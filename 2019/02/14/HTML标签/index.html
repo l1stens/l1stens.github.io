@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;lt;iframe&amp;gt; 标签（可替换标签）嵌套页面：&amp;lt;iframe src=&amp;quot;https://www.baidu.com&amp;quot; name=&amp;quot;xxx&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;  可用 css 调整嵌套页面的宽高度。 例：可在主页面内与 &amp;lt;a&amp;gt; 标签合用，为 &amp;lt;iframe&amp;gt; 标签设置  name 属性，为 &amp;lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML标签">
+<meta property="og:url" content="http://yoursite.com/2019/02/14/HTML标签/index.html">
+<meta property="og:site_name" content="myBlog">
+<meta property="og:description" content="&amp;lt;iframe&amp;gt; 标签（可替换标签）嵌套页面：&amp;lt;iframe src=&amp;quot;https://www.baidu.com&amp;quot; name=&amp;quot;xxx&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;  可用 css 调整嵌套页面的宽高度。 例：可在主页面内与 &amp;lt;a&amp;gt; 标签合用，为 &amp;lt;iframe&amp;gt; 标签设置  name 属性，为 &amp;lt;">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/02/14/HTML标签/iframe.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/14/HTML标签/iframe2.png">
+<meta property="og:updated_time" content="2019-02-14T14:01:03.835Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML标签">
+<meta name="twitter:description" content="&amp;lt;iframe&amp;gt; 标签（可替换标签）嵌套页面：&amp;lt;iframe src=&amp;quot;https://www.baidu.com&amp;quot; name=&amp;quot;xxx&amp;quot;&amp;gt;&amp;lt;/iframe&amp;gt;  可用 css 调整嵌套页面的宽高度。 例：可在主页面内与 &amp;lt;a&amp;gt; 标签合用，为 &amp;lt;iframe&amp;gt; 标签设置  name 属性，为 &amp;lt;">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/14/HTML标签/iframe.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/14/HTML标签/">
+
+
+
+
+
+  <title>HTML标签 | myBlog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">myBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/HTML标签/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML标签</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T15:50:24+08:00">
+                2019-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="lt-iframe-gt-标签（可替换标签）"><a href="#lt-iframe-gt-标签（可替换标签）" class="headerlink" title="&lt;iframe&gt; 标签（可替换标签）"></a>&lt;iframe&gt; 标签（可替换标签）</h1><p><strong>嵌套页面</strong>：<code>&lt;iframe src=&quot;https://www.baidu.com&quot; name=&quot;xxx&quot;&gt;&lt;/iframe&gt;</code><br><img src="/2019/02/14/HTML标签/iframe.png" alt=""></p>
+<ol>
+<li>可用 css 调整嵌套页面的宽高度。</li>
+<li>例：可在主页面内与 &lt;a&gt; 标签合用，为 &lt;iframe&gt; 标签设置  name 属性，为 &lt;a&gt; 标签设置相同 value 的 target 属性，即可在当前页面内点击不同链接在嵌套页面中进行跳转。<br> <img src="/2019/02/14/HTML标签/iframe2.png" alt=""></li>
+<li>frameborder 属性为嵌套页面的边框，设置 value 值为 0 即可隐藏边框。</li>
+<li>&lt;iframe> 的 src 属性支持相对路径。</li>
+</ol>
+<h1 id="lt-a-gt-标签"><a href="#lt-a-gt-标签" class="headerlink" title="&lt;a&gt; 标签"></a>&lt;a&gt; 标签</h1><p><strong> &lt;a&gt;  标签定义超链接，用于从一张页面链接到另一张页面，最重要的属性是 href 属性，它指示链接的目标。（一般为 GET 请求）</strong></p>
+<ol>
+<li>target 属性<ul>
+<li><code>&lt;a href=&quot;http://www.qq.com&quot; target=&quot;_blank&quot;&gt;QQ&lt;/a&gt;</code>  在新开页面打开网页。</li>
+<li><code>&lt;a href=&quot;http://www.qq.com&quot; target=&quot;_self&quot;&gt;QQ&lt;/a&gt;</code>  在当前页面打开网页。</li>
+<li><code>&lt;a href=&quot;http://www.qq.com&quot; target=&quot;_parent&quot;&gt;QQ&lt;/a&gt;</code>  在上一级页面打开网页。</li>
+<li><code>&lt;a href=&quot;http://www.qq.com&quot; target=&quot;_top&quot;&gt;QQ&lt;/a&gt;</code>     在最顶级页面打开网页。</li>
+</ul>
+</li>
+<li>download 属性<ul>
+<li><code>&lt;a herf=“http://qq.com” download&gt;下载&lt;/a&gt;</code> 下载链接所指的页面。<blockquote>
+<p>后端一般为：Content-type: application/octet-stream </p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>herf 属性 <ul>
+<li><code>&lt;a href=&quot;qq.com&quot;&gt;QQ&lt;/a&gt;</code> 相对路径，会在当前目录下查找”qq.com”文件。</li>
+<li><code>&lt;a href=&quot;http://qq.com&quot;&gt;QQ&lt;/a&gt;</code> 表明HTTP或HTTPS协议，一般这样写。</li>
+<li><code>&lt;a href=&quot;//qq.com&quot;&gt;QQ&lt;/a&gt;</code>  浏览器会根据当前协议，补全无协议链接的协议。</li>
+<li><code>&lt;a href=&quot;#hi&quot;&gt;QQ&lt;/a&gt;</code> 跳转到页面锚点。</li>
+<li><code>&lt;a href=&quot;?name=yang&quot;&gt;QQ&lt;/a&gt;</code> 自动添加查询路径，会发起 GET 请求。</li>
+<li><code>&lt;a href=&quot;javascript: alert(hi);&quot;&gt;QQ&lt;/a&gt;</code> <strong>伪协议，点击会直接执行js语句。</strong></li>
+<li><code>&lt;a href=&quot;javascript:;&quot;&gt;QQ&lt;/a&gt;</code> 可以实现点击链接不发生任何事。</li>
+<li>应该尽量不使用 file:// 协议预览网页，以免无协议链接出错。</li>
+</ul>
+</li>
+</ol>
+<h1 id="lt-form-gt-标签"><a href="#lt-form-gt-标签" class="headerlink" title="&lt;form&gt; 标签"></a>&lt;form&gt; 标签</h1><p><strong>&lt;form&gt;标签用于为用户输入创建 HTML 表单，表单能够包含 input 元素，比如文本字段、复选框、单选框、提交按钮等等。表单还可以包含 menus、textarea、fieldset、legend 和 label 元素。表单用于向服务器传输数据。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;users&quot; method=&quot;POST&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;password&quot; name=&quot;password&quot;&gt;</span><br><span class="line">  &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>action 属性：指定请求路径。</li>
+<li>默认 method 为 GET，一般设置为 POST。</li>
+<li>表单提交使用 UTF-8 编码。</li>
+<li>name 属性的值会作为 form data 部分的 key 提交。（如果 method 属性为GET，这部分内容会被浏览器添加到查询参数中。）</li>
+<li>&lt;form&gt; 必须要有提交按钮，否则无法提交表单。</li>
+<li>&lt;form&gt; 标签与 &lt;a&gt; 标签的 target 属性完全一致。</li>
+</ol>
+<h1 id="lt-input-gt-标签"><a href="#lt-input-gt-标签" class="headerlink" title="&lt;input&gt; 标签"></a>&lt;input&gt; 标签</h1><p><strong>&lt;input&gt; 标签规定了用户可以在其中输入数据的输入字段。在 &lt;form&gt; 标签中使用，用来声明允许用户输入数据的 input 控件。输入字段可通过多种方式改变，取决于 type 属性。</strong></p>
+<ol>
+<li>type 属性：&lt;input&gt; 标签的 type 属性有很多种。<ul>
+<li>button：如果一个 &lt;form&gt; 里面只有一个 &lt;button&gt; 按钮，且没有设置 type 属性，则会自动升级为当前标签的 submit 按钮。这种情况下: <code>&lt;button&gt;button&lt;/button&gt;</code> 等价于 <code>&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</code>。另外<code>&lt;input type=&quot;button&quot; value=&quot;提交&quot;&gt;</code> 在任何情况下无效。</li>
+<li>label：可以使用 &lt;label&gt;  元素来定义 &lt;input&gt;  元素的标注。<br>  点击 select 时，可以同时点击到 &lt;input&gt; 元素。（&lt;input&gt; 中的 id 属性 对应 &lt;label&gt; 中的 for 属性）<br>  <code>&lt;input type=&quot;checkbox&quot; id=&quot;1&quot;&gt;&lt;label for=&quot;1&quot;&gt;select&lt;/label&gt;</code><br>  可以用 &lt;label&gt; 将 &lt;input&gt; 包起来，简化上边的写法。<br>  <code>&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt;select&lt;/label&gt;</code>    </li>
+<li>radio&amp;checkbox：可以在 type 后边分别设置 name 和 value 的值，提交的时候可以将选择情况一并提交到服务器。另外，当多个&lt;input&gt; 的 type 属性为 radio 时，后边 name 属性名字一样则为担单选，否则为多选，类似于 checkbox 属性。</li>
+</ul>
+</li>
+</ol>
+<h1 id="lt-select-gt-标签"><a href="#lt-select-gt-标签" class="headerlink" title="&lt;select&gt; 标签"></a>&lt;select&gt; 标签</h1><p><strong> &lt;select&gt;  元素用来创建下拉列表。&lt;select&gt;   元素中的 &lt;option&gt; 标签定义了列表中的可用选项。</strong></p>
+<ol>
+<li>name 属性：定义下拉列表的名称。</li>
+<li>multiple 属性：当该属性为 true 时，可选择多个选项。</li>
+<li>size 属性：规定下拉列表中可见选项的数目。</li>
+<li>required：规定用户在提交表单前必须选择一个下拉列表中的选项。</li>
+<li>disabled：当该属性为 true 时，会禁用下拉列表。</li>
+<li>autofocus：规定在页面加载时下拉列表自动获得焦点。</li>
+<li>元素中的 &lt;option&gt; 可以设置 disabled 属性和 selected 属性，分别该选项不可选和默认已选择选项。</li>
+</ol>
+<h1 id="lt-textarea-gt-标签"><a href="#lt-textarea-gt-标签" class="headerlink" title="&lt;textarea&gt; 标签"></a>&lt;textarea&gt; 标签</h1><p>&lt;textarea&gt;  标签定义一个多行的文本输入控件。可以通过 cols 和 rows 属性来规定 textarea 的尺寸大小，不过更好的办法是使用 CSS 的 height 和 width 属性，也可以用 CSS 固定尺寸大小<code>style=resize:none;width=200px;height=100px;</code></p>
+<h1 id="lt-table-gt-标签"><a href="#lt-table-gt-标签" class="headerlink" title="&lt;table&gt; 标签"></a>&lt;table&gt; 标签</h1><p>&lt;table&gt; 标签定义 HTML 表格，border 属性可以调整表格边框。比如可以用CSS使边框合并为一条线。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">table&#123;</span><br><span class="line">  border-collapse: collapse;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&lt;table&gt; 标签内含有3个主要标签：</p>
+<ol>
+<li>&lt;thead&gt; 表格头。</li>
+<li>&lt;tbody&gt;  表格主体。</li>
+<li>&lt;tfoot&gt; 表格脚。</li>
+</ol>
+<p>上边3个主要标签与代码先后顺序无关，浏览器会自动调整为从头到脚的顺序，如果不写上边3个标签，则浏览器则会自动将内容补到&lt;tbody&gt;  里边，这3个标签可以含有以下标签：</p>
+<ol>
+<li>&lt;tr&gt; 定义HTML表格中的一行单元格，成对出现，一个 &lt;tr&gt; 元素包含一个或多个 &lt;th&gt; 或 &lt;td&gt; 元素。</li>
+<li>&lt;th&gt; 表示HTML表格的表头部分，该标签中的内容会以粗体显示并居中。</li>
+<li>&lt;td&gt; 定义 HTML 表格中的标准单元格，表示表格中的数据，通常是普通的左对齐文本。</li>
+</ol>
+<p>&lt;colgroup&gt; 表示 HTML 的表格列组，可以用&lt;col&gt; 添加属性。</p>
+<ol>
+<li>span 规定列组应该横跨的列数。如<code>&lt;col span=&quot;3&quot; style=&quot;background-color:blue&quot;&gt;</code>，表示前3列背景颜色为蓝色。如果有多个&lt;col&gt;，第一个 span 属性默认值为1，后边的依次以前一个&lt;col&gt; span 属性值递增。</li>
+<li>width 规定列组的宽度。列数根据 &lt;col&gt; 的 次序递增。</li>
+<li>bgcolor 规定列组的背景色。<code>&lt;col span=&quot;2&quot; bgcolor=blue&gt;</code> 等价于 <code>&lt;col span=&quot;3&quot; style=&quot;background-color:blue&quot;&gt;</code></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/14/HTML-1/" rel="next" title="HTML 简介">
+                <i class="fa fa-chevron-left"></i> HTML 简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-iframe-gt-标签（可替换标签）"><span class="nav-number">1.</span> <span class="nav-text">&lt;iframe&gt; 标签（可替换标签）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-a-gt-标签"><span class="nav-number">2.</span> <span class="nav-text">&lt;a&gt; 标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-form-gt-标签"><span class="nav-number">3.</span> <span class="nav-text">&lt;form&gt; 标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-input-gt-标签"><span class="nav-number">4.</span> <span class="nav-text">&lt;input&gt; 标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-select-gt-标签"><span class="nav-number">5.</span> <span class="nav-text">&lt;select&gt; 标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-textarea-gt-标签"><span class="nav-number">6.</span> <span class="nav-text">&lt;textarea&gt; 标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#lt-table-gt-标签"><span class="nav-number">7.</span> <span class="nav-text">&lt;table&gt; 标签</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
