@@ -86,10 +86,13 @@
 <meta property="og:site_name" content="myBlog">
 <meta property="og:description" content="4种引入方式内联 style 属性style 标签外部 css link@import url(./b.css); float浮动元素的父级元素上添加 clearfix 属性，解决浮动元素的bug    .clearfix::after {        content: ‘’;        display: block;        clear: both;    } 块级元素的高度由其内部">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-15T12:21:27.387Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A0.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A02.png">
+<meta property="og:updated_time" content="2019-02-15T14:24:34.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS相关">
 <meta name="twitter:description" content="4种引入方式内联 style 属性style 标签外部 css link@import url(./b.css); float浮动元素的父级元素上添加 clearfix 属性，解决浮动元素的bug    .clearfix::after {        content: ‘’;        display: block;        clear: both;    } 块级元素的高度由其内部">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A0.png">
 
 
 
@@ -306,6 +309,8 @@
 <li>内联元素从左往右流动，如果遇到阻碍（宽度不够），换行继续从左往右流动。</li>
 <li>块级元素，每一个块占用一行，从上往下依次流动。</li>
 </ul>
+<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><p>所有非空标签都有伪类，比如 &lt;div&gt; 标签，默认为隐藏属性，可以通过 CSS 显示出来并设置相关属性。<br>    div::before{<br>        conntent:’’;<br>    }<br>    div::after{<br>        conntent:’’;<br>    }<br><img src="/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A0.png" alt=""></p>
+<p>如果设置伪元素属性，比如 content ，所有 &lt;div&gt; 标签前后都会加上相关的值，并且在网页上无法选定该元素。<br><img src="/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A02.png" alt=""></p>
 
       
     </div>
@@ -461,7 +466,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4种引入方式"><span class="nav-number">1.</span> <span class="nav-text">4种引入方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#float"><span class="nav-number">2.</span> <span class="nav-text">float</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4种引入方式"><span class="nav-number">1.</span> <span class="nav-text">4种引入方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#float"><span class="nav-number">2.</span> <span class="nav-text">float</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#伪元素"><span class="nav-number">3.</span> <span class="nav-text">伪元素</span></a></li></ol></div>
             
 
           </div>
