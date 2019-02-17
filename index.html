@@ -315,16 +315,48 @@
 </ul>
 <h1 id="什么是数据结构（数据结构）"><a href="#什么是数据结构（数据结构）" class="headerlink" title="什么是数据结构（数据结构）"></a>什么是数据结构（<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">数据结构</a>）</h1><p>在计算机科学中，数据结构（英语：data structure）是计算机中存储、组织数据的方式。</p>
 <ol>
-<li>常见的数据结构<ul>
+<li>常见的数据结构<ol>
 <li>数组（Array）</li>
-<li>堆栈（Stack）</li>
-<li>队列（Queue）</li>
-<li>链接串列（Linked List）</li>
-<li>树（Tree）</li>
+<li>堆栈（Stack）<ul>
+<li>先进后出</li>
+<li>可以用数组实现</li>
+<li>举例：盗梦空间</li>
+</ul>
+</li>
+<li>队列（Queue）<ul>
+<li>先进先出</li>
+<li>可以用数组实现</li>
+<li>举例：排队</li>
+</ul>
+</li>
+<li>链表（Linked List）<ul>
+<li>数组无法直接删除中间的一项，链表可以</li>
+<li>用哈希（JS里面用对象表示哈希）实现链表</li>
+<li>head、node 概念</li>
+</ul>
+</li>
+<li>树（Tree）<ul>
+<li>举例：层级结构、DOM</li>
+<li>概念：层数、深度、节点个数</li>
+<li>二叉树</li>
+<li>满二叉树</li>
+<li>完全二叉树</li>
+<li>完全二叉树和满二叉树可以用数组实现</li>
+<li>其他树可以用哈希（对象）实现</li>
+<li>操作：增删改查</li>
+<li>堆排序用到了 tree</li>
+<li>其他：B树、红黑树、AVL树</li>
+</ul>
+</li>
 <li>图（Graph）</li>
 <li>堆积（Heap）</li>
-<li>散列表（Hash）</li>
+<li>哈希表（Hash）<ul>
+<li>计数排序中的桶（复杂度 O(n+max)，比快排还快</li>
+<li>桶排序 与计数排序的区别</li>
+<li>基数排序 与计数排序的区别</li>
 </ul>
+</li>
+</ol>
 </li>
 <li>数据结构和算法是互相依存、不可分开的<ol>
 <li>我们要解决一个跟数据相关的问题。</li>
@@ -333,6 +365,7 @@
 </ol>
 </li>
 </ol>
+<p>堆排序可视化：<code>https://www.cs.usfca.edu/~galles/visualization/HeapSort.html</code><br>堆排序JS代码完整讲解：<code>http://bubkoo.com/2014/01/14/sort-algorithm/heap-sort/</code></p>
 
           
         
@@ -1269,7 +1302,7 @@
 <p>重命名文件       mv file1 file2<br>移动文件到目录   mv file directory</p>
 <hr>
 <p>使用expainshell.com<br>在网站搜索框中直接输入想查找的shell命令即可查找该命令含义。<br>比如 cat  命令<br>cat: concatenate files and print on the standard output.</p>
-<h1 id="英语单词"><a href="#英语单词" class="headerlink" title="英语单词"></a>英语单词</h1><p>linear 线性<br>gradient 变化率<br>generator 形成 产生</p>
+<h1 id="英语单词"><a href="#英语单词" class="headerlink" title="英语单词"></a>英语单词</h1><p>linear 线性<br>gradient 变化率<br>generator 形成 产生者</p>
 
           
         

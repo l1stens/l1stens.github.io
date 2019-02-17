@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="myBlog">
 <meta property="og:description" content="什么是算法（ 算法 ）算法（algorithm），在数学（算学）和电脑科学之中，为任何良定义的具体计算步骤的一个序列，常用于计算、数据处理和自动推理。精确而言，算法是一个表示为有限长列表的有效方法。算法应包含清晰定义的指令用于计算函数。以下是高德纳在他的著作《计算机程序设计艺术》里对算法的特征归纳：  输入：一个算法必须有零个或以上输入量。 输出：一个算法应有一个或以上输出量，输出量是算法计算的结">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-16T14:06:55.148Z">
+<meta property="og:updated_time" content="2019-02-17T08:29:46.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法相关">
 <meta name="twitter:description" content="什么是算法（ 算法 ）算法（algorithm），在数学（算学）和电脑科学之中，为任何良定义的具体计算步骤的一个序列，常用于计算、数据处理和自动推理。精确而言，算法是一个表示为有限长列表的有效方法。算法应包含清晰定义的指令用于计算函数。以下是高德纳在他的著作《计算机程序设计艺术》里对算法的特征归纳：  输入：一个算法必须有零个或以上输入量。 输出：一个算法应有一个或以上输出量，输出量是算法计算的结">
@@ -314,16 +314,48 @@
 </ul>
 <h1 id="什么是数据结构（数据结构）"><a href="#什么是数据结构（数据结构）" class="headerlink" title="什么是数据结构（数据结构）"></a>什么是数据结构（<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">数据结构</a>）</h1><p>在计算机科学中，数据结构（英语：data structure）是计算机中存储、组织数据的方式。</p>
 <ol>
-<li>常见的数据结构<ul>
+<li>常见的数据结构<ol>
 <li>数组（Array）</li>
-<li>堆栈（Stack）</li>
-<li>队列（Queue）</li>
-<li>链接串列（Linked List）</li>
-<li>树（Tree）</li>
+<li>堆栈（Stack）<ul>
+<li>先进后出</li>
+<li>可以用数组实现</li>
+<li>举例：盗梦空间</li>
+</ul>
+</li>
+<li>队列（Queue）<ul>
+<li>先进先出</li>
+<li>可以用数组实现</li>
+<li>举例：排队</li>
+</ul>
+</li>
+<li>链表（Linked List）<ul>
+<li>数组无法直接删除中间的一项，链表可以</li>
+<li>用哈希（JS里面用对象表示哈希）实现链表</li>
+<li>head、node 概念</li>
+</ul>
+</li>
+<li>树（Tree）<ul>
+<li>举例：层级结构、DOM</li>
+<li>概念：层数、深度、节点个数</li>
+<li>二叉树</li>
+<li>满二叉树</li>
+<li>完全二叉树</li>
+<li>完全二叉树和满二叉树可以用数组实现</li>
+<li>其他树可以用哈希（对象）实现</li>
+<li>操作：增删改查</li>
+<li>堆排序用到了 tree</li>
+<li>其他：B树、红黑树、AVL树</li>
+</ul>
+</li>
 <li>图（Graph）</li>
 <li>堆积（Heap）</li>
-<li>散列表（Hash）</li>
+<li>哈希表（Hash）<ul>
+<li>计数排序中的桶（复杂度 O(n+max)，比快排还快</li>
+<li>桶排序 与计数排序的区别</li>
+<li>基数排序 与计数排序的区别</li>
 </ul>
+</li>
+</ol>
 </li>
 <li>数据结构和算法是互相依存、不可分开的<ol>
 <li>我们要解决一个跟数据相关的问题。</li>
@@ -332,6 +364,7 @@
 </ol>
 </li>
 </ol>
+<p>堆排序可视化：<code>https://www.cs.usfca.edu/~galles/visualization/HeapSort.html</code><br>堆排序JS代码完整讲解：<code>http://bubkoo.com/2014/01/14/sort-algorithm/heap-sort/</code></p>
 
       
     </div>
