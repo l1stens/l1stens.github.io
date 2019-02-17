@@ -229,6 +229,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/CSS布局/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/17/CSS布局/" itemprop="url">CSS布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-17T22:08:23+08:00">
+                2019-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="利用-float-左右或左中右布局"><a href="#利用-float-左右或左中右布局" class="headerlink" title="利用 float 左右或左中右布局"></a>利用 float 左右或左中右布局</h1><p>CSS中块级元素，每一个块占用一行，从上往下依次流动，如果需要让块级元素实现左右布局，一个方法是给每个元素添加 float 属性。<br>如图，给 c1，c2，c3 添加 float 属性，使其左右依次排列。<br><img src="/2019/02/17/CSS布局/1.png" alt=""></p>
+<p><img src="/2019/02/17/CSS布局/2.png" alt=""></p>
+<p>如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。<strong>因为块级元素的高度由其内部文档流元素的高度总和决定</strong>，添加 float 属性后，这三个 div 脱离了文档流，所以其父元素就没有高度了。要解决这个问题，可以给浮动元素的父元素上边添加一个叫做 clearfix 的类。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::after &#123;</span><br><span class="line">    content: &apos;&apos;;</span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码通过伪类 :after 在父级元素后边添加内容，来实现清除浮动从而实现左右布局。<br><img src="/2019/02/17/CSS布局/3.png" alt=""></p>
+<p>上图中有三个 div，如果要实现分布均匀的左中右布局，可以使其中一个元素向左浮动，另外一个元素向右浮动，剩下的一个元素通过设置边距使其居中，从而实现左中右布局。</p>
+<p><img src="/2019/02/17/CSS布局/4.png" alt=""></p>
+<h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><ol>
+<li>内联元素水平居中<br> 使用 text-align: center 可以使块级元素内部的内联元素水平居中。此方法对内联元素(inline), 内联块(inline-block), 内联表(inline-table), inline-flex元素水平居中都有效。<pre><code>.center-text {
+    text-align: center;
+ }
+</code></pre> <img src="/2019/02/17/CSS布局/5.png" alt=""></li>
+<li>块级元素水平居中<br>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。<pre><code>margin: 0 auto;
+</code></pre><img src="/2019/02/17/CSS布局/6.png" alt=""></li>
+<li>多块级元素水平居中<ul>
+<li>置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）<pre><code>.container {
+    text-align: center;
+}
+.inline-block {
+    display: inline-block;
+}
+</code></pre>  <img src="/2019/02/17/CSS布局/7.png" alt=""></li>
+<li>利用display: flex（学习中）</li>
+</ul>
+</li>
+</ol>
+<h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/数据结构与算法相关/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -494,6 +638,74 @@
 </ul>
 <h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><p>所有非空标签都有伪类，比如 &lt;div&gt; 标签，默认为隐藏属性，可以通过 CSS 显示出来并设置相关属性。<br>    div::before{<br>        conntent:’’;<br>    }<br>    div::after{<br>        conntent:’’;<br>    }<br><img src="/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A0.png" alt=""></p>
 <p>如果设置伪元素属性，比如 content ，所有 &lt;div&gt; 标签前后都会加上相关的值，并且在网页上无法选定该元素。<br><img src="/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A02.png" alt=""></p>
+<h1 id="CSS中的块级元素、内联元素（行内元素）"><a href="#CSS中的块级元素、内联元素（行内元素）" class="headerlink" title="CSS中的块级元素、内联元素（行内元素）"></a>CSS中的块级元素、内联元素（行内元素）</h1><ul>
+<li><strong>Block element 块级元素</strong><br>  以块显示的元素，高度宽度都是可以设置的。块级元素默认状态下每次都占据一整个行，后面的内容也必须再新起一行显示。当然非块级元素也可以通过 CSS 的 display:block; 将其更改成块级元素。块级元素一般是其他元素的容器元素。<br>  <strong>块元素（block element）</strong><pre><code>address - 地址
+blockquote - 块引用
+center - 举中对齐块
+dir - 目录列表
+div - 常用块级容易，也是css layout的主要标签
+dl - 定义列表
+fieldset - form控制组
+form - 交互表单
+h1 - 大标题
+h2 - 副标题
+h3 - 3级标题
+h4 - 4级标题
+h5 - 5级标题
+h6 - 6级标题
+hr - 水平分隔线
+isindex - input prompt
+menu - 菜单列表
+noframes - frames可选内容（对于不支持frame的浏览器显示此区块内容）
+noscript - 可选脚本内容（对于不支持script的浏览器显示此内容）
+ol - 排序列表
+p - 段落
+pre - 格式化文本
+table - 表格
+ul - 非排序列表
+</code></pre></li>
+<li><strong>Inline element 内联元素</strong><br>  任何不是块级元素的可见元素都是内联元素，其表现的特性是“行布局”形式。内联元素的高度宽度都是不可以设置的，其宽度就是自身内容的高宽度。我们常用到的\&lt;a>、\&lt;span>、\&lt;em>都属于内联元素。内联元素的显示特点就是像文本一样的显示，不会独自占据一个行。当然块级元素也能变成内联元素,那就是通过 CSS 的 display:inline; 和 float 来实现。<br>  <strong>内联元素（inline element）</strong><pre><code>a - 锚点
+abbr - 缩写
+acronym - 首字
+b - 粗体（不推荐）
+bdo - bidi override
+big - 大字体
+br - 换行
+cite - 引用
+code - 计算机代码（在引用源码的时候需要）
+dfn - 定义字段
+em - 强调
+font - 字体设定（不推荐）
+i - 斜体
+img - 图片
+input - 输入框
+kbd - 定义键盘文本
+label - 表格标签
+q - 短引用
+s - 中划线（不推荐）
+samp - 定义范例计算机代码
+select - 项目选择
+small - 小字体文本
+span - 常用内联容器，定义文本内区块
+strike - 中划线
+strong - 粗体强调
+sub - 下标
+sup - 上标
+textarea - 多行文本输入框
+tt - 电传文本
+u - 下划线
+var - 定义变量
+</code></pre></li>
+<li><strong>可变元素</strong><br>  可变元素为根据上下文语境决定该元素为块元素或者内联元素。<pre><code>applet - java applet
+button - 按钮
+del - 删除文本
+iframe - inline frame
+ins - 插入的文本
+map - 图片区块（map）
+object - object对象
+script - 客户端脚本
+</code></pre></li>
+</ul>
 
           
         
@@ -1582,137 +1794,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/11/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T08:25:17+08:00">
-                2019-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1756,7 +1844,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
