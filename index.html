@@ -311,21 +311,33 @@
     text-align: center;
  }
 </code></pre> <img src="/2019/02/17/CSS布局/5.png" alt=""></li>
-<li>块级元素水平居中<br>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。<pre><code>margin: 0 auto;
-</code></pre><img src="/2019/02/17/CSS布局/6.png" alt=""></li>
-<li>多块级元素水平居中<ul>
-<li>置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）<pre><code>.container {
+<li>块级元素水平居中<ul>
+<li>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。<pre><code>margin: 0 auto;
+</code></pre>  <img src="/2019/02/17/CSS布局/6.png" alt=""></li>
+<li>多块级元素水平居中<ol>
+<li>设置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）<pre><code>.container {
     text-align: center;
 }
 .inline-block {
     display: inline-block;
 }
-</code></pre>  <img src="/2019/02/17/CSS布局/7.png" alt=""></li>
-<li>利用display: flex（学习中）</li>
+</code></pre> <img src="/2019/02/17/CSS布局/7.png" alt=""></li>
+<li>利用 display: flex 属性<br> <code>justify-content:center;</code> 主轴居中<br> 使用flex布局使元素居中可以不设置父元素的宽高，用子内容将其撑开。<br> <img src="/2019/02/17/CSS布局/8.png" alt=""></li>
+<li>使用绝对定位</li>
+<li>使用绝对定位和transform</li>
+</ol>
+</li>
 </ul>
 </li>
 </ol>
-<h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1>
+<h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><ol>
+<li>单行文本进行垂直居中<br> 父级元素高度确定，行内元素为单行文本，设置父元素的 line-height 属性与 height 相等即可。<br> 需要特别注意的是，line-height 的值不能设为100%，因为这里的百分比并不是相对于父元素尺寸而言，而是相对于字体尺寸来讲的。<br> <img src="/2019/02/17/CSS布局/9.png" alt=""></li>
+<li>使用绝对定位和负外边距对块级元素进行垂直居中<br> 此方法必须提前知道被居中元素的尺寸。<br> <img src="/2019/02/17/CSS布局/10.png" alt=""></li>
+<li>使用绝对定位和 transform<br>因为 transform 中 translate 偏移的百分比就是相对于元素自身的尺寸确定的，所以此方法不需要知道被居中元素的尺寸。<br><img src="/2019/02/17/CSS布局/11.png" alt=""></li>
+<li>使用绝对定位和 margin<br> 把要垂直居中的元素相对于父元素绝对定位，top和bottom设为相等的值，margin 设置为 auto 即可。如果被居中元素自身包含元素尺寸（比如图片），可以不用设置宽高。<br> <img src="/2019/02/17/CSS布局/12.png" alt=""></li>
+<li>flex布局（<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">阮一峰老师关于flex布局的blog</a>）<br> 在 flex 布局中，align-items 属性定义项目在交叉轴上如何对齐。可以将其属性设置为 center：交叉轴的中点对齐，实现垂直居中，对于块级元素和行内元素都可以生效。<br> <img src="/2019/02/17/CSS布局/13.png" alt=""></li>
+</ol>
+
           
         
       
