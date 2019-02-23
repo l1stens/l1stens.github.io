@@ -79,17 +79,31 @@
 
 
 
-<meta name="description" content="W3C 万维网联盟（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。为半自治非政府组织（quasi-autonomous non-governmental organisation）。维基百科 MDNMozilla Developer Network（简称MDN），是一个集中所有Mozilla基金会产品和网络技术开发文件的网站。 HTML">
+<meta name="description" content="JavaScript 一共有七种数据类型，分别是：string、number、boolean、object、symbol、null、undefined，它们在一定情况下可以相互转换。 1. 转换为string toString()  每个对象都有一个 toString() 方法，返回该对象的字符串形式（该方法不能转换null 和 undefined）。   String()  String函数可以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTML 简介">
-<meta property="og:url" content="http://yoursite.com/2019/02/14/HTML-1/index.html">
+<meta property="og:title" content="JavaScript 数据类型转换">
+<meta property="og:url" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/index.html">
 <meta property="og:site_name" content="myBlog">
-<meta property="og:description" content="W3C 万维网联盟（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。为半自治非政府组织（quasi-autonomous non-governmental organisation）。维基百科 MDNMozilla Developer Network（简称MDN），是一个集中所有Mozilla基金会产品和网络技术开发文件的网站。 HTML">
+<meta property="og:description" content="JavaScript 一共有七种数据类型，分别是：string、number、boolean、object、symbol、null、undefined，它们在一定情况下可以相互转换。 1. 转换为string toString()  每个对象都有一个 toString() 方法，返回该对象的字符串形式（该方法不能转换null 和 undefined）。   String()  String函数可以">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-14T08:54:24.384Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/10.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/13.png">
+<meta property="og:updated_time" content="2019-02-23T14:48:35.462Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTML 简介">
-<meta name="twitter:description" content="W3C 万维网联盟（World Wide Web Consortium，W3C），又称W3C理事会，是万维网的主要国际标准组织。为半自治非政府组织（quasi-autonomous non-governmental organisation）。维基百科 MDNMozilla Developer Network（简称MDN），是一个集中所有Mozilla基金会产品和网络技术开发文件的网站。 HTML">
+<meta name="twitter:title" content="JavaScript 数据类型转换">
+<meta name="twitter:description" content="JavaScript 一共有七种数据类型，分别是：string、number、boolean、object、symbol、null、undefined，它们在一定情况下可以相互转换。 1. 转换为string toString()  每个对象都有一个 toString() 方法，返回该对象的字符串形式（该方法不能转换null 和 undefined）。   String()  String函数可以">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/1.png">
 
 
 
@@ -119,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/14/HTML-1/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/">
 
 
 
 
 
-  <title>HTML 简介 | myBlog</title>
+  <title>JavaScript 数据类型转换 | myBlog</title>
   
 
 
@@ -232,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/HTML-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yang">
@@ -249,7 +263,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTML 简介</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript 数据类型转换</h1>
         
 
         <div class="post-meta">
@@ -261,8 +275,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T14:59:11+08:00">
-                2019-02-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T19:34:19+08:00">
+                2019-02-22
               </time>
             
 
@@ -299,67 +313,32 @@
       
 
       
-        <h1 id="W3C"><a href="#W3C" class="headerlink" title="W3C"></a>W3C</h1><p> <strong>万维网联盟（World Wide Web Consortium，W3C）</strong>，又称<strong>W3C理事会</strong>，是万维网的主要国际标准组织。为半自治非政府组织（quasi-autonomous non-governmental organisation）。<a href="">维基百科</a></p>
-<h1 id="MDN"><a href="#MDN" class="headerlink" title="MDN"></a>MDN</h1><p><strong>Mozilla Developer Network</strong>（简称<a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="noopener">MDN</a>），是一个集中所有Mozilla基金会产品和网络技术开发文件的网站。</p>
-<h1 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h1><p><strong>超文本标记语言 （HyperText Markup Language）</strong></p>
-<ol>
-<li><strong>HTML 版本（W3C 组织制定规范）</strong><ol>
-<li>HTML 4.01</li>
-<li>XHTML</li>
-<li>HTML 5</li>
-<li>HTML 5.1</li>
-</ol>
-</li>
-<li><strong>规范文档（Specifications）     </strong><ul>
-<li>W3C 根据浏览器的实际情况总结文档。</li>
+        <p><em>JavaScript 一共有七种数据类型，分别是：string、number、boolean、object、symbol、null、undefined，它们在一定情况下可以相互转换。</em></p>
+<h1 id="1-转换为string"><a href="#1-转换为string" class="headerlink" title="1. 转换为string"></a>1. 转换为string</h1><ul>
+<li><code>toString()</code><br>  每个对象都有一个 toString() 方法，返回该对象的字符串形式（该方法不能转换<code>null</code> 和 <code>undefined</code>）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/1.png" alt=""></li>
+<li><code>String()</code><br>  String函数可以将任意类型的值转化成字符串（包括Symbol类型），转换规则如下。<ul>
+<li>数值：转为相应的字符串。</li>
+<li>字符串：转换后还是原来的值。</li>
+<li>布尔值：<code>true</code>转为字符串<code>&quot;true&quot;</code>，<code>false</code>转为字符串<code>&quot;false&quot;</code>。</li>
+<li>undefined：转为字符串<code>&quot;undefined&quot;</code>。</li>
+<li>null：转为字符串<code>&quot;null&quot;</code>。<br><code>String()</code>方法在转换Object类型时，无论Object中的键值为何，只会转换成字符串 <code>&quot;[object Object]&quot;</code>。<br><img src="/2019/02/22/JavaScript-数据类型转换/2.png" alt=""></li>
 </ul>
 </li>
-<li><strong>DOCTYPE</strong><ul>
-<li>用来选择文档类型。&lt;!DOCTYPE html&gt;</li>
+<li><code>被转换值 + ’’</code>（空字符串）<strong> 推荐使用</strong><br> <img src="/2019/02/22/JavaScript-数据类型转换/3.png" alt=""><br> 需要注意的是这种方法不能转换Symbol类型的值。    </li>
 </ul>
+<h1 id="2-转换为Boolean"><a href="#2-转换为Boolean" class="headerlink" title="2. 转换为Boolean"></a>2. 转换为Boolean</h1><ul>
+<li><code>Boolean()</code><br>  <img src="/2019/02/22/JavaScript-数据类型转换/4.png" alt=""></li>
+<li><p><code>!!</code> <strong>推荐使用</strong><br>  <code>!</code>运算符表示取反，会将数据转换为其Boolean值相反的值，两次取反操作即可得到数据自身的Boolean值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/5.png" alt="">  </p>
+<p>  falsy(虚值)是在 Boolean 上下文中已认定可转换为「假」的值。常见的五个虚值有：<code>0</code>，<code>NaN</code>，<code>undefined</code>，<code>null</code>，<code>&#39;&#39;或&quot;&quot;</code>。</p>
 </li>
-<li><strong>常见标签</strong><ul>
-<li>a、form、input、button、h1、p、ul、ol、small、strong、div、span、kbd、video、audio、svg。</li>
-<li>除了 div 和 span 标签，其他标签都有默认样式。</li>
-<li>MDN 上有所有标签的文档 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element" target="_blank" rel="noopener">HTML所有元素列表</a>。</li>
 </ul>
-</li>
-<li><strong>空标签</strong><ul>
-<li>没有闭合的标签称为空标签，他们不存在成对的情况，在HTML中，在空标签上使用闭标签是无效的。</li>
-<li>常见有以下标签为空标签：<pre><code>&lt;area&gt;
-&lt;base&gt;
-&lt;br&gt;
-&lt;col&gt;
-&lt;colgroup&gt; 
-&lt;command&gt;
-&lt;embed&gt;
-&lt;hr&gt;
-&lt;img&gt;
-&lt;input&gt;
-&lt;keygen&gt;
-&lt;link&gt;
-&lt;meta&gt;
-&lt;param&gt;
-&lt;source&gt;
-&lt;track&gt;
-&lt;wbr&gt;
-</code></pre></li>
+<h1 id="3-转换为Number"><a href="#3-转换为Number" class="headerlink" title="3. 转换为Number"></a>3. 转换为Number</h1><ul>
+<li><code>Number()</code><br>  使用<code>Number</code>函数，可以将任意类型的值转化成数值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/6.png" alt=""><br>  需要注意的是，<code>Number</code>函数将字符串转为数值，要比<code>parseInt</code>函数严格很多。基本上，只要有一个字符无法转成数值，整个字符串就会被转为<code>NaN</code>。当<code>Number</code>方法的参数是对象时，将返回<code>NaN</code>，除非是包含单个数值的数组。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/7.png" alt=""></li>
+<li><code>parseInt()</code><br>  <code>parseInt</code>方法用于将字符串转为整数。字符串转为整数的时候，是一个个字符依次转换，如果遇到不能转为数字的字符，就不再进行下去，返回已经转好的部分（<code>Numer</code>方法则会返回<code>NaN</code>）。如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回NaN。如果字符串以0x或0X开头，parseInt会将其按照十六进制数解析。无法转换科学记数法表示的数字和自动会被JS转化为科学记数法的数字。如果转换小数，则会自动忽略小数部分。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/8.png" alt=""><br>  <code>parseInt</code>方法还可以接受第二个参数（2到36之间，超出范围返回<code>NaN</code> ，如果第二个参数是0、undefined和null，则直接忽略。），表示被解析的值的进制，返回该值对应的十进制数。默认情况下，parseInt的第二个参数为10，即默认是十进制转十进制（ES5）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/9.png" alt=""></li>
+<li><code>parseFloat</code><br>  <code>parseFloat</code>方法用于将一个字符串转为浮点数， 如果字符串符合科学计数法，则会进行相应的转换，会将空字符串、布尔值和<code>null</code>转为<code>NaN</code>。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/10.png" alt=""><br>  如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回NaN。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/11.png" alt=""></li>
+<li><code>-0</code>  <strong>推荐使用</strong><br>  <code>-0</code> 方法在转换数字字符串时可以将其转换为数字，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/12.png" alt=""></li>
+<li><code>+</code><br>  和<code>+0</code>方法类似，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/13.png" alt=""> </li>
 </ul>
-</li>
-<li><strong>可替换标签</strong><ul>
-<li>指标签会被替代，例如img标签会被下载的图片替代。</li>
-<li>典型的可替换标签有：<pre><code>&lt;img&gt;
-&lt;object&gt;
-&lt;video&gt;
-&lt;textarea&gt;
-&lt;input&gt;
-</code></pre></li>
-<li>特殊的可替换标签<pre><code>&lt;audio&gt;
-&lt;canvas&gt;
-</code></pre></li>
-</ul>
-</li>
-</ol>
 
       
     </div>
@@ -384,8 +363,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/12/HTTP/" rel="next" title="HTTP">
-                <i class="fa fa-chevron-left"></i> HTTP
+              <a href="/2019/02/22/javaScript/" rel="next" title="javaScript-数据类型">
+                <i class="fa fa-chevron-left"></i> javaScript-数据类型
               </a>
             
           </div>
@@ -393,10 +372,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/14/HTML标签/" rel="prev" title="HTML标签">
-                HTML标签 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,7 +494,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#W3C"><span class="nav-number">1.</span> <span class="nav-text">W3C</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MDN"><span class="nav-number">2.</span> <span class="nav-text">MDN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML"><span class="nav-number">3.</span> <span class="nav-text">HTML</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-转换为string"><span class="nav-number">1.</span> <span class="nav-text">1. 转换为string</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-转换为Boolean"><span class="nav-number">2.</span> <span class="nav-text">2. 转换为Boolean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-转换为Number"><span class="nav-number">3.</span> <span class="nav-text">3. 转换为Number</span></a></li></ol></div>
             
 
           </div>

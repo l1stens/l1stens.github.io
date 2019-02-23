@@ -229,6 +229,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/22/JavaScript-数据类型转换/" itemprop="url">JavaScript 数据类型转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T19:34:19+08:00">
+                2019-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><em>JavaScript 一共有七种数据类型，分别是：string、number、boolean、object、symbol、null、undefined，它们在一定情况下可以相互转换。</em></p>
+<h1 id="1-转换为string"><a href="#1-转换为string" class="headerlink" title="1. 转换为string"></a>1. 转换为string</h1><ul>
+<li><code>toString()</code><br>  每个对象都有一个 toString() 方法，返回该对象的字符串形式（该方法不能转换<code>null</code> 和 <code>undefined</code>）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/1.png" alt=""></li>
+<li><code>String()</code><br>  String函数可以将任意类型的值转化成字符串（包括Symbol类型），转换规则如下。<ul>
+<li>数值：转为相应的字符串。</li>
+<li>字符串：转换后还是原来的值。</li>
+<li>布尔值：<code>true</code>转为字符串<code>&quot;true&quot;</code>，<code>false</code>转为字符串<code>&quot;false&quot;</code>。</li>
+<li>undefined：转为字符串<code>&quot;undefined&quot;</code>。</li>
+<li>null：转为字符串<code>&quot;null&quot;</code>。<br><code>String()</code>方法在转换Object类型时，无论Object中的键值为何，只会转换成字符串 <code>&quot;[object Object]&quot;</code>。<br><img src="/2019/02/22/JavaScript-数据类型转换/2.png" alt=""></li>
+</ul>
+</li>
+<li><code>被转换值 + ’’</code>（空字符串）<strong> 推荐使用</strong><br> <img src="/2019/02/22/JavaScript-数据类型转换/3.png" alt=""><br> 需要注意的是这种方法不能转换Symbol类型的值。    </li>
+</ul>
+<h1 id="2-转换为Boolean"><a href="#2-转换为Boolean" class="headerlink" title="2. 转换为Boolean"></a>2. 转换为Boolean</h1><ul>
+<li><code>Boolean()</code><br>  <img src="/2019/02/22/JavaScript-数据类型转换/4.png" alt=""></li>
+<li><p><code>!!</code> <strong>推荐使用</strong><br>  <code>!</code>运算符表示取反，会将数据转换为其Boolean值相反的值，两次取反操作即可得到数据自身的Boolean值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/5.png" alt="">  </p>
+<p>  falsy(虚值)是在 Boolean 上下文中已认定可转换为「假」的值。常见的五个虚值有：<code>0</code>，<code>NaN</code>，<code>undefined</code>，<code>null</code>，<code>&#39;&#39;或&quot;&quot;</code>。</p>
+</li>
+</ul>
+<h1 id="3-转换为Number"><a href="#3-转换为Number" class="headerlink" title="3. 转换为Number"></a>3. 转换为Number</h1><ul>
+<li><code>Number()</code><br>  使用<code>Number</code>函数，可以将任意类型的值转化成数值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/6.png" alt=""><br>  需要注意的是，<code>Number</code>函数将字符串转为数值，要比<code>parseInt</code>函数严格很多。基本上，只要有一个字符无法转成数值，整个字符串就会被转为<code>NaN</code>。当<code>Number</code>方法的参数是对象时，将返回<code>NaN</code>，除非是包含单个数值的数组。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/7.png" alt=""></li>
+<li><code>parseInt()</code><br>  <code>parseInt</code>方法用于将字符串转为整数。字符串转为整数的时候，是一个个字符依次转换，如果遇到不能转为数字的字符，就不再进行下去，返回已经转好的部分（<code>Numer</code>方法则会返回<code>NaN</code>）。如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回NaN。如果字符串以0x或0X开头，parseInt会将其按照十六进制数解析。无法转换科学记数法表示的数字和自动会被JS转化为科学记数法的数字。如果转换小数，则会自动忽略小数部分。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/8.png" alt=""><br>  <code>parseInt</code>方法还可以接受第二个参数（2到36之间，超出范围返回<code>NaN</code> ，如果第二个参数是0、undefined和null，则直接忽略。），表示被解析的值的进制，返回该值对应的十进制数。默认情况下，parseInt的第二个参数为10，即默认是十进制转十进制（ES5）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/9.png" alt=""></li>
+<li><code>parseFloat</code><br>  <code>parseFloat</code>方法用于将一个字符串转为浮点数， 如果字符串符合科学计数法，则会进行相应的转换，会将空字符串、布尔值和<code>null</code>转为<code>NaN</code>。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/10.png" alt=""><br>  如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回NaN。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/11.png" alt=""></li>
+<li><code>-0</code>  <strong>推荐使用</strong><br>  <code>-0</code> 方法在转换数字字符串时可以将其转换为数字，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/12.png" alt=""></li>
+<li><code>+</code><br>  和<code>+0</code>方法类似，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/13.png" alt=""> </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/javaScript/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1848,139 +1993,6 @@ script - 客户端脚本
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/初识命令行/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/11/初识命令行/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T15:03:48+08:00">
-                2019-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: 初识命令行<br>date: 2019-02-11 11:16:24</p>
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><p>进入目录         cd<br>显示当前目录     pwd<br>创建目录         mkdir<br>创建多级目录     mkdir -p </p>
-<hr>
-<p>查看目标路径     ls 路径<br>查看当前路径     ls<br>查看所有文件     ls -a<br>查看更多信息     ls -l   ls -la</p>
-<hr>
-<p>创建文件         echo ‘内容’ > 文件路径<br>强制创建文件     echo ‘内容’ >! 文件路径<br>追加内容         echo ‘内容’ >> 文件路径<br>创建文件         touch file<br>更新文件改变时间 touch file</p>
-<hr>
-<p>查看文件内容     cat file.txt<br>合并文件         cat file1.txt file2.txt > file3.txt</p>
-<hr>
-<p>重命名文件       mv file1 file2<br>移动文件到目录   mv file directory</p>
-<hr>
-<p>使用expainshell.com<br>在网站搜索框中直接输入想查找的shell命令即可查找该命令含义。<br>比如 cat  命令<br>cat: concatenate files and print on the standard output.</p>
-<h1 id="英语单词"><a href="#英语单词" class="headerlink" title="英语单词"></a>英语单词</h1><p>linear 线性<br>gradient 变化率<br>generator 形成 产生者</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2031,7 +2043,7 @@ script - 客户端脚本
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
