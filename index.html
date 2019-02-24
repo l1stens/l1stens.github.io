@@ -229,6 +229,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/普通类型和对象的区别/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/24/普通类型和对象的区别/" itemprop="url">普通类型和对象的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T11:07:30+08:00">
+                2019-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>JavaScript 一共有七种数据类型，其中六种 string、number、boolean、undefined、symbol、null 称为普通类型（原始类型），object（对象）称为复杂类型（引用类型）。<br>当我们打开浏览器时（以Chrome为例），Chrome 打开即占用一定大小的内存，当我们打开多个页面时，Chrome 给每个网页分配一定数量的内存，这些内存要分给页面渲染器、网络模块、浏览器外壳和 JS 引擎（V8引擎），<strong>JS 引擎将内存分为代码区和数据区</strong>，我们只研究数据区。</p>
+<h1 id="1-两种类型在内存中的形式"><a href="#1-两种类型在内存中的形式" class="headerlink" title="1. 两种类型在内存中的形式"></a>1. 两种类型在内存中的形式</h1><p> 数据区分为<strong> Stack（栈内存） </strong>和 <strong>Heap（堆内存）</strong>，普通类型的数据直接存在 Stack 里，复杂类型的数据是把 Heap 地址存在 Stack 里，如图：<br><img src="/2019/02/24/普通类型和对象的区别/1.png" alt=""><br>上图中，变量 a、b、c 都是普通类型的数据，它们的数据都存在 Stack 里，数字使用64位存储，字符使用16位（32位）。而 o1 和 o2 为复杂类型，它们的 Satck 存储数据的 Heap 地址，真正的数据存储在地址所对应的 Heap 中。</p>
+<h2 id="为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。"><a href="#为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。" class="headerlink" title="为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。"></a>为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。</h2><h3 id="面试题1："><a href="#面试题1：" class="headerlink" title="面试题1："></a>面试题1：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="number">2</span></span><br><span class="line">请问 a 显示是几？</span><br></pre></td></tr></table></figure>
+<p>首先，浏览器通过声明提升，先声明变量 <code>a</code> 和 <code>b</code> ，都是 undefined，然后再将 <code>1</code> 赋给 <code>a</code>，此时 <code>a = 1</code>，再将 <code>a</code> 的值 赋给 <code>b</code>，此时 <code>b = 1</code>，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/2.png" alt=""><br>执行第三行代码时，将 <code>2</code> 赋给 <code>b</code>，也就是说 <code>b</code> 的 Stack 里的 <code>1</code>，变成了<code>2</code>，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/3.png" alt=""><br>所以，<code>a</code> 的值到最后还是 <code>1</code>。 </p>
+<h3 id="面试题2："><a href="#面试题2：" class="headerlink" title="面试题2："></a>面试题2：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = &#123;<span class="attr">name</span>: <span class="string">'b'</span>&#125;</span><br><span class="line">请问现在 a.name 是多少？</span><br></pre></td></tr></table></figure>
+<p>第一行代码将一个对象赋给 <code>a</code>，此时 <code>a</code> 的 Stack 里边存的是该对象数据所在 Heap 的地址，Heap 里边存储着对应地址的具体数据。<br>第二行代码将 <code>a</code> 的 Stack 里边的内容复制一份，赋给了 <code>b</code>，也就是放到了 <code>b</code> 的 Stack中，此时<code>a</code>和<code>b</code>的 Stack 共同指向同一个 Heap 地址，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/4.png" alt=""><br>第三行代码将一个新的对象 <code>{name: &#39;b&#39;}</code> 赋给了<code>b</code>，因为<code>{name: &#39;b&#39;}</code>是一个新的对象值，它在 Heap 中会有一个新的地址，所以 <code>b</code> 的 Stack 的值也会是一个指向新 Heap 的地址，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/5.png" alt=""><br>所以，<code>a.name</code> 的值是 <code>&#39;a&#39;</code>。</p>
+<h3 id="面试题3："><a href="#面试题3：" class="headerlink" title="面试题3："></a>面试题3：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b.name = <span class="string">'b'</span></span><br><span class="line">请问现在 a.name 是多少？</span><br></pre></td></tr></table></figure>
+<p> 前两行代码同面试题2一样，<code>a</code>和<code>b</code>的 Stack 共同指向同一个 Heap 地址，当运行到第三行代码时，<code>b.name</code> 访问的是 heap 中该对象的key：<code>&#39;name&#39;</code> ，并且将 <code>&#39;b&#39;</code> 赋值给了所对应的 value，也就是改变了该键值对的值，在内存中可表示为：<br> <img src="/2019/02/24/普通类型和对象的区别/6.png" alt=""><br>所以，<code>a.name</code> 的值是 <code>&#39;b&#39;</code>。</p>
+<h3 id="面试题4："><a href="#面试题4：" class="headerlink" title="面试题4："></a>面试题4：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="literal">null</span></span><br><span class="line">请问现在 a 是什么？</span><br></pre></td></tr></table></figure>
+<p>前两行代码同之前一样，<code>a</code>和<code>b</code>的 Stack 共同指向同一个 Heap 地址，当运行到第三行代码时，将 <code>null</code> 赋给了 <code>b</code>，由于 <code>null</code> 是普通类型的值，所以这个值会保存在 <code>b</code> 的 Stack 中，而 <code>a</code> 和 Heap 都没有变化。在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/7.png" alt=""><br>所以，<code>a</code> 的值还是<code>{name: &#39;a&#39;}</code>。</p>
+<h3 id="面试题5："><a href="#面试题5：" class="headerlink" title="面试题5："></a>面试题5：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">n</span>:<span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">a.x = a = &#123; <span class="attr">n</span>:<span class="number">2</span> &#125;</span><br><span class="line"></span><br><span class="line">alert(a.x) <span class="comment">//   --&gt;undefined</span></span><br><span class="line">alert(b.x) <span class="comment">//   --&gt;[object Object]</span></span><br></pre></td></tr></table></figure>
+<p>执行第一行和第二行代码之后，<code>a</code> 和 <code>b</code> 的 Stack 中的地址都指向 Heap 中的<code>{ n:1 }</code>（ADD:369），在执行第三行代码时，浏览器先从左往右阅读代码，此时 <code>a.x</code> 中的 <code>a</code> 和 <code>=</code> 后边的 <code>a</code> 的值相等（ADD:369）。<br><img src="/2019/02/24/普通类型和对象的区别/8.png" alt=""><br>然后浏览器从右往左计算（赋值），先执行<code>a = { n:2 }</code>，将 <code>{ n:2 }</code> 赋给了中间的<code>a</code>，此时，<code>a</code> 的 Stack 中的地址因为指向新赋予的对象已经改变为（ADD:567）。<br><img src="/2019/02/24/普通类型和对象的区别/9.png" alt=""><br>再计算<code>a.x = a</code> ，而<code>a.x</code> 中 <code>a</code> 中的地址仍然是之前保存 <code>{ n:1 }</code> 的地址，所以这一步计算在之前的 Heap 里，添加了一个新的键值对，key 是 <code>x</code>，值是存有 <code>{ n:2 }</code> 的 Heap 地址。<br><img src="/2019/02/24/普通类型和对象的区别/10.png" alt=""><br>最终的结果为：<br><img src="/2019/02/24/普通类型和对象的区别/11.png" alt=""><br>所以，<code>a.x</code> 的结果为<code>undefined</code>，<code>b.x</code> 的结果为<code>[object Object]</code>。在代码中要尽量避免<code>a.x = a = { n: 2}</code> 这种写法。</p>
+<h2 id="普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"><a href="#普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。" class="headerlink" title="普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"></a>普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。</h2><h1 id="2-深拷贝与浅拷贝"><a href="#2-深拷贝与浅拷贝" class="headerlink" title="2.深拷贝与浅拷贝"></a>2.深拷贝与浅拷贝</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="number">2</span> <span class="comment">//这个时候改变 b</span></span><br><span class="line">a 完全不受 b 的影响</span><br><span class="line">那么我们就说这是一个深拷贝</span><br></pre></td></tr></table></figure>
+<p>对于简单类型的数据来说，赋值就是深拷贝。<br>对于复杂类型的数据（对象）来说，才要区分浅拷贝和深拷贝。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b.name = <span class="string">'b'</span></span><br><span class="line">a.name === <span class="string">'b'</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>上述代码对 <code>b</code> 操作后，<code>a</code> 也变了，所以是浅拷贝。<br>对 Heap 内存进行完全的拷贝，称为深拷贝。</p>
+<h1 id="3-GC-垃圾回收机制"><a href="#3-GC-垃圾回收机制" class="headerlink" title="3.GC 垃圾回收机制"></a>3.GC 垃圾回收机制</h1><p>在浏览器给 JS 分配的内存中，如果 Heap 中的某个对象没有被任何其他对象或者变量进行引用，则会被浏览器视为垃圾，删除该对象，回收该内存地址。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -447,8 +582,8 @@
           
             <h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><ol>
 <li>number<ul>
-<li>整数和浮点数：<br>  JavaScript 内部，所有数字都是以64位浮点数形式储存 ，<strong>浮点数不是精确的值</strong><br>   <code>1  1.1  .1</code></li>
-<li>科学记数法：<br>  小数点前的数字多于21位和小数点后的零多于5个，JavaScript 会自动将数值转为科学计数法表示，其他情况都采用字面形式直接表示。 <code>1.34e2   123e-2</code></li>
+<li>整数和浮点数：<br> JavaScript 内部，所有数字都是以64位浮点数形式储存 ，<strong>浮点数不是精确的值</strong><br>  <code>1  1.1  .1</code></li>
+<li>科学记数法：<br> 小数点前的数字多于21位和小数点后的零多于5个，JavaScript 会自动将数值转为科学计数法表示，其他情况都采用字面形式直接表示。 <code>1.34e2   123e-2</code></li>
 <li>二进制：有前缀<code>0b</code>或<code>0B</code>的数值：<code>0b11</code></li>
 <li>八进制：有前缀<code>0o</code>或<code>0O</code>的数值，或者有前导0、且只用到0-7的八个阿拉伯数字的数值。</li>
 <li>十六进制：有前缀<code>0x</code>或<code>0X</code>的数值。<ul>
@@ -456,7 +591,7 @@
 </ul>
 </li>
 <li>NaN：<code>NaN</code>是 JavaScript 的特殊值，表示“非数字”（Not a Number），<strong>数据类型依然属于Number</strong>，NaN不等于任何值，包括它本身。</li>
-<li>Infinity：<code>Infinity</code>表示“无穷”，用来表示两种场景。一种是一个正的数值太大（大于等于2的1024次方），或一个负的数值太小（小于等于2的-1075），无法表示；另一种是非0数值除以0，得到<code>Infinity</code>。<br>   Infinity大于一切数值（除了NaN），-Infinity小于一切数值（除了NaN）。</li>
+<li>Infinity：<code>Infinity</code>表示“无穷”，用来表示两种场景。一种是一个正的数值太大（大于等于2的1024次方），或一个负的数值太小（小于等于2的-1075），无法表示；另一种是非0数值除以0，得到<code>Infinity</code>。<br>  Infinity大于一切数值（除了NaN），-Infinity小于一切数值（除了NaN）。</li>
 <li>parseInt()<ul>
 <li>用于将字符串转为整数<br>  字符串转为整数的时候，是一个个字符依次转换，如果遇到不能转为数字的字符，就不再进行下去，返回已经转好的部分。如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回NaN。如果字符串以0x或0X开头，parseInt会将其按照十六进制数解析。无法转换科学记数法表示的数字和自动会被JS转化为科学记数法的数字。</li>
 <li>进制转换<br>  <code>parseInt()</code>方法还可以接受第二个参数（2到36之间，超出范围返回<code>NaN</code> ，如果第二个参数是0、undefined和null，则直接忽略。），表示被解析的值的进制，返回该值对应的十进制数。默认情况下，parseInt的第二个参数为10，即默认是十进制转十进制（ES5）。<br>  如果字符串包含对于指定进制无意义的字符，则从最高位开始，只返回可以转换的数值。如果最高位无法转换，则直接返回NaN。</li>
@@ -480,128 +615,61 @@
 <li><p>string</p>
 <ul>
 <li><p>零个或多个排在一起的字符，放在单引号或双引号之中。字符串默认只能写在一行内，分成多行将会报错。如果长字符串必须分成多行，可以在每一行的尾部使用反斜杠，后边只能跟换行符，不能跟其他字符。</p>
-<pre><code>var longString = &apos;Long \
-long \
-long \
-string&apos;;
-
-longString
-// &quot;Long long long string&quot;
-</code></pre><p>  连接运算符（+）可以连接多个单行字符串，将长字符串拆成多行书写，输出的时候也是单行。</p>
-<pre><code>var longString = &apos;Long &apos;
-  + &apos;long &apos;
-  + &apos;long &apos;
-  + &apos;string&apos;;
-</code></pre></li>
-<li>转义<br>  反斜杠（\）在字符串内有特殊含义，用来表示一些特殊字符，所以又称为转义符。在非特殊字符前面使用反斜杠，则反斜杠会被省略。<br>  <code>\0</code> ：<code>null（\u0000）</code><br>  <code>\b</code> ：<code>后退键（\u0008）</code><br>  <code>\f</code>： <code>换页符（\u000C）</code><br>  <code>\n</code> ：<code>换行符（\u000A）</code><br>  <code>\r</code>： <code>回车键（\u000D）</code><br>  <code>\t</code> ：<code>制表符（\u0009）</code><br>  <code>\v</code> ：<code>垂直制表符（\u000B）</code><br>  <code>\&#39;</code> ：<code>单引号（\u0027）</code><br>  <code>\&quot;</code> ：<code>双引号（\u0022）</code><br>  <code>\\</code> ：<code>反斜杠（\u005C）</code></li>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> longString = <span class="string">'Long \</span></span><br><span class="line"><span class="string">long \</span></span><br><span class="line"><span class="string">long \</span></span><br><span class="line"><span class="string">string'</span>;</span><br><span class="line"></span><br><span class="line">longString</span><br><span class="line"><span class="comment">// "Long long long string"</span></span><br></pre></td></tr></table></figure>
+<p> 连接运算符（+）可以连接多个单行字符串，将长字符串拆成多行书写，输出的时候也是单行。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> longString = <span class="string">'Long '</span></span><br><span class="line">  + <span class="string">'long '</span></span><br><span class="line">  + <span class="string">'long '</span></span><br><span class="line">  + <span class="string">'string'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转义<br> 反斜杠（\）在字符串内有特殊含义，用来表示一些特殊字符，所以又称为转义符。在非特殊字符前面使用反斜杠，则反斜杠会被省略。<br> <code>\0</code> ：<code>null（\u0000）</code><br> <code>\b</code> ：<code>后退键（\u0008）</code><br> <code>\f</code>： <code>换页符（\u000C）</code><br> <code>\n</code> ：<code>换行符（\u000A）</code><br> <code>\r</code>： <code>回车键（\u000D）</code><br> <code>\t</code> ：<code>制表符（\u0009）</code><br> <code>\v</code> ：<code>垂直制表符（\u000B）</code><br> <code>\&#39;</code> ：<code>单引号（\u0027）</code><br> <code>\&quot;</code> ：<code>双引号（\u0022）</code><br> <code>\\</code> ：<code>反斜杠（\u005C）</code></p>
+</li>
 <li><p>字符串可以使用数组的方括号运算符，用来返回某个位置的字符，<strong>只能读取，无法进行删改操作</strong>，如果方括号中的数字超过字符串的长度，或者方括号中不是数字，则返回<code>undefined</code>。 <code>string.length</code>属性返回字符串的长度。 </p>
-<pre><code>var s = &apos;hello&apos;;
-s[0] // &quot;h&quot;
-s[1] // &quot;e&quot;
-s[4] // &quot;o&quot;
-
-// 直接对字符串使用方括号运算符
-&apos;hello&apos;[1] // &quot;e&quot;
-
-var s = &apos;hello&apos;;
-s.length // 5
-</code></pre></li>
-<li>Base64 转码（不适合非 ASCII 码的字符）<br>  btoa()：任意值转为 Base64 编码。<br>  atob()：Base64 编码转为原来的值。<br>   要将非ASCII码字符转为Base64编码，必须中间插入一个转码环节</li>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">'hello'</span>;</span><br><span class="line">s[<span class="number">0</span>] <span class="comment">// "h"</span></span><br><span class="line">s[<span class="number">1</span>] <span class="comment">// "e"</span></span><br><span class="line">s[<span class="number">4</span>] <span class="comment">// "o"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接对字符串使用方括号运算符</span></span><br><span class="line"><span class="string">'hello'</span>[<span class="number">1</span>] <span class="comment">// "e"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> s = <span class="string">'hello'</span>;</span><br><span class="line">s.length <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Base64 转码（不适合非 ASCII 码的字符）<br> btoa()：任意值转为 Base64 编码。<br> atob()：Base64 编码转为原来的值。<br>  要将非ASCII码字符转为Base64编码，必须中间插入一个转码环节</p>
+</li>
 </ul>
 </li>
-<li>null<br> <code>null</code>表示空值，即该处的值现在为空。调用函数时，某个参数未设置任何值，这时就可以传入<code>null</code>，表示该参数为空。<code>null</code>在运算中可以自动转为0。<pre><code>Number(null) // 0
-5 + null // 5
-</code></pre></li>
-<li><p>undefined<br> undefined表示“未定义”，应用场景：</p>
-<pre><code>// 变量声明了，但没有赋值
-var i;
-i // undefined
-
-// 调用函数时，应该提供的参数没有提供，该参数等于 undefined
-function f(x) {
-  return x;
-}
-f() // undefined
-
-// 对象没有赋值的属性
-var  o = new Object();
-o.p // undefined
-
-// 函数没有返回值时，默认返回 undefined
-function f() {}
-f() // undefined
-</code></pre></li>
-<li>boolean<br> 布尔值代表“真”和“假”两个状态。“真”用关键字true表示，“假”用关键字false表示，只有这两个值，通常用于程序流程的控制。在JS中，<code>undefined</code> <code>null</code> <code>false</code> <code>0</code> <code>NaN</code> <code>&quot;&quot;</code>都会被转为<code>false</code>。其他都转为<code>true</code>，包括空数组和空对象。<br> a &amp;&amp; b 在 a 和 b 都为 true 时，取值为 true；否则为 false。<br> a || b 在 a 和 b 都为 false 时，取值为 false；否则为 true。</li>
+<li><p>null<br><code>null</code>表示空值，即该处的值现在为空。调用函数时，某个参数未设置任何值，这时就可以传入<code>null</code>，表示该参数为空。<code>null</code>在运算中可以自动转为0。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>) <span class="comment">// 0</span></span><br><span class="line"><span class="number">5</span> + <span class="literal">null</span> <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>undefined<br>undefined表示“未定义”，应用场景：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 变量声明了，但没有赋值</span></span><br><span class="line"><span class="keyword">var</span> i;</span><br><span class="line">i <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用函数时，应该提供的参数没有提供，该参数等于 undefined</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line">f() <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 对象没有赋值的属性</span></span><br><span class="line"><span class="keyword">var</span>  o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">o.p <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数没有返回值时，默认返回 undefined</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">f() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>boolean<br>布尔值代表“真”和“假”两个状态。“真”用关键字true表示，“假”用关键字false表示，只有这两个值，通常用于程序流程的控制。在JS中，<code>undefined</code> <code>null</code> <code>false</code> <code>0</code> <code>NaN</code> <code>&quot;&quot;</code>都会被转为<code>false</code>。其他都转为<code>true</code>，包括空数组和空对象。<br>a &amp;&amp; b 在 a 和 b 都为 true 时，取值为 true；否则为 false。<br>a || b 在 a 和 b 都为 false 时，取值为 false；否则为 true。</p>
+</li>
 <li>symbol（ES6）</li>
 <li><p>object</p>
 <ul>
-<li>对象就是一组“键值对”（key-value）的集合，是一种<strong>无序</strong>的复合数据集合。<pre><code>var obj = {
-  foo: &apos;Hello&apos;,
-  bar: &apos;World&apos;
-};
-</code></pre></li>
-<li>对象的所有键名都是字符串，JS会自动将键名转换为字符转形式。如果键名不符合标识名的条件（比如第一个字符为数字，或者含有空格或运算符），且也不是数字，则必须加上引号，否则会报错。</li>
+<li><p>对象就是一组“键值对”（key-value）的集合，是一种<strong>无序</strong>的复合数据集合。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  foo: <span class="string">'Hello'</span>,</span><br><span class="line">  bar: <span class="string">'World'</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象的所有键名都是字符串，JS会自动将键名转换为字符转形式。如果键名不符合标识名的条件（比如第一个字符为数字，或者含有空格或运算符），且也不是数字，则必须加上引号，否则会报错。</p>
+</li>
 <li><p>对象的每一个键名又称为“属性”（property），它的“键值”可以是任何数据类型。如果一个属性的值为函数，通常把这个属性称为“方法”，它可以像函数那样调用。</p>
-<pre><code>var obj = {
-  p: function (x) {
-    return 2 * x;
-  }
-};
-
-obj.p(1) // 2
-</code></pre><p>  上文中对象 <code>obj</code> 的属性<code>p</code> 的值为一个函数，可以直接调用该函数。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  p: <span class="function"><span class="keyword">function</span> (<span class="params">x</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">2</span> * x;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.p(<span class="number">1</span>) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p> 上文中对象 <code>obj</code> 的属性<code>p</code> 的值为一个函数，可以直接调用该函数。</p>
 </li>
 <li><p>如果属性的值还是一个对象，就形成了链式引用。</p>
-<pre><code>var o1 = {};
-var o2 = { bar: &apos;hello&apos; };
-
-o1.foo = o2;
-o1.foo.bar // &quot;hello&quot;
-</code></pre></li>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o1 = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> o2 = &#123; <span class="attr">bar</span>: <span class="string">'hello'</span> &#125;;</span><br><span class="line"></span><br><span class="line">o1.foo = o2;</span><br><span class="line">o1.foo.bar <span class="comment">// "hello"</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>属性的操作</p>
 <ul>
 <li><p>属性的读取<br>  一种是使用点运算符, 一种是使用方括号运算符。如果使用方括号运算符，键名必须放在引号里面，否则会被当作变量处理，<strong>如果key的值是变量，则只能使用方括号运算符，且不能加引号。</strong> 数值键名不能使用点运算符。</p>
-<pre><code>var obj = {
-  p: &apos;Hello World&apos;
-};
-
-obj.p // &quot;Hello World&quot;
-obj[&apos;p&apos;] // &quot;Hello World&quot;
-</code></pre></li>
-<li><p>属性的赋值<br>  点运算符和方括号运算符，不仅可以用来读取值，还可以用来赋值。</p>
-<pre><code>var obj = {};
-
-obj.foo = &apos;Hello&apos;;
-obj[&apos;bar&apos;] = &apos;World&apos;;
-</code></pre></li>
-<li>属性的查看<br>  查看一个对象本身的所有属性，可以使用Object.keys方法。</li>
-<li><p>属性的删除：delete 命令</p>
-<pre><code>var obj = { p: 1 };
-Object.keys(obj) // [&quot;p&quot;]
-
-delete obj.p // true
-obj.p // undefined
-Object.keys(obj) // []
-</code></pre><p>  如果只想删除一个键值对的 <code>value</code> 保留<code>key</code>，可以使用<code>obj.p = undefined</code>  的方法操作。<br>  delete命令只能删除对象本身的属性，无法删除继承的属性。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  p: <span class="string">'Hello World'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">obj.p <span class="comment">// "Hello World"</span></span><br><span class="line">obj[<span class="string">'p'</span>] <span class="comment">// "Hello World"</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>属性是否存在：in 运算符<br>   in运算符用于检查对象是否包含某个属性（注意，检查的是键名，不是键值），如果包含就返回true，否则返回false。它的左边是一个字符串，表示属性名，右边是一个对象。<pre><code>var obj = { p: 1 };
-&apos;p&apos; in obj // true
-&apos;toString&apos; in obj // true
-</code></pre></li>
+<li><p>属性的赋值<br>  点运算符和方括号运算符，不仅可以用来读取值，还可以用来赋值。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">obj.foo = <span class="string">'Hello'</span>;</span><br><span class="line">obj[<span class="string">'bar'</span>] = <span class="string">'World'</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>属性的查看<br>  查看一个对象本身的所有属性，可以使用Object.keys方法。</p>
+</li>
+<li><p>属性的删除：delete 命令</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">p</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="built_in">Object</span>.keys(obj) <span class="comment">// ["p"]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> obj.p <span class="comment">// true</span></span><br><span class="line">obj.p <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">Object</span>.keys(obj) <span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<p>  如果只想删除一个键值对的 <code>value</code> 保留<code>key</code>，可以使用<code>obj.p = undefined</code>  的方法操作。<br>  delete命令只能删除对象本身的属性，无法删除继承的属性。</p>
+</li>
+<li><p>属性是否存在：in 运算符<br>   in运算符用于检查对象是否包含某个属性（注意，检查的是键名，不是键值），如果包含就返回true，否则返回false。它的左边是一个字符串，表示属性名，右边是一个对象。</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">p</span>: <span class="number">1</span> &#125;;</span><br><span class="line"><span class="string">'p'</span> <span class="keyword">in</span> obj <span class="comment">// true</span></span><br><span class="line"><span class="string">'toString'</span> <span class="keyword">in</span> obj <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
 <li><p>属性的遍历：for…in 循环<br>  for…in循环用来遍历一个对象的全部属性。</p>
-<pre><code>var obj = {a: 1, b: 2, c: 3};
-
-for (var i in obj) {
-  console.log(&apos;键名：&apos;, i);
-  console.log(&apos;键值：&apos;, obj[i]);
-}
-// 键名： a
-// 键值： 1
-// 键名： b
-// 键值： 2
-// 键名： c
-// 键值： 3
-</code></pre></li>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;<span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'键名：'</span>, i);</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'键值：'</span>, obj[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 键名： a</span></span><br><span class="line"><span class="comment">// 键值： 1</span></span><br><span class="line"><span class="comment">// 键名： b</span></span><br><span class="line"><span class="comment">// 键值： 2</span></span><br><span class="line"><span class="comment">// 键名： c</span></span><br><span class="line"><span class="comment">// 键值： 3</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -726,26 +794,13 @@ for (var i in obj) {
       
         
           
-            <h1 id="获取页面宽高（JS）"><a href="#获取页面宽高（JS）" class="headerlink" title="获取页面宽高（JS）"></a>获取页面宽高（JS）</h1><pre><code>var pageWidth = dociment.documentElement.clientWidth
-var pageHeight = dociment.documentElement.clientHeight
-</code></pre><h1 id="ul-ol-去除默认样式（CSS）"><a href="#ul-ol-去除默认样式（CSS）" class="headerlink" title="ul ol  去除默认样式（CSS）"></a>ul ol  去除默认样式（CSS）</h1><pre><code>ul,ol {
-    list-style: none;
-}
-</code></pre><h1 id="解决相邻元素添加样式布局抖动（CSS）"><a href="#解决相邻元素添加样式布局抖动（CSS）" class="headerlink" title="解决相邻元素添加样式布局抖动（CSS）"></a>解决相邻元素添加样式布局抖动（CSS）</h1><p>设置透明边框<br><code>border: 2px solid transparent;</code></p>
-<h1 id="添加阴影、元素缩放（CSS）"><a href="#添加阴影、元素缩放（CSS）" class="headerlink" title="添加阴影、元素缩放（CSS）"></a>添加阴影、元素缩放（CSS）</h1><pre><code>box-shadow: 0 0 3px rgba(0,0,0,0.5);
-transform: scale(1.2);
-</code></pre><h1 id="设置变形过度时间"><a href="#设置变形过度时间" class="headerlink" title="设置变形过度时间"></a>设置变形过度时间</h1><p><code>transition: all 0.2s;</code></p>
-<h1 id="解决触屏设备上页面整体跟着手指滑动（未解决）"><a href="#解决触屏设备上页面整体跟着手指滑动（未解决）" class="headerlink" title="解决触屏设备上页面整体跟着手指滑动（未解决）"></a>解决触屏设备上页面整体跟着手指滑动（未解决）</h1><p>禁掉页面的滚动条即可<br>    body {<br>        overflow: hidden;<br>    }</p>
-<h1 id="保存canvas图片到本地"><a href="#保存canvas图片到本地" class="headerlink" title="保存canvas图片到本地"></a>保存canvas图片到本地</h1><pre><code>downLoad.onclick = function () {
-    var url = canvas.toDataURL(&apos;image/png&apos;)
-    var a = document.createElement(&apos;a&apos;)
-    document.body.appendChild(a)
-    a.href = url
-    a.download = &apos;myPicture&apos;
-    a.target = &apos;_blank&apos;
-    a.click()
-}
-</code></pre>
+            <h1 id="获取页面宽高（JS）"><a href="#获取页面宽高（JS）" class="headerlink" title="获取页面宽高（JS）"></a>获取页面宽高（JS）</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pageWidth = dociment.documentElement.clientWidth</span><br><span class="line"><span class="keyword">var</span> pageHeight = dociment.documentElement.clientHeight</span><br></pre></td></tr></table></figure>
+<h1 id="ul-ol-去除默认样式（CSS）"><a href="#ul-ol-去除默认样式（CSS）" class="headerlink" title="ul ol  去除默认样式（CSS）"></a>ul ol  去除默认样式（CSS）</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>,<span class="selector-tag">ol</span> &#123;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="解决相邻元素添加样式布局抖动（CSS）"><a href="#解决相邻元素添加样式布局抖动（CSS）" class="headerlink" title="解决相邻元素添加样式布局抖动（CSS）"></a>解决相邻元素添加样式布局抖动（CSS）</h1><p>设置透明边框<br><code>border: 2px solid transparent;</code></p>
+<h1 id="添加阴影、元素缩放（CSS）"><a href="#添加阴影、元素缩放（CSS）" class="headerlink" title="添加阴影、元素缩放（CSS）"></a>添加阴影、元素缩放（CSS）</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box-shadow</span>: 0 0 3<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(0,0,0,0<span class="selector-class">.5</span>);</span><br><span class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">scale</span>(1<span class="selector-class">.2</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="设置变形过度时间"><a href="#设置变形过度时间" class="headerlink" title="设置变形过度时间"></a>设置变形过度时间</h1><p><code>transition: all 0.2s;</code></p>
+<h1 id="解决触屏设备上页面整体跟着手指滑动（未解决）"><a href="#解决触屏设备上页面整体跟着手指滑动（未解决）" class="headerlink" title="解决触屏设备上页面整体跟着手指滑动（未解决）"></a>解决触屏设备上页面整体跟着手指滑动（未解决）</h1><p>禁掉页面的滚动条即可<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="保存canvas图片到本地"><a href="#保存canvas图片到本地" class="headerlink" title="保存canvas图片到本地"></a>保存canvas图片到本地</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">downLoad.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = canvas.toDataURL(<span class="string">'image/png'</span>)</span><br><span class="line">    <span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(a)</span><br><span class="line">    a.href = url</span><br><span class="line">    a.download = <span class="string">'myPicture'</span></span><br><span class="line">    a.target = <span class="string">'_blank'</span></span><br><span class="line">    a.click()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -866,26 +921,27 @@ transform: scale(1.2);
           
             <h1 id="利用-float-左右或左中右布局"><a href="#利用-float-左右或左中右布局" class="headerlink" title="利用 float 左右或左中右布局"></a>利用 float 左右或左中右布局</h1><p>CSS中块级元素，每一个块占用一行，从上往下依次流动，如果需要让块级元素实现左右布局，一个方法是给每个元素添加 float 属性。<br>如图，给 c1，c2，c3 添加 float 属性，使其左右依次排列。<br><img src="/2019/02/17/CSS布局/1.png" alt=""></p>
 <p><img src="/2019/02/17/CSS布局/2.png" alt=""></p>
-<p>如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。<strong>因为块级元素的高度由其内部文档流元素的高度总和决定</strong>，添加 float 属性后，这三个 div 脱离了文档流，所以其父元素就没有高度了。要解决这个问题，可以给浮动元素的父元素上边添加一个叫做 clearfix 的类。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::after &#123;</span><br><span class="line">    content: &apos;&apos;;</span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。<strong>因为块级元素的高度由其内部文档流元素的高度总和决定</strong>，添加 float 属性后，这三个 div 脱离了文档流，所以其父元素就没有高度了。要解决这个问题，可以给浮动元素的父元素上边添加一个叫做 clearfix 的类。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
 <p>上述代码通过伪类 :after 在父级元素后边添加内容，来实现清除浮动从而实现左右布局。<br><img src="/2019/02/17/CSS布局/3.png" alt=""></p>
 <p>上图中有三个 div，如果要实现分布均匀的左中右布局，可以使其中一个元素向左浮动，另外一个元素向右浮动，剩下的一个元素通过设置边距使其居中，从而实现左中右布局。</p>
 <p><img src="/2019/02/17/CSS布局/4.png" alt=""></p>
 <h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><ol>
-<li>内联元素水平居中<br> 使用 text-align: center 可以使块级元素内部的内联元素水平居中。此方法对内联元素(inline), 内联块(inline-block), 内联表(inline-table), inline-flex元素水平居中都有效。<pre><code>.center-text {
-    text-align: center;
- }
-</code></pre> <img src="/2019/02/17/CSS布局/5.png" alt=""></li>
-<li>块级元素水平居中<ul>
-<li>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。<pre><code>margin: 0 auto;
-</code></pre>  <img src="/2019/02/17/CSS布局/6.png" alt=""></li>
-<li>多块级元素水平居中<ol>
-<li>设置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）<pre><code>.container {
-    text-align: center;
-}
-.inline-block {
-    display: inline-block;
-}
-</code></pre> <img src="/2019/02/17/CSS布局/7.png" alt=""></li>
+<li><p>内联元素水平居中<br> 使用 text-align: center 可以使块级元素内部的内联元素水平居中。此方法对内联元素(inline), 内联块(inline-block), 内联表(inline-table), inline-flex元素水平居中都有效。</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center-text</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/02/17/CSS布局/5.png" alt=""></p>
+</li>
+<li><p>块级元素水平居中</p>
+<ul>
+<li><p>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">margin</span>: 0 <span class="selector-tag">auto</span>;</span><br></pre></td></tr></table></figure>
+<p>  <img src="/2019/02/17/CSS布局/6.png" alt=""></p>
+</li>
+<li><p>多块级元素水平居中</p>
+<ol>
+<li><p>设置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inline-block</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/02/17/CSS布局/7.png" alt=""></p>
+</li>
 <li>利用 display: flex 属性<br> <code>justify-content:center;</code> 主轴居中<br> 使用flex布局使元素居中可以不设置父元素的宽高，用子内容将其撑开。<br> <img src="/2019/02/17/CSS布局/8.png" alt=""></li>
 <li>使用绝对定位</li>
 <li>使用绝对定位和transform</li>
@@ -1206,81 +1262,25 @@ transform: scale(1.2);
         
           
             <h1 id="4种引入方式"><a href="#4种引入方式" class="headerlink" title="4种引入方式"></a>4种引入方式</h1><p>内联 style 属性<br>style 标签<br>外部 css link<br>@import url(./b.css);</p>
-<h1 id="float"><a href="#float" class="headerlink" title="float"></a>float</h1><p>浮动元素的父级元素上添加 clearfix 属性，解决浮动元素的bug<br>    .clearfix::after {<br>        content: ‘’;<br>        display: block;<br>        clear: both;<br>    }</p>
+<h1 id="float"><a href="#float" class="headerlink" title="float"></a>float</h1><p>浮动元素的父级元素上添加 clearfix 属性，解决浮动元素的bug<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>块级元素的高度由其内部文档流元素的高度总和决定。<br>文档流：文档内元素的流动方向。</p>
 <ul>
 <li>内联元素从左往右流动，如果遇到阻碍（宽度不够），换行继续从左往右流动。</li>
 <li>块级元素，每一个块占用一行，从上往下依次流动。</li>
 </ul>
-<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><p>所有非空标签都有伪类，比如 &lt;div&gt; 标签，默认为隐藏属性，可以通过 CSS 显示出来并设置相关属性。<br>    div::before{<br>        conntent:’’;<br>    }<br>    div::after{<br>        conntent:’’;<br>    }<br><img src="/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A0.png" alt=""></p>
+<h1 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h1><p>所有非空标签都有伪类，比如 &lt;div&gt; 标签，默认为隐藏属性，可以通过 CSS 显示出来并设置相关属性。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">::before</span>&#123;</span><br><span class="line">	<span class="attribute">conntent</span>:<span class="string">''</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">div</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">	<span class="attribute">conntent</span>:<span class="string">''</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A0.png" alt=""></p>
 <p>如果设置伪元素属性，比如 content ，所有 &lt;div&gt; 标签前后都会加上相关的值，并且在网页上无法选定该元素。<br><img src="/2019/02/15/CSS/%E4%BC%AA%E5%85%83%E7%B4%A02.png" alt=""></p>
 <h1 id="CSS中的块级元素、内联元素（行内元素）"><a href="#CSS中的块级元素、内联元素（行内元素）" class="headerlink" title="CSS中的块级元素、内联元素（行内元素）"></a>CSS中的块级元素、内联元素（行内元素）</h1><ul>
-<li><strong>Block element 块级元素</strong><br>  以块显示的元素，高度宽度都是可以设置的。块级元素默认状态下每次都占据一整个行，后面的内容也必须再新起一行显示。当然非块级元素也可以通过 CSS 的 display:block; 将其更改成块级元素。块级元素一般是其他元素的容器元素。<br>  <strong>块元素（block element）</strong><pre><code>address - 地址
-blockquote - 块引用
-center - 举中对齐块
-dir - 目录列表
-div - 常用块级容易，也是css layout的主要标签
-dl - 定义列表
-fieldset - form控制组
-form - 交互表单
-h1 - 大标题
-h2 - 副标题
-h3 - 3级标题
-h4 - 4级标题
-h5 - 5级标题
-h6 - 6级标题
-hr - 水平分隔线
-isindex - input prompt
-menu - 菜单列表
-noframes - frames可选内容（对于不支持frame的浏览器显示此区块内容）
-noscript - 可选脚本内容（对于不支持script的浏览器显示此内容）
-ol - 排序列表
-p - 段落
-pre - 格式化文本
-table - 表格
-ul - 非排序列表
-</code></pre></li>
-<li><strong>Inline element 内联元素</strong><br>  任何不是块级元素的可见元素都是内联元素，其表现的特性是“行布局”形式。内联元素的高度宽度都是不可以设置的，其宽度就是自身内容的高宽度。我们常用到的\&lt;a>、\&lt;span>、\&lt;em>都属于内联元素。内联元素的显示特点就是像文本一样的显示，不会独自占据一个行。当然块级元素也能变成内联元素,那就是通过 CSS 的 display:inline; 和 float 来实现。<br>  <strong>内联元素（inline element）</strong><pre><code>a - 锚点
-abbr - 缩写
-acronym - 首字
-b - 粗体（不推荐）
-bdo - bidi override
-big - 大字体
-br - 换行
-cite - 引用
-code - 计算机代码（在引用源码的时候需要）
-dfn - 定义字段
-em - 强调
-font - 字体设定（不推荐）
-i - 斜体
-img - 图片
-input - 输入框
-kbd - 定义键盘文本
-label - 表格标签
-q - 短引用
-s - 中划线（不推荐）
-samp - 定义范例计算机代码
-select - 项目选择
-small - 小字体文本
-span - 常用内联容器，定义文本内区块
-strike - 中划线
-strong - 粗体强调
-sub - 下标
-sup - 上标
-textarea - 多行文本输入框
-tt - 电传文本
-u - 下划线
-var - 定义变量
-</code></pre></li>
-<li><strong>可变元素</strong><br>  可变元素为根据上下文语境决定该元素为块元素或者内联元素。<pre><code>applet - java applet
-button - 按钮
-del - 删除文本
-iframe - inline frame
-ins - 插入的文本
-map - 图片区块（map）
-object - object对象
-script - 客户端脚本
-</code></pre></li>
+<li><p><strong>Block element 块级元素</strong><br>  以块显示的元素，高度宽度都是可以设置的。块级元素默认状态下每次都占据一整个行，后面的内容也必须再新起一行显示。当然非块级元素也可以通过 CSS 的 display:block; 将其更改成块级元素。块级元素一般是其他元素的容器元素。<br>  <strong>块元素（block element）</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">address - 地址</span><br><span class="line">blockquote - 块引用</span><br><span class="line">center - 举中对齐块</span><br><span class="line">dir - 目录列表</span><br><span class="line">div - 常用块级容易，也是css layout的主要标签</span><br><span class="line">dl - 定义列表</span><br><span class="line">fieldset - form控制组</span><br><span class="line">form - 交互表单</span><br><span class="line">h1 - 大标题</span><br><span class="line">h2 - 副标题</span><br><span class="line">h3 - 3级标题</span><br><span class="line">h4 - 4级标题</span><br><span class="line">h5 - 5级标题</span><br><span class="line">h6 - 6级标题</span><br><span class="line">hr - 水平分隔线</span><br><span class="line">isindex - input prompt</span><br><span class="line">menu - 菜单列表</span><br><span class="line">noframes - frames可选内容（对于不支持frame的浏览器显示此区块内容）</span><br><span class="line">noscript - 可选脚本内容（对于不支持script的浏览器显示此内容）</span><br><span class="line">ol - 排序列表</span><br><span class="line">p - 段落</span><br><span class="line">pre - 格式化文本</span><br><span class="line">table - 表格</span><br><span class="line">ul - 非排序列表</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Inline element 内联元素</strong><br>  任何不是块级元素的可见元素都是内联元素，其表现的特性是“行布局”形式。内联元素的高度宽度都是不可以设置的，其宽度就是自身内容的高宽度。我们常用到的\&lt;a>、\&lt;span>、\&lt;em>都属于内联元素。内联元素的显示特点就是像文本一样的显示，不会独自占据一个行。当然块级元素也能变成内联元素,那就是通过 CSS 的 display:inline; 和 float 来实现。<br>  <strong>内联元素（inline element）</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">a - 锚点</span><br><span class="line">abbr - 缩写</span><br><span class="line">acronym - 首字</span><br><span class="line">b - 粗体（不推荐）</span><br><span class="line">bdo - bidi override</span><br><span class="line">big - 大字体</span><br><span class="line">br - 换行</span><br><span class="line">cite - 引用</span><br><span class="line">code - 计算机代码（在引用源码的时候需要）</span><br><span class="line">dfn - 定义字段</span><br><span class="line">em - 强调</span><br><span class="line">font - 字体设定（不推荐）</span><br><span class="line">i - 斜体</span><br><span class="line">img - 图片</span><br><span class="line">input - 输入框</span><br><span class="line">kbd - 定义键盘文本</span><br><span class="line">label - 表格标签</span><br><span class="line">q - 短引用</span><br><span class="line">s - 中划线（不推荐）</span><br><span class="line">samp - 定义范例计算机代码</span><br><span class="line">select - 项目选择</span><br><span class="line">small - 小字体文本</span><br><span class="line">span - 常用内联容器，定义文本内区块</span><br><span class="line">strike - 中划线</span><br><span class="line">strong - 粗体强调</span><br><span class="line">sub - 下标</span><br><span class="line">sup - 上标</span><br><span class="line">textarea - 多行文本输入框</span><br><span class="line">tt - 电传文本</span><br><span class="line">u - 下划线</span><br><span class="line">var - 定义变量</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>可变元素</strong><br>  可变元素为根据上下文语境决定该元素为块元素或者内联元素。</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">applet - java applet</span><br><span class="line">button - 按钮</span><br><span class="line">del - 删除文本</span><br><span class="line">iframe - inline frame</span><br><span class="line">ins - 插入的文本</span><br><span class="line">map - 图片区块（map）</span><br><span class="line">object - object对象</span><br><span class="line">script - 客户端脚本</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
           
@@ -1865,134 +1865,6 @@ script - 客户端脚本
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/git-基本命令/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/11/git-基本命令/" itemprop="url">git 基本命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T15:37:45+08:00">
-                2019-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h1 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h1><ul>
-<li>创建新的git仓库：创建新目录，进入目录，执行 git init。</li>
-<li>生成.git目录，该目录为本地仓库<br>  <img src="/2019/02/11/git-基本命令/init.png" alt="init .png"></li>
-</ul>
-<h1 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h1><ul>
-<li>git 仓库工作区，缓存区 ，仓库，在工作区进行文件的添加修改之后，再提交到仓库之前，需要先添加到缓存区。<br>  <img src="/2019/02/11/git-基本命令/add.png" alt="add.png"><h1 id="git-commit-v"><a href="#git-commit-v" class="headerlink" title="git commit -v"></a>git commit -v</h1></li>
-<li>git add 命令将文件提交到缓存区，提交到仓库需要使用 git commit 命令，记录对存储库的更改，使用 git commit -v 进入 vim 在顶部输入message后退出可将文件提交到本地仓库。<br>  <img src="/2019/02/11/git-基本命令/commit.png" alt="commit.png"></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2043,7 +1915,7 @@ script - 客户端脚本
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

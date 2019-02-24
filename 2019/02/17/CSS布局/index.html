@@ -99,7 +99,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/17/CSS布局/11.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/17/CSS布局/12.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/17/CSS布局/13.png">
-<meta property="og:updated_time" content="2019-02-19T05:51:39.914Z">
+<meta property="og:updated_time" content="2019-02-24T02:54:00.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS布局">
 <meta name="twitter:description" content="利用 float 左右或左中右布局CSS中块级元素，每一个块占用一行，从上往下依次流动，如果需要让块级元素实现左右布局，一个方法是给每个元素添加 float 属性。如图，给 c1，c2，c3 添加 float 属性，使其左右依次排列。  如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。因为块级元素的高度由其内部文档流元素的高度总和决定，添加 float 属性后，这三">
@@ -315,26 +315,27 @@
       
         <h1 id="利用-float-左右或左中右布局"><a href="#利用-float-左右或左中右布局" class="headerlink" title="利用 float 左右或左中右布局"></a>利用 float 左右或左中右布局</h1><p>CSS中块级元素，每一个块占用一行，从上往下依次流动，如果需要让块级元素实现左右布局，一个方法是给每个元素添加 float 属性。<br>如图，给 c1，c2，c3 添加 float 属性，使其左右依次排列。<br><img src="/2019/02/17/CSS布局/1.png" alt=""></p>
 <p><img src="/2019/02/17/CSS布局/2.png" alt=""></p>
-<p>如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。<strong>因为块级元素的高度由其内部文档流元素的高度总和决定</strong>，添加 float 属性后，这三个 div 脱离了文档流，所以其父元素就没有高度了。要解决这个问题，可以给浮动元素的父元素上边添加一个叫做 clearfix 的类。<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.clearfix::after &#123;</span><br><span class="line">    content: &apos;&apos;;</span><br><span class="line">    display: block;</span><br><span class="line">    clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。<strong>因为块级元素的高度由其内部文档流元素的高度总和决定</strong>，添加 float 属性后，这三个 div 脱离了文档流，所以其父元素就没有高度了。要解决这个问题，可以给浮动元素的父元素上边添加一个叫做 clearfix 的类。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
 <p>上述代码通过伪类 :after 在父级元素后边添加内容，来实现清除浮动从而实现左右布局。<br><img src="/2019/02/17/CSS布局/3.png" alt=""></p>
 <p>上图中有三个 div，如果要实现分布均匀的左中右布局，可以使其中一个元素向左浮动，另外一个元素向右浮动，剩下的一个元素通过设置边距使其居中，从而实现左中右布局。</p>
 <p><img src="/2019/02/17/CSS布局/4.png" alt=""></p>
 <h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><ol>
-<li>内联元素水平居中<br> 使用 text-align: center 可以使块级元素内部的内联元素水平居中。此方法对内联元素(inline), 内联块(inline-block), 内联表(inline-table), inline-flex元素水平居中都有效。<pre><code>.center-text {
-    text-align: center;
- }
-</code></pre> <img src="/2019/02/17/CSS布局/5.png" alt=""></li>
-<li>块级元素水平居中<ul>
-<li>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。<pre><code>margin: 0 auto;
-</code></pre>  <img src="/2019/02/17/CSS布局/6.png" alt=""></li>
-<li>多块级元素水平居中<ol>
-<li>设置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）<pre><code>.container {
-    text-align: center;
-}
-.inline-block {
-    display: inline-block;
-}
-</code></pre> <img src="/2019/02/17/CSS布局/7.png" alt=""></li>
+<li><p>内联元素水平居中<br> 使用 text-align: center 可以使块级元素内部的内联元素水平居中。此方法对内联元素(inline), 内联块(inline-block), 内联表(inline-table), inline-flex元素水平居中都有效。</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center-text</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/02/17/CSS布局/5.png" alt=""></p>
+</li>
+<li><p>块级元素水平居中</p>
+<ul>
+<li><p>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">margin</span>: 0 <span class="selector-tag">auto</span>;</span><br></pre></td></tr></table></figure>
+<p>  <img src="/2019/02/17/CSS布局/6.png" alt=""></p>
+</li>
+<li><p>多块级元素水平居中</p>
+<ol>
+<li><p>设置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inline-block</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/02/17/CSS布局/7.png" alt=""></p>
+</li>
 <li>利用 display: flex 属性<br> <code>justify-content:center;</code> 主轴居中<br> 使用flex布局使元素居中可以不设置父元素的宽高，用子内容将其撑开。<br> <img src="/2019/02/17/CSS布局/8.png" alt=""></li>
 <li>使用绝对定位</li>
 <li>使用绝对定位和transform</li>
@@ -463,7 +464,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
