@@ -97,7 +97,9 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/24/普通类型和对象的区别/9.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/普通类型和对象的区别/10.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/24/普通类型和对象的区别/11.png">
-<meta property="og:updated_time" content="2019-02-24T09:48:52.624Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/普通类型和对象的区别/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/普通类型和对象的区别/13.png">
+<meta property="og:updated_time" content="2019-02-25T07:33:35.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="普通类型和对象的区别">
 <meta name="twitter:description" content="JavaScript 一共有七种数据类型，其中六种 string、number、boolean、undefined、symbol、null 称为普通类型（原始类型），object（对象）称为复杂类型（引用类型）。当我们打开浏览器时（以Chrome为例），Chrome 打开即占用一定大小的内存，当我们打开多个页面时，Chrome 给每个网页分配一定数量的内存，这些内存要分给页面渲染器、网络模块、浏览">
@@ -326,7 +328,8 @@
 <h2 id="普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"><a href="#普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。" class="headerlink" title="普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"></a>普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。</h2><h1 id="2-深拷贝与浅拷贝"><a href="#2-深拷贝与浅拷贝" class="headerlink" title="2.深拷贝与浅拷贝"></a>2.深拷贝与浅拷贝</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="number">2</span> <span class="comment">//这个时候改变 b</span></span><br><span class="line">a 完全不受 b 的影响</span><br><span class="line">那么我们就说这是一个深拷贝</span><br></pre></td></tr></table></figure>
 <p>对于简单类型的数据来说，赋值就是深拷贝。<br>对于复杂类型的数据（对象）来说，才要区分浅拷贝和深拷贝。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b.name = <span class="string">'b'</span></span><br><span class="line">a.name === <span class="string">'b'</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
 <p>上述代码对 <code>b</code> 操作后，<code>a</code> 也变了，所以是浅拷贝。<br>对 Heap 内存进行完全的拷贝，称为深拷贝。</p>
-<h1 id="3-GC-垃圾回收机制"><a href="#3-GC-垃圾回收机制" class="headerlink" title="3.GC 垃圾回收机制"></a>3.GC 垃圾回收机制</h1><p>在浏览器给 JS 分配的内存中，如果 Heap 中的某个对象没有被任何其他对象或者变量进行引用，则会被浏览器视为垃圾，删除该对象，回收该内存地址。</p>
+<h1 id="3-GC-垃圾回收机制"><a href="#3-GC-垃圾回收机制" class="headerlink" title="3. GC 垃圾回收机制"></a>3. GC 垃圾回收机制</h1><p>在浏览器给 JS 分配的内存中，如果 Heap 中的某个对象没有被任何其他对象或者变量进行引用，则会被浏览器视为垃圾，删除该对象，回收该内存地址。</p>
+<h1 id="4-为什么简单类型也可以调用方法"><a href="#4-为什么简单类型也可以调用方法" class="headerlink" title="4. 为什么简单类型也可以调用方法"></a>4. 为什么简单类型也可以调用方法</h1><p>在我们使用 JavaScript 的时候，通过 <code>var</code> 声明一个普通类型的时候，发现也可以调用相关的方法，如图所示。<br><img src="/2019/02/24/普通类型和对象的区别/12.png" alt=""><img src="/2019/02/24/普通类型和对象的区别/13.png" alt=""><br>但普通类型并不具有方法，这是因为当我们执行<code>n.toString()</code> 的时候，JS 会在内存中创建一个临时的对象 <code>temp = new Numer(n)</code>，<code>temp</code> 是 n 的复杂类型的封装，实际上<code>n.toString()</code> 等于 <code>temp.toString()</code>，然后把<code>temp.toString()</code> 的值作为<code>n.toString()</code> 的值返回，然后再消除掉<code>temp</code> 这个临时对象。同理，其他普通类型的的方法也都是这样。</p>
 
       
     </div>
@@ -360,6 +363,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/24/原型与原型链/" rel="prev" title="原型与原型链">
+                原型与原型链 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -436,7 +443,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -482,7 +489,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-两种类型在内存中的形式"><span class="nav-number">1.</span> <span class="nav-text">1. 两种类型在内存中的形式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。"><span class="nav-number">1.1.</span> <span class="nav-text">为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题1："><span class="nav-number">1.1.1.</span> <span class="nav-text">面试题1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题2："><span class="nav-number">1.1.2.</span> <span class="nav-text">面试题2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题3："><span class="nav-number">1.1.3.</span> <span class="nav-text">面试题3：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题4："><span class="nav-number">1.1.4.</span> <span class="nav-text">面试题4：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题5："><span class="nav-number">1.1.5.</span> <span class="nav-text">面试题5：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"><span class="nav-number">1.2.</span> <span class="nav-text">普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-深拷贝与浅拷贝"><span class="nav-number">2.</span> <span class="nav-text">2.深拷贝与浅拷贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-GC-垃圾回收机制"><span class="nav-number">3.</span> <span class="nav-text">3.GC 垃圾回收机制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-两种类型在内存中的形式"><span class="nav-number">1.</span> <span class="nav-text">1. 两种类型在内存中的形式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。"><span class="nav-number">1.1.</span> <span class="nav-text">为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题1："><span class="nav-number">1.1.1.</span> <span class="nav-text">面试题1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题2："><span class="nav-number">1.1.2.</span> <span class="nav-text">面试题2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题3："><span class="nav-number">1.1.3.</span> <span class="nav-text">面试题3：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题4："><span class="nav-number">1.1.4.</span> <span class="nav-text">面试题4：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面试题5："><span class="nav-number">1.1.5.</span> <span class="nav-text">面试题5：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"><span class="nav-number">1.2.</span> <span class="nav-text">普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-深拷贝与浅拷贝"><span class="nav-number">2.</span> <span class="nav-text">2.深拷贝与浅拷贝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-GC-垃圾回收机制"><span class="nav-number">3.</span> <span class="nav-text">3. GC 垃圾回收机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-为什么简单类型也可以调用方法"><span class="nav-number">4.</span> <span class="nav-text">4. 为什么简单类型也可以调用方法</span></a></li></ol></div>
             
 
           </div>

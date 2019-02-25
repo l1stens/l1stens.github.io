@@ -79,17 +79,24 @@
 
 
 
-<meta name="description" content="title: 开博大吉date: 2019-02-11 08:26:13 tags:哈哈  我的博客开通啦">
+<meta name="description" content="原型（公用属性）在 javascript 中，函数都是对象，可以有属性。 每个函数都有一个特殊的属性叫作原型（prototype），这个属性会指向函数的原型对象。JavaScript 的原型对象中，还包含了一个 constructor 属性，这个属性对应创建所有指向改原型的实例的构造函数。  每个对象都有 __proto__ 属性，但只有函数对象才有 prototype 属性。  在使用构造函数生">
 <meta property="og:type" content="article">
-<meta property="og:title" content="myBlog">
-<meta property="og:url" content="http://yoursite.com/2019/02/11/开博大吉/index.html">
+<meta property="og:title" content="原型与原型链">
+<meta property="og:url" content="http://yoursite.com/2019/02/24/原型与原型链/index.html">
 <meta property="og:site_name" content="myBlog">
-<meta property="og:description" content="title: 开博大吉date: 2019-02-11 08:26:13 tags:哈哈  我的博客开通啦">
+<meta property="og:description" content="原型（公用属性）在 javascript 中，函数都是对象，可以有属性。 每个函数都有一个特殊的属性叫作原型（prototype），这个属性会指向函数的原型对象。JavaScript 的原型对象中，还包含了一个 constructor 属性，这个属性对应创建所有指向改原型的实例的构造函数。  每个对象都有 __proto__ 属性，但只有函数对象才有 prototype 属性。  在使用构造函数生">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-11T02:31:48.763Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/原型与原型链/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/原型与原型链/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/原型与原型链/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/原型与原型链/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/原型与原型链/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/24/原型与原型链/5.png">
+<meta property="og:updated_time" content="2019-02-25T09:24:39.133Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="myBlog">
-<meta name="twitter:description" content="title: 开博大吉date: 2019-02-11 08:26:13 tags:哈哈  我的博客开通啦">
+<meta name="twitter:title" content="原型与原型链">
+<meta name="twitter:description" content="原型（公用属性）在 javascript 中，函数都是对象，可以有属性。 每个函数都有一个特殊的属性叫作原型（prototype），这个属性会指向函数的原型对象。JavaScript 的原型对象中，还包含了一个 constructor 属性，这个属性对应创建所有指向改原型的实例的构造函数。  每个对象都有 __proto__ 属性，但只有函数对象才有 prototype 属性。  在使用构造函数生">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/24/原型与原型链/1.png">
 
 
 
@@ -119,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/11/开博大吉/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/24/原型与原型链/">
 
 
 
 
 
-  <title> | myBlog</title>
+  <title>原型与原型链 | myBlog</title>
   
 
 
@@ -232,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/开博大吉/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/原型与原型链/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yang">
@@ -249,7 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">原型与原型链</h1>
         
 
         <div class="post-meta">
@@ -261,8 +268,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T10:31:48+08:00">
-                2019-02-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T21:46:35+08:00">
+                2019-02-24
               </time>
             
 
@@ -299,9 +306,31 @@
       
 
       
-        <hr>
-<p>title: 开博大吉<br>date: 2019-02-11 08:26:13</p>
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><h1 id="哈哈"><a href="#哈哈" class="headerlink" title="哈哈"></a>哈哈</h1><p>  我的博客开通啦</p>
+        <h1 id="原型（公用属性）"><a href="#原型（公用属性）" class="headerlink" title="原型（公用属性）"></a>原型（公用属性）</h1><p>在 javascript 中，函数都是对象，可以有属性。 每个函数都有一个特殊的属性叫作原型（prototype），这个属性会指向函数的原型对象。JavaScript 的原型对象中，还包含了一个 <code>constructor</code> 属性，这个属性对应创建所有指向改原型的实例的构造函数。</p>
+<blockquote>
+<p>每个对象都有 <code>__proto__</code> 属性，但只有函数对象才有 <code>prototype</code> 属性。<br><img src="/2019/02/24/原型与原型链/1.png" alt=""></p>
+</blockquote>
+<p>在使用构造函数生成实例的时候，prototype 属性会成为该对象实例的原型。constructor 指向该实例的构造函数（prototype 属性所在的函数）。<br><img src="/2019/02/24/原型与原型链/3.png" alt=""><img src="/2019/02/24/原型与原型链/2.png" alt=""><img src="/2019/02/24/原型与原型链/6.png" alt=""><br>上述代码中，<code>Foo</code> 为构造函数，<code>p1</code>   与 <code>p2</code> 是该构造函数的实例对象，<code>Foo</code> 的 <code>prototype</code> 属性就是这两个实例的原型对象，所以它们都可以使用<code>.age</code> 方法，这个方法在两个实例的<code>__proto__</code>属性中。<code>constructor</code> 属性指向含有该原型的构造函数 <code>Foo</code>。</p>
+<blockquote>
+<p><strong><code>实例对象.__proto__ === 函数.prototype</code></strong></p>
+</blockquote>
+<p><img src="/2019/02/24/原型与原型链/4.png" alt=""><br><strong>原型对象的属性不是实例对象自身的属性</strong>。只要修改原型对象，变动就立刻会体现在所有实例对象上。这是因为实例对象其实没有<code>age</code>属性，都是读取原型对象的<code>age</code>属性。当实例对象本身没有某个属性或方法的时候，它会到原型对象去寻找该属性或方法。<br><img src="/2019/02/24/原型与原型链/5.png" alt=""><br>如果某个实例对象自身就有某个属性或方法，它就不会再去原型对象寻找这个属性或方法，所以改变原型对象上的值也不会影响该实例。<br><strong>构造函数生成的实例只有<code>__proto__</code>属性，没有<code>prototype</code> 属性。</strong></p>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><ul>
+<li><p>当我们访问对象的一个属性或方法时，它会先在对象自身中寻找，如果有则直接使用，如果没有则会去原型对象中寻找，如果找到则直接使用。如果没有则去原型的原型中寻找，直到找到Object对象的原型，Object对象的原型没有原型，如果在<code>Object. prototype</code>中依然没有找到，则返回<code>undefined</code>。<br>  Object是JS中所有对象数据类型的根基，在<code>Object.prototype</code>上的<code>__proto__</code>属性指向<code>null</code>。</p>
+</li>
+<li><p>重要公式：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 对象 = <span class="keyword">new</span> 函数()</span><br><span class="line">对象.__proto__ === 对象的构造函数.prototype</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推论</span></span><br><span class="line"><span class="keyword">var</span> number = <span class="keyword">new</span> <span class="built_in">Number</span>()</span><br><span class="line">number.__proto__ = <span class="built_in">Number</span>.prototype</span><br><span class="line"><span class="built_in">Number</span>.__proto__ = <span class="built_in">Function</span>.prototype <span class="comment">// 因为 Number 是 Function 的实例</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> object = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">object.__proto__ = <span class="built_in">Object</span>.prototype</span><br><span class="line"><span class="built_in">Object</span>.__proto__ = <span class="built_in">Function</span>.prototype <span class="comment">// 因为 Object 是 Function 的实例</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> <span class="function"><span class="keyword">function</span> = <span class="title">new</span> <span class="title">Function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"><span class="title">function</span>.<span class="title">__proto__</span> = <span class="title">Function</span>.<span class="title">prototype</span></span></span><br><span class="line"><span class="function"><span class="title">Function</span>.<span class="title">__proto__</span> == <span class="title">Function</span>.<span class="title">prototye</span> // 因为 <span class="title">Function</span> 是 <span class="title">Function</span> 的实例！</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>__proto__</code> 和 <code>prototype</code> 的区别是什么？</p>
+<ol>
+<li>不能断章取义，<code>__proto__</code>和 <code>prototype</code> 只是两个 key 而已。</li>
+<li>我们一般研究对象的<code>__proto__</code>和函数的<code>prototype</code>。</li>
+<li><code>对象.__proto__ === 某函数.prototype</code>。</li>
+<li>如果把函数看成对象，那么<code>函数.__proto__ === Function.prototype</code>。</li>
+<li>如果把 Function 看成对象，那么 <code>Function.__proto__ === Function.prototype</code>。</li>
+</ol>
+</li>
+</ul>
 
       
     </div>
@@ -326,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/11/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/02/24/普通类型和对象的区别/" rel="next" title="普通类型和对象的区别">
+                <i class="fa fa-chevron-left"></i> 普通类型和对象的区别
               </a>
             
           </div>
@@ -335,10 +364,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/11/第二篇/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -461,7 +486,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags"><span class="nav-number">1.</span> <span class="nav-text">tags:</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#哈哈"><span class="nav-number"></span> <span class="nav-text">哈哈</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原型（公用属性）"><span class="nav-number">1.</span> <span class="nav-text">原型（公用属性）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型链"><span class="nav-number">2.</span> <span class="nav-text">原型链</span></a></li></ol></div>
             
 
           </div>
