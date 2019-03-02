@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="title: 第二篇date: 2019-02-11 10:44:15 tags:第二篇博客demo。-">
+<meta name="description" content="构造函数相关基本类型的数据（number string boolean）的构造函数：  Number(a) String(a) Boolean(a) 返回一个转换后的基本类型的数据。 new Number(a) new nString(a) new Boolean(a) 返回一个对象。复杂类型的构造函数： let a = Array(1) === let a = new Array(1) let">
 <meta property="og:type" content="article">
-<meta property="og:title" content="myBlog">
-<meta property="og:url" content="http://yoursite.com/2019/02/11/第二篇/index.html">
+<meta property="og:title" content="Array and Function">
+<meta property="og:url" content="http://yoursite.com/2019/02/28/JS数组相关/index.html">
 <meta property="og:site_name" content="myBlog">
-<meta property="og:description" content="title: 第二篇date: 2019-02-11 10:44:15 tags:第二篇博客demo。-">
+<meta property="og:description" content="构造函数相关基本类型的数据（number string boolean）的构造函数：  Number(a) String(a) Boolean(a) 返回一个转换后的基本类型的数据。 new Number(a) new nString(a) new Boolean(a) 返回一个对象。复杂类型的构造函数： let a = Array(1) === let a = new Array(1) let">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-11T02:45:14.347Z">
+<meta property="og:updated_time" content="2019-02-28T12:59:02.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="myBlog">
-<meta name="twitter:description" content="title: 第二篇date: 2019-02-11 10:44:15 tags:第二篇博客demo。-">
+<meta name="twitter:title" content="Array and Function">
+<meta name="twitter:description" content="构造函数相关基本类型的数据（number string boolean）的构造函数：  Number(a) String(a) Boolean(a) 返回一个转换后的基本类型的数据。 new Number(a) new nString(a) new Boolean(a) 返回一个对象。复杂类型的构造函数： let a = Array(1) === let a = new Array(1) let">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/11/第二篇/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/28/JS数组相关/">
 
 
 
 
 
-  <title> | myBlog</title>
+  <title>Array and Function | myBlog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/第二篇/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/28/JS数组相关/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yang">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Array and Function</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T10:45:14+08:00">
-                2019-02-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-28T16:03:20+08:00">
+                2019-02-28
               </time>
             
 
@@ -299,9 +299,26 @@
       
 
       
-        <hr>
-<p>title: 第二篇<br>date: 2019-02-11 10:44:15</p>
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><p>第二篇博客demo。<br>-</p>
+        <h1 id="构造函数相关"><a href="#构造函数相关" class="headerlink" title="构造函数相关"></a>构造函数相关</h1><p>基本类型的数据（number string boolean）的构造函数：</p>
+<ul>
+<li><code>Number(a)</code> <code>String(a)</code> <code>Boolean(a)</code> 返回一个转换后的基本类型的数据。</li>
+<li><code>new Number(a)</code> <code>new nString(a)</code> <code>new Boolean(a)</code> 返回一个对象。<br>复杂类型的构造函数：</li>
+<li><code>let a = Array(1)</code> === <code>let a = new Array(1)</code></li>
+<li><code>let o = Object(1)</code> === <code>let o = new Object(1)</code><br>函数的构造函数：</li>
+<li><code>var f = new Function(&#39;a&#39;, &#39;b&#39;, &#39;return a + b&#39;)</code> === <code>var f = Function(&#39;a&#39;, &#39;b&#39;, &#39;return a + b&#39;)</code>最后一个参数为函数体。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'return a + b'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>上边两种创建函数的方法结果相等。
+</code></pre><h1 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h1><ol>
+<li><p>不一致性，当 <code>Array</code> 只有一个参数时，表示的是创建的数组的长度。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="built_in">Array</span>(<span class="number">3</span>)</span><br><span class="line">a.length <span class="comment">//3</span></span><br><span class="line">a <span class="comment">//[empty * 3] length: 3</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="built_in">Array</span>(<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">a.length <span class="comment">//2</span></span><br><span class="line">a <span class="comment">//[3,3]  length: 2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>伪数组：原型链中没有<code>Array.prototype</code> 属性。</p>
+</li>
+<li>a.forEach( function(x,y){<br> } )：参数接受一个函数，函数接受两个（三个）参数。</li>
+</ol>
 
       
     </div>
@@ -326,8 +343,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/11/开博大吉/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/02/24/原型与原型链/" rel="next" title="原型与原型链">
+                <i class="fa fa-chevron-left"></i> 原型与原型链
               </a>
             
           </div>
@@ -336,8 +353,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/11/初识命令行/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/02/函数/" rel="prev" title="函数相关">
+                函数相关 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -461,7 +478,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags"><span class="nav-number">1.</span> <span class="nav-text">tags:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#构造函数相关"><span class="nav-number">1.</span> <span class="nav-text">构造函数相关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Array"><span class="nav-number">2.</span> <span class="nav-text">Array</span></a></li></ol></div>
             
 
           </div>
