@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="myBlog">
 <meta property="og:description" content="1. 函数的五种声明方式 具名函数  1234function f(x,y)&amp;#123; return x+y&amp;#125;f.name // &apos;f&apos;  匿名函数  12345var ff = function(x,y)&amp;#123; return x+y&amp;#125;f.name // &apos;f&apos;  具名函数赋值  1234var ff = function f2(x,y)&amp;#123; return x+">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-02T10:45:47.310Z">
+<meta property="og:updated_time" content="2019-03-04T05:11:04.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数相关">
 <meta name="twitter:description" content="1. 函数的五种声明方式 具名函数  1234function f(x,y)&amp;#123; return x+y&amp;#125;f.name // &apos;f&apos;  匿名函数  12345var ff = function(x,y)&amp;#123; return x+y&amp;#125;f.name // &apos;f&apos;  具名函数赋值  1234var ff = function f2(x,y)&amp;#123; return x+">
@@ -318,6 +318,7 @@
 </ol>
 <h1 id="2-调用函数"><a href="#2-调用函数" class="headerlink" title="2.  调用函数"></a>2.  调用函数</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;x,y&#125;</span><br><span class="line">    	 <span class="keyword">return</span> x+y</span><br><span class="line">f(x,y)</span><br><span class="line">f.call(<span class="literal">undefined</span>,x,y)</span><br></pre></td></tr></table></figure>
 <h1 id="3-this-和-arguments"><a href="#3-this-和-arguments" class="headerlink" title="3. this 和 arguments"></a>3. this 和 arguments</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br><span class="line">f.call(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>) <span class="comment">// this 为 1，arguments 为 [2,3]</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://zhuanlan.zhihu.com/p/23804247" target="_blank" rel="noopener">方应杭老师关于 <code>this</code> 的解释</a></p>
 <h1 id="3-作用域"><a href="#3-作用域" class="headerlink" title="3. 作用域"></a>3. 作用域</h1><ul>
 <li>按照语法树，就近原则。</li>
 <li>我们只能确定变量是哪个变量，但是不能确定变量的值。</li>
