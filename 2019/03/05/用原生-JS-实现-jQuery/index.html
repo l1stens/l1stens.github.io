@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="实现getSiblings和addClass的功能网页HTML部分：12345678910&amp;lt;body&amp;gt;  &amp;lt;ul&amp;gt;    &amp;lt;li id=&quot;item1&quot;&amp;gt;选项1&amp;lt;/li&amp;gt;    &amp;lt;li id=&quot;item2&quot;&amp;gt;选项2&amp;lt;/li&amp;gt;    &amp;lt;li id=&quot;item3&quot;&amp;gt;选项3&amp;lt;/li&amp;gt;    &amp;lt;li id=">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用原生 JS 实现 jQuery">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/用原生-JS-实现-jQuery/index.html">
+<meta property="og:site_name" content="myBlog">
+<meta property="og:description" content="实现getSiblings和addClass的功能网页HTML部分：12345678910&amp;lt;body&amp;gt;  &amp;lt;ul&amp;gt;    &amp;lt;li id=&quot;item1&quot;&amp;gt;选项1&amp;lt;/li&amp;gt;    &amp;lt;li id=&quot;item2&quot;&amp;gt;选项2&amp;lt;/li&amp;gt;    &amp;lt;li id=&quot;item3&quot;&amp;gt;选项3&amp;lt;/li&amp;gt;    &amp;lt;li id=">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-05T12:22:29.634Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用原生 JS 实现 jQuery">
+<meta name="twitter:description" content="实现getSiblings和addClass的功能网页HTML部分：12345678910&amp;lt;body&amp;gt;  &amp;lt;ul&amp;gt;    &amp;lt;li id=&quot;item1&quot;&amp;gt;选项1&amp;lt;/li&amp;gt;    &amp;lt;li id=&quot;item2&quot;&amp;gt;选项2&amp;lt;/li&amp;gt;    &amp;lt;li id=&quot;item3&quot;&amp;gt;选项3&amp;lt;/li&amp;gt;    &amp;lt;li id=">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/用原生-JS-实现-jQuery/">
+
+
+
+
+
+  <title>用原生 JS 实现 jQuery | myBlog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">myBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/用原生-JS-实现-jQuery/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">用原生 JS 实现 jQuery</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-05T20:06:19+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="实现getSiblings和addClass的功能"><a href="#实现getSiblings和addClass的功能" class="headerlink" title="实现getSiblings和addClass的功能"></a>实现getSiblings和addClass的功能</h1><p>网页HTML部分：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item1"</span>&gt;</span>选项1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item2"</span>&gt;</span>选项2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item3"</span>&gt;</span>选项3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item4"</span>&gt;</span>选项4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item5"</span>&gt;</span>选项5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">id</span>=<span class="string">"item6"</span>&gt;</span>选项6<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>getSiblings</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> allChildren = item3.parentNode.children </span><br><span class="line"><span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">  <span class="keyword">if</span>(allChildren[i] !== item3)&#123;</span><br><span class="line">	array[array.length] = allChildren[i]</span><br><span class="line">	array.length += <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>addClass</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> classes = &#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">  <span class="keyword">let</span> value = classes[key]</span><br><span class="line">  <span class="keyword">if</span>(value)&#123;</span><br><span class="line">	item3.classList.add(key)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	item3.classList.remove(key)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="封装原生函数"><a href="#封装原生函数" class="headerlink" title="封装原生函数"></a>封装原生函数</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSiblings</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> allChildren = node.parentNode.children </span><br><span class="line">  <span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(allChildren[i] !== node)&#123;</span><br><span class="line">      array[array.length] = allChildren[i]</span><br><span class="line">      array.length += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line">getSiblings(item3)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">node, classes</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">    <span class="keyword">let</span> value = classes[key]</span><br><span class="line">    <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">      node.classList[methodName](key)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">addClass(item3, &#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSiblings</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> allChildren = node.parentNode.children </span><br><span class="line">  <span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(allChildren[i] !== node)&#123;</span><br><span class="line">      array[array.length] = allChildren[i]</span><br><span class="line">      array.length += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">node, classes</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">    <span class="keyword">let</span> value = classes[key]</span><br><span class="line">    <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">      node.classList[methodName](key)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.ffDOM = &#123;&#125;</span><br><span class="line">ffDOM.getSiblings = getSiblings</span><br><span class="line">ffDOM.addClass = addClass</span><br><span class="line"></span><br><span class="line">ffDOM.getSiblings(item3)</span><br><span class="line">ffDOM.addClass(item3, &#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="扩展-Node-接口"><a href="#扩展-Node-接口" class="headerlink" title="扩展 Node 接口"></a>扩展 Node 接口</h1><p>直接在 Node.prototype 上加函数<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Node.prototype.getSiblings = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> allChildren = <span class="keyword">this</span>.parentNode.children</span><br><span class="line">  <span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(allChildren[i] !== <span class="keyword">this</span>)&#123;</span><br><span class="line">      array[array.length] = allChildren[i]</span><br><span class="line">      array.length += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> array</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">item3.getSiblings()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Node.prototype.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">    <span class="keyword">let</span> value = classes[key]</span><br><span class="line">    <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">      <span class="keyword">this</span>.classList[methodName](key)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">item3.addClass(&#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="无侵入添加-Node-接口"><a href="#无侵入添加-Node-接口" class="headerlink" title="无侵入添加 Node 接口"></a>无侵入添加 Node 接口</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Node2 = <span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getSiblings: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> allChildren = node.parentNode.children </span><br><span class="line">      <span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(allChildren[i] !== node)&#123;</span><br><span class="line">          array[array.length] = allChildren[i]</span><br><span class="line">          array.length += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> array</span><br><span class="line">    &#125;,</span><br><span class="line">    addClass: <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">        <span class="keyword">let</span> value = classes[key]</span><br><span class="line">        <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">        node.classList[methodName](key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = Node2(item3)</span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass(&#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="添加接受选择器功能"><a href="#添加接受选择器功能" class="headerlink" title="添加接受选择器功能"></a>添加接受选择器功能</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">nodeOrSelector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> node</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> nodeOrSelector === <span class="string">'string'</span>)&#123;</span><br><span class="line">    node = <span class="built_in">document</span>.querySelector(nodeOrSelector)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    node = nodeOrSelector</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getSiblings: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> allChildren = node.parentNode.children </span><br><span class="line">      <span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(allChildren[i] !== node)&#123;</span><br><span class="line">          array[array.length] = allChildren[i]</span><br><span class="line">          array.length += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> array</span><br><span class="line">    &#125;,</span><br><span class="line">    addClass: <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">        <span class="keyword">let</span> value = classes[key]</span><br><span class="line">        <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">        node.classList[methodName](key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = jQuery(<span class="string">'#item3'</span>)</span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass(&#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="添加接受多个选择器功能"><a href="#添加接受多个选择器功能" class="headerlink" title="添加接受多个选择器功能"></a>添加接受多个选择器功能</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">nodeOrSelector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = &#123;&#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> nodeOrSelector === <span class="string">'string'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="built_in">document</span>.querySelectorAll(nodeOrSelector)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; temp.length; i++)&#123;</span><br><span class="line">      nodes[i] = temp[i]</span><br><span class="line">    &#125;</span><br><span class="line">    nodes.length = temp.length</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nodeOrSelector <span class="keyword">instanceof</span> Node)&#123;</span><br><span class="line">    nodes = &#123;<span class="number">0</span>: nodeOrSelector, <span class="attr">length</span>: <span class="number">1</span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  nodes.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">      <span class="keyword">let</span> value = classes[key]</span><br><span class="line">      <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++)&#123;</span><br><span class="line">        nodes[i].classList[methodName](key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  nodes.text = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(text === <span class="literal">undefined</span>)&#123;</span><br><span class="line">      <span class="keyword">let</span> texts = []</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++)&#123;</span><br><span class="line">        texts.push(nodes[i].textContent)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> texts</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++)&#123;</span><br><span class="line">        nodes[i].textContent = text</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = jQuery(<span class="string">'ul &gt; li'</span>)</span><br><span class="line">node2.addClass(&#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">node2.text(<span class="string">'hi'</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/02/函数/" rel="next" title="函数相关">
+                <i class="fa fa-chevron-left"></i> 函数相关
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#实现getSiblings和addClass的功能"><span class="nav-number">1.</span> <span class="nav-text">实现getSiblings和addClass的功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#封装原生函数"><span class="nav-number">2.</span> <span class="nav-text">封装原生函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命名空间"><span class="nav-number">3.</span> <span class="nav-text">命名空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展-Node-接口"><span class="nav-number">4.</span> <span class="nav-text">扩展 Node 接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#无侵入添加-Node-接口"><span class="nav-number">5.</span> <span class="nav-text">无侵入添加 Node 接口</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加接受选择器功能"><span class="nav-number">6.</span> <span class="nav-text">添加接受选择器功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加接受多个选择器功能"><span class="nav-number">7.</span> <span class="nav-text">添加接受多个选择器功能</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
