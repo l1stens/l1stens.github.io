@@ -229,6 +229,150 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/DOM事件模型相关笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/07/DOM事件模型相关笔记/" itemprop="url">DOM事件模型相关笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-07T19:28:56+08:00">
+                2019-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="DOM-事件"><a href="#DOM-事件" class="headerlink" title="DOM 事件"></a>DOM 事件</h1><p><strong>目前DOM 2 是目前使用最广泛的标准。</strong></p>
+<ol>
+<li>DOM 1 方法：</li>
+</ol>
+<ul>
+<li><p>在 HTML 中：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var print = function() &#123;</span><br><span class="line">	cosole.log('hi')</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">Y</span> <span class="attr">onclick</span>=<span class="string">"print()"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">Z</span> <span class="attr">onclick</span>=<span class="string">"print.call()"</span>&gt;</span>A<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  onclick=”要执行的代码”，一旦用户点击，浏览器就 eval(“要执行的代码”)。</p>
+</li>
+<li><p>在 JS 中：</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> print = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		cosole.log(<span class="string">'hi'</span>)</span><br><span class="line">	&#125;</span><br><span class="line">X.onclick = print <span class="comment">//类型为函数对象，应该用这种写法。</span></span><br><span class="line">X.onclick = print() <span class="comment">//类型为 undefined</span></span><br><span class="line">X.onclick = print.call() <span class="comment">//类型为 undefined</span></span><br></pre></td></tr></table></figure>
+<p>  一旦用户点击，就执行<code>X.onclick.call(this,arguments)</code></p>
+</li>
+</ul>
+<ol start="2">
+<li><p>DOM 2 方法：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>event<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">'xxx'</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">xxx.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line">xxx.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//xxx拥有一个队列 addeventlisteners，先进去的函数先触发，不会覆盖别的事件。</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line">xxx.addEventListener(<span class="string">'click'</span>, f1)</span><br><span class="line">xxx.addEventListener(<span class="string">'click'</span>, f2)</span><br></pre></td></tr></table></figure>
+<p> jQuery中<code>.one</code>的实现原理</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">	xxx.removeEventListener(<span class="string">'click'</span>, f1)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">xxx.addEventListener(<span class="string">'click'</span>, f1)</span><br><span class="line"><span class="comment">//执行一次后，栈内的函数被 remove，该事件只会被触发一次。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>DOM 0 ：标准出现之前的事实规范</p>
+</li>
+<li>事件冒泡和事件捕获<br> 当点击儿子的时候，父亲和爷爷同时被点击<br> <img src="/2019/03/07/DOM事件模型相关笔记/1.png" alt=""><br> fn1 fn2 fn3 的执行顺序由事件的第三个参数决定。默认情况下，或者第三个参数为 falsy 值，是由下往上执行（事件冒泡）。<br>  <img src="/2019/03/07/DOM事件模型相关笔记/2.png" alt=""><br> 当第三个参数为<code>true</code> ，从上往下执行（事件捕获）。<br> <img src="/2019/03/07/DOM事件模型相关笔记/3.png" alt=""><br> 不同事件第三个参数的值不同时，会先进行事件捕获（true），然后再事件冒泡（flase）。<br> <img src="/2019/03/07/DOM事件模型相关笔记/4.png" alt=""><br> 如果同一个事件上绑定了两个不同的值时，执行顺序由代码的先后顺序执行。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/用原生-JS-实现-jQuery/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -317,6 +461,7 @@
 <h1 id="无侵入添加-Node-接口"><a href="#无侵入添加-Node-接口" class="headerlink" title="无侵入添加 Node 接口"></a>无侵入添加 Node 接口</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.Node2 = <span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getSiblings: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> allChildren = node.parentNode.children </span><br><span class="line">      <span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(allChildren[i] !== node)&#123;</span><br><span class="line">          array[array.length] = allChildren[i]</span><br><span class="line">          array.length += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> array</span><br><span class="line">    &#125;,</span><br><span class="line">    addClass: <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">        <span class="keyword">let</span> value = classes[key]</span><br><span class="line">        <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">        node.classList[methodName](key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = Node2(item3)</span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass(&#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
 <h1 id="添加接受选择器功能"><a href="#添加接受选择器功能" class="headerlink" title="添加接受选择器功能"></a>添加接受选择器功能</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">nodeOrSelector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> node</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> nodeOrSelector === <span class="string">'string'</span>)&#123;</span><br><span class="line">    node = <span class="built_in">document</span>.querySelector(nodeOrSelector)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    node = nodeOrSelector</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getSiblings: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">let</span> allChildren = node.parentNode.children </span><br><span class="line">      <span class="keyword">let</span> array = &#123;<span class="attr">length</span>: <span class="number">0</span>&#125;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; allChildren.length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(allChildren[i] !== node)&#123;</span><br><span class="line">          array[array.length] = allChildren[i]</span><br><span class="line">          array.length += <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> array</span><br><span class="line">    &#125;,</span><br><span class="line">    addClass: <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">        <span class="keyword">let</span> value = classes[key]</span><br><span class="line">        <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">        node.classList[methodName](key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = jQuery(<span class="string">'#item3'</span>)</span><br><span class="line">node2.getSiblings()</span><br><span class="line">node2.addClass(&#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
 <h1 id="添加接受多个选择器功能"><a href="#添加接受多个选择器功能" class="headerlink" title="添加接受多个选择器功能"></a>添加接受多个选择器功能</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">nodeOrSelector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = &#123;&#125;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> nodeOrSelector === <span class="string">'string'</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> temp = <span class="built_in">document</span>.querySelectorAll(nodeOrSelector)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; temp.length; i++)&#123;</span><br><span class="line">      nodes[i] = temp[i]</span><br><span class="line">    &#125;</span><br><span class="line">    nodes.length = temp.length</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(nodeOrSelector <span class="keyword">instanceof</span> Node)&#123;</span><br><span class="line">    nodes = &#123;<span class="number">0</span>: nodeOrSelector, <span class="attr">length</span>: <span class="number">1</span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  nodes.addClass = <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> classes)&#123;</span><br><span class="line">      <span class="keyword">let</span> value = classes[key]</span><br><span class="line">      <span class="keyword">let</span> methodName = value ? <span class="string">'add'</span> : <span class="string">'remove'</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++)&#123;</span><br><span class="line">        nodes[i].classList[methodName](key)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  nodes.text = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(text === <span class="literal">undefined</span>)&#123;</span><br><span class="line">      <span class="keyword">let</span> texts = []</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++)&#123;</span><br><span class="line">        texts.push(nodes[i].textContent)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> texts</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nodes.length; i++)&#123;</span><br><span class="line">        nodes[i].textContent = text</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> node2 = jQuery(<span class="string">'ul &gt; li'</span>)</span><br><span class="line">node2.addClass(&#123;<span class="string">'a'</span>: <span class="literal">true</span>, <span class="string">'b'</span>: <span class="literal">false</span>, <span class="string">'c'</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">node2.text(<span class="string">'hi'</span>)</span><br></pre></td></tr></table></figure>
+<h1 id="div-和-div-的联系和区别"><a href="#div-和-div-的联系和区别" class="headerlink" title="div 和 $div 的联系和区别"></a>div 和 $div 的联系和区别</h1><p>1.区别：<br>$div 是一个 jQuery 对象，可以使用 jQuery 的的属性方法，比如addClass removeClass toggleClass 等<br>（一般情况下使用 jQuery 获取到的元素应该在变量命名时在前边加上 $ 符号以便区分。）<br>div 是一个 DOM 对象，可以使用 DOM API 的属性和方法，比如firstChid、parentNode、appendChild等。<br>2.联系：<br>使用<code>$(div)</code> 可以将 div 封装成一个 jQuery 对象。<br>使用<code>$(div)[0]</code>获取到的第一项就是 div，所以可以使用这种方法将 $div 变成 div。</p>
 
           
         
@@ -1369,6 +1514,7 @@
 <h1 id="ul-ol-去除默认样式（CSS）"><a href="#ul-ol-去除默认样式（CSS）" class="headerlink" title="ul ol  去除默认样式（CSS）"></a>ul ol  去除默认样式（CSS）</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span>,<span class="selector-tag">ol</span> &#123;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="解决相邻元素添加样式布局抖动（CSS）"><a href="#解决相邻元素添加样式布局抖动（CSS）" class="headerlink" title="解决相邻元素添加样式布局抖动（CSS）"></a>解决相邻元素添加样式布局抖动（CSS）</h1><p>设置透明边框<br><code>border: 2px solid transparent;</code></p>
 <h1 id="添加阴影、元素缩放（CSS）"><a href="#添加阴影、元素缩放（CSS）" class="headerlink" title="添加阴影、元素缩放（CSS）"></a>添加阴影、元素缩放（CSS）</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box-shadow</span>: 0 0 3<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(0,0,0,0<span class="selector-class">.5</span>);</span><br><span class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">scale</span>(1<span class="selector-class">.2</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="图片使用flex布局后拉伸解决"><a href="#图片使用flex布局后拉伸解决" class="headerlink" title="图片使用flex布局后拉伸解决"></a>图片使用<code>flex</code>布局后拉伸解决</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.images</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">align-items</span>: flex-start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="设置变形过度时间"><a href="#设置变形过度时间" class="headerlink" title="设置变形过度时间"></a>设置变形过度时间</h1><p><code>transition: all 0.2s;</code></p>
 <h1 id="解决触屏设备上页面整体跟着手指滑动（未解决）"><a href="#解决触屏设备上页面整体跟着手指滑动（未解决）" class="headerlink" title="解决触屏设备上页面整体跟着手指滑动（未解决）"></a>解决触屏设备上页面整体跟着手指滑动（未解决）</h1><p>禁掉页面的滚动条即可<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="保存canvas图片到本地"><a href="#保存canvas图片到本地" class="headerlink" title="保存canvas图片到本地"></a>保存canvas图片到本地</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">downLoad.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = canvas.toDataURL(<span class="string">'image/png'</span>)</span><br><span class="line">    <span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(a)</span><br><span class="line">    a.href = url</span><br><span class="line">    a.download = <span class="string">'myPicture'</span></span><br><span class="line">    a.target = <span class="string">'_blank'</span></span><br><span class="line">    a.click()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1415,7 +1561,7 @@
 <li>递归</li>
 <li>判断类型</li>
 <li>检查循环引用（环）</li>
-<li>不可能拷贝原型 <strong>proto</strong>（浪费内存）</li>
+<li>不可能拷贝原型 __proto__（浪费内存）</li>
 </ol>
 <h1 id="正则实现-tirm"><a href="#正则实现-tirm" class="headerlink" title="正则实现 tirm()"></a>正则实现 tirm()</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> trim = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> string.replace(<span class="regexp">/^\s+|\s+$/g</span>, <span class="string">''</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h1><ol>
@@ -1423,6 +1569,8 @@
 <li>set</li>
 <li>WeakMap</li>
 </ol>
+<h1 id="从-10-100-中取-10-个随机数组成数组"><a href="#从-10-100-中取-10-个随机数组成数组" class="headerlink" title="从 10 - 100 中取 10 个随机数组成数组"></a>从 10 - 100 中取 10 个随机数组成数组</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> randomArr = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> arr = []</span><br><span class="line">    a = <span class="built_in">Math</span>.min(a)</span><br><span class="line">    b = <span class="built_in">Math</span>.max(b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> n = <span class="built_in">Math</span>.random() * (b - a) + a</span><br><span class="line">        <span class="keyword">let</span> num = <span class="built_in">Math</span>.ceil(n)</span><br><span class="line">        arr.push(num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="样式分离"><a href="#样式分离" class="headerlink" title="样式分离"></a>样式分离</h1><p>HTML：内容<br>CSS：样式<br>JS：行为<br>如果不样式分离，会使代码杂乱无章，不好区分代码的逻辑结构，也不容易维护。</p>
 
           
         
@@ -1615,191 +1763,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/数据结构与算法相关/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/16/数据结构与算法相关/" itemprop="url">数据结构与算法相关</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-16T20:15:35+08:00">
-                2019-02-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="什么是算法（-算法-）"><a href="#什么是算法（-算法-）" class="headerlink" title="什么是算法（ 算法 ）"></a>什么是算法（<a href="https://zh.wikipedia.org/zh-hans/%E7%AE%97%E6%B3%95" target="_blank" rel="noopener"> 算法 </a>）</h1><p>算法（algorithm），在数学（算学）和电脑科学之中，为任何良定义的具体计算步骤的一个序列，常用于计算、数据处理和自动推理。精确而言，算法是一个表示为有限长列表的有效方法。算法应包含清晰定义的指令用于计算函数。<br>以下是高德纳在他的著作《计算机程序设计艺术》里对算法的特征归纳：</p>
-<ul>
-<li>输入：一个算法必须有零个或以上输入量。</li>
-<li>输出：一个算法应有一个或以上输出量，输出量是算法计算的结果。</li>
-<li>明确性：算法的描述必须无歧义，以保证算法的实际执行结果是精确地匹配要求或期望，通常要求实际运行结果是确定的。</li>
-<li>有限性：依据图灵的定义，一个算法是能够被任何图灵完备系统模拟的一串运算，而图灵机只有有限个状态、有限个输入符号和有限个转移函数（指令）。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
-<li>有效性：又称可行性。能够实现，算法中描述的操作都是可以通过已经实现的基本运算执行有限次来实现。<br>常见算法分类:</li>
-<li>分治法：把一个问题分区成互相独立的多个部分分别求解的思路。这种求解思路带来的好处之一是便于进行并行计算。</li>
-<li>动态规划法：当问题的整体最优解就是由局部最优解组成的时候，经常采用的一种方法。</li>
-<li>贪婪算法：常见的近似求解思路。当问题的整体最优解不是（或无法证明是）由局部最优解组成，且对解的最优性没有要求的时候，可以采用的一种方法。</li>
-<li>线性规划法</li>
-<li>简并法：把一个问题通过逻辑或数学推理，简化成与之等价或者近似的、相对简单的模型，进而求解的方法。 </li>
-</ul>
-<h1 id="什么是数据结构（数据结构）"><a href="#什么是数据结构（数据结构）" class="headerlink" title="什么是数据结构（数据结构）"></a>什么是数据结构（<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">数据结构</a>）</h1><p>在计算机科学中，数据结构（英语：data structure）是计算机中存储、组织数据的方式。</p>
-<ol>
-<li>常见的数据结构<ol>
-<li>数组（Array）</li>
-<li>堆栈（Stack）<ul>
-<li>先进后出</li>
-<li>可以用数组实现</li>
-<li>举例：盗梦空间</li>
-</ul>
-</li>
-<li>队列（Queue）<ul>
-<li>先进先出</li>
-<li>可以用数组实现</li>
-<li>举例：排队</li>
-</ul>
-</li>
-<li>链表（Linked List）<ul>
-<li>数组无法直接删除中间的一项，链表可以</li>
-<li>用哈希（JS里面用对象表示哈希）实现链表</li>
-<li>head、node 概念</li>
-</ul>
-</li>
-<li>树（Tree）<ul>
-<li>举例：层级结构、DOM</li>
-<li>概念：层数、深度、节点个数</li>
-<li>二叉树</li>
-<li>满二叉树</li>
-<li>完全二叉树</li>
-<li>完全二叉树和满二叉树可以用数组实现</li>
-<li>其他树可以用哈希（对象）实现</li>
-<li>操作：增删改查</li>
-<li>堆排序用到了 tree</li>
-<li>其他：B树、红黑树、AVL树</li>
-</ul>
-</li>
-<li>图（Graph）</li>
-<li>堆积（Heap）</li>
-<li>哈希表（Hash）<ul>
-<li>计数排序中的桶（复杂度 O(n+max)，比快排还快</li>
-<li>桶排序 与计数排序的区别</li>
-<li>基数排序 与计数排序的区别</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>数据结构和算法是互相依存、不可分开的<ol>
-<li>我们要解决一个跟数据相关的问题。</li>
-<li>分析这个问题，想出对应的数据结构。</li>
-<li>分析数据结构，想出算法。</li>
-</ol>
-</li>
-</ol>
-<p><a href="https://www.cs.usfca.edu/~galles/visualization/HeapSort.html" target="_blank" rel="noopener">堆排序可视化</a><br><a href="http://bubkoo.com/2014/01/14/sort-algorithm/heap-sort/" target="_blank" rel="noopener">堆排序JS代码完整讲解</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1850,7 +1813,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
