@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/07/DOM事件模型相关笔记/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/07/DOM事件模型相关笔记/3.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/07/DOM事件模型相关笔记/4.png">
-<meta property="og:updated_time" content="2019-03-07T12:18:24.305Z">
+<meta property="og:updated_time" content="2019-03-07T12:20:57.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DOM事件模型相关笔记">
 <meta name="twitter:description" content="DOM 事件目前DOM 2 是目前使用最广泛的标准。  DOM 1 方法：   在 HTML 中：   12345var print = function() &amp;#123;	cosole.log(&apos;hi&apos;)&amp;#125;&amp;lt;button id=Y onclick=&quot;print()&quot;&amp;gt;A&amp;lt;/button&amp;gt;&amp;lt;button id=Z onclick=&quot;print.call()&quot;">
@@ -327,7 +327,11 @@
 </li>
 <li><p>DOM 0 ：标准出现之前的事实规范</p>
 </li>
-<li>事件冒泡和事件捕获<br> 当点击儿子的时候，父亲和爷爷同时被点击<br> <img src="/2019/03/07/DOM事件模型相关笔记/1.png" alt=""><br> fn1 fn2 fn3 的执行顺序由事件的第三个参数决定。默认情况下，或者第三个参数为 falsy 值，是由下往上执行（事件冒泡）。<br>  <img src="/2019/03/07/DOM事件模型相关笔记/2.png" alt=""><br> 当第三个参数为<code>true</code> ，从上往下执行（事件捕获）。<br> <img src="/2019/03/07/DOM事件模型相关笔记/3.png" alt=""><br> 不同事件第三个参数的值不同时，会先进行事件捕获（true），然后再事件冒泡（flase）。<br> <img src="/2019/03/07/DOM事件模型相关笔记/4.png" alt=""><br> 如果同一个事件上绑定了两个不同的值时，执行顺序由代码的先后顺序执行。</li>
+<li><p>事件冒泡和事件捕获<br> 当点击儿子的时候，父亲和爷爷同时被点击<br> <img src="/2019/03/07/DOM事件模型相关笔记/1.png" alt=""><br> fn1 fn2 fn3 的执行顺序由事件的第三个参数决定。默认情况下，或者第三个参数为 falsy 值，是由下往上执行（事件冒泡）。</p>
+<p>  <img src="/2019/03/07/DOM事件模型相关笔记/2.png" alt=""><br> 当第三个参数为<code>true</code> ，从上往下执行（事件捕获）。</p>
+<p> <img src="/2019/03/07/DOM事件模型相关笔记/3.png" alt=""><br> 不同事件第三个参数的值不同时，会先进行事件捕获（true），然后再事件冒泡（flase）。</p>
+<p> <img src="/2019/03/07/DOM事件模型相关笔记/4.png" alt=""><br> 如果同一个事件上绑定了两个不同的值时，执行顺序由代码的先后顺序执行。</p>
+</li>
 </ol>
 
       
