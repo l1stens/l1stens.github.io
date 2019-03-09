@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="什么是算法（ 算法 ）算法（algorithm），在数学（算学）和电脑科学之中，为任何良定义的具体计算步骤的一个序列，常用于计算、数据处理和自动推理。精确而言，算法是一个表示为有限长列表的有效方法。算法应包含清晰定义的指令用于计算函数。以下是高德纳在他的著作《计算机程序设计艺术》里对算法的特征归纳：  输入：一个算法必须有零个或以上输入量。 输出：一个算法应有一个或以上输出量，输出量是算法计算的结">
+<meta name="description" content="apply call bind 是用来给函数指定 this 。 call 第一个参数是函数里面的 this，第 2，3，4，5… 个参数依次作为参数传给函数。  1234function sum(a, b)&amp;#123;	return a + b &amp;#125;sum.call(sum, 1, 2)//3  apply apply 和 call 类似，第一个参数是函数里面的 this，第二个参数是要传">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构与算法相关">
-<meta property="og:url" content="http://yoursite.com/2019/02/16/数据结构与算法相关/index.html">
+<meta property="og:title" content="call,apply,bind 的区别">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/call-apply-bind-的区别/index.html">
 <meta property="og:site_name" content="myBlog">
-<meta property="og:description" content="什么是算法（ 算法 ）算法（algorithm），在数学（算学）和电脑科学之中，为任何良定义的具体计算步骤的一个序列，常用于计算、数据处理和自动推理。精确而言，算法是一个表示为有限长列表的有效方法。算法应包含清晰定义的指令用于计算函数。以下是高德纳在他的著作《计算机程序设计艺术》里对算法的特征归纳：  输入：一个算法必须有零个或以上输入量。 输出：一个算法应有一个或以上输出量，输出量是算法计算的结">
+<meta property="og:description" content="apply call bind 是用来给函数指定 this 。 call 第一个参数是函数里面的 this，第 2，3，4，5… 个参数依次作为参数传给函数。  1234function sum(a, b)&amp;#123;	return a + b &amp;#125;sum.call(sum, 1, 2)//3  apply apply 和 call 类似，第一个参数是函数里面的 this，第二个参数是要传">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-17T08:33:38.334Z">
+<meta property="og:updated_time" content="2019-03-09T13:12:09.581Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构与算法相关">
-<meta name="twitter:description" content="什么是算法（ 算法 ）算法（algorithm），在数学（算学）和电脑科学之中，为任何良定义的具体计算步骤的一个序列，常用于计算、数据处理和自动推理。精确而言，算法是一个表示为有限长列表的有效方法。算法应包含清晰定义的指令用于计算函数。以下是高德纳在他的著作《计算机程序设计艺术》里对算法的特征归纳：  输入：一个算法必须有零个或以上输入量。 输出：一个算法应有一个或以上输出量，输出量是算法计算的结">
+<meta name="twitter:title" content="call,apply,bind 的区别">
+<meta name="twitter:description" content="apply call bind 是用来给函数指定 this 。 call 第一个参数是函数里面的 this，第 2，3，4，5… 个参数依次作为参数传给函数。  1234function sum(a, b)&amp;#123;	return a + b &amp;#125;sum.call(sum, 1, 2)//3  apply apply 和 call 类似，第一个参数是函数里面的 this，第二个参数是要传">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/16/数据结构与算法相关/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/09/call-apply-bind-的区别/">
 
 
 
 
 
-  <title>数据结构与算法相关 | myBlog</title>
+  <title>call,apply,bind 的区别 | myBlog</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/数据结构与算法相关/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/call-apply-bind-的区别/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yang">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构与算法相关</h1>
+          <h1 class="post-title" itemprop="name headline">call,apply,bind 的区别</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-16T20:15:35+08:00">
-                2019-02-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-09T21:03:28+08:00">
+                2019-03-09
               </time>
             
 
@@ -299,72 +299,17 @@
       
 
       
-        <h1 id="什么是算法（-算法-）"><a href="#什么是算法（-算法-）" class="headerlink" title="什么是算法（ 算法 ）"></a>什么是算法（<a href="https://zh.wikipedia.org/zh-hans/%E7%AE%97%E6%B3%95" target="_blank" rel="noopener"> 算法 </a>）</h1><p>算法（algorithm），在数学（算学）和电脑科学之中，为任何良定义的具体计算步骤的一个序列，常用于计算、数据处理和自动推理。精确而言，算法是一个表示为有限长列表的有效方法。算法应包含清晰定义的指令用于计算函数。<br>以下是高德纳在他的著作《计算机程序设计艺术》里对算法的特征归纳：</p>
-<ul>
-<li>输入：一个算法必须有零个或以上输入量。</li>
-<li>输出：一个算法应有一个或以上输出量，输出量是算法计算的结果。</li>
-<li>明确性：算法的描述必须无歧义，以保证算法的实际执行结果是精确地匹配要求或期望，通常要求实际运行结果是确定的。</li>
-<li>有限性：依据图灵的定义，一个算法是能够被任何图灵完备系统模拟的一串运算，而图灵机只有有限个状态、有限个输入符号和有限个转移函数（指令）。而一些定义更规定算法必须在有限个步骤内完成任务。</li>
-<li>有效性：又称可行性。能够实现，算法中描述的操作都是可以通过已经实现的基本运算执行有限次来实现。<br>常见算法分类:</li>
-<li>分治法：把一个问题分区成互相独立的多个部分分别求解的思路。这种求解思路带来的好处之一是便于进行并行计算。</li>
-<li>动态规划法：当问题的整体最优解就是由局部最优解组成的时候，经常采用的一种方法。</li>
-<li>贪婪算法：常见的近似求解思路。当问题的整体最优解不是（或无法证明是）由局部最优解组成，且对解的最优性没有要求的时候，可以采用的一种方法。</li>
-<li>线性规划法</li>
-<li>简并法：把一个问题通过逻辑或数学推理，简化成与之等价或者近似的、相对简单的模型，进而求解的方法。 </li>
-</ul>
-<h1 id="什么是数据结构（数据结构）"><a href="#什么是数据结构（数据结构）" class="headerlink" title="什么是数据结构（数据结构）"></a>什么是数据结构（<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">数据结构</a>）</h1><p>在计算机科学中，数据结构（英语：data structure）是计算机中存储、组织数据的方式。</p>
-<ol>
-<li>常见的数据结构<ol>
-<li>数组（Array）</li>
-<li>堆栈（Stack）<ul>
-<li>先进后出</li>
-<li>可以用数组实现</li>
-<li>举例：盗梦空间</li>
-</ul>
+        <h1 id="apply-call-bind-是用来给函数指定-this-。"><a href="#apply-call-bind-是用来给函数指定-this-。" class="headerlink" title="apply call bind 是用来给函数指定 this 。"></a>apply call bind 是用来给函数指定 this 。</h1><ol>
+<li><p>call<br> 第一个参数是函数里面的 this，第 2，3，4，5… 个参数依次作为参数传给函数。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b </span><br><span class="line">&#125;</span><br><span class="line">sum.call(sum, <span class="number">1</span>, <span class="number">2</span>)<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>队列（Queue）<ul>
-<li>先进先出</li>
-<li>可以用数组实现</li>
-<li>举例：排队</li>
-</ul>
+<li><p>apply<br> apply 和 call 类似，第一个参数是函数里面的 this，第二个参数是要传给函数的参数列表，类型是一个伪数组，apply 会把这个伪数组拆成一个个的参数传给函数。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b </span><br><span class="line">&#125;</span><br><span class="line">sum.apply(sum, [<span class="number">1</span>, <span class="number">2</span>])<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
 </li>
-<li>链表（Linked List）<ul>
-<li>数组无法直接删除中间的一项，链表可以</li>
-<li>用哈希（JS里面用对象表示哈希）实现链表</li>
-<li>head、node 概念</li>
-</ul>
-</li>
-<li>树（Tree）<ul>
-<li>举例：层级结构、DOM</li>
-<li>概念：层数、深度、节点个数</li>
-<li>二叉树</li>
-<li>满二叉树</li>
-<li>完全二叉树</li>
-<li>完全二叉树和满二叉树可以用数组实现</li>
-<li>其他树可以用哈希（对象）实现</li>
-<li>操作：增删改查</li>
-<li>堆排序用到了 tree</li>
-<li>其他：B树、红黑树、AVL树</li>
-</ul>
-</li>
-<li>图（Graph）</li>
-<li>堆积（Heap）</li>
-<li>哈希表（Hash）<ul>
-<li>计数排序中的桶（复杂度 O(n+max)，比快排还快</li>
-<li>桶排序 与计数排序的区别</li>
-<li>基数排序 与计数排序的区别</li>
-</ul>
+<li><p>bind<br> bind接受的参数和 call 一致，但是函数不直接调用，而是返回一个函数，在需要的时候调用。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> newSum = sum.bind(sum, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">newSum() <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-</li>
-<li>数据结构和算法是互相依存、不可分开的<ol>
-<li>我们要解决一个跟数据相关的问题。</li>
-<li>分析这个问题，想出对应的数据结构。</li>
-<li>分析数据结构，想出算法。</li>
-</ol>
-</li>
-</ol>
-<p><a href="https://www.cs.usfca.edu/~galles/visualization/HeapSort.html" target="_blank" rel="noopener">堆排序可视化</a><br><a href="http://bubkoo.com/2014/01/14/sort-algorithm/heap-sort/" target="_blank" rel="noopener">堆排序JS代码完整讲解</a></p>
 
       
     </div>
@@ -389,8 +334,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/15/CSS/" rel="next" title="CSS相关">
-                <i class="fa fa-chevron-left"></i> CSS相关
+              <a href="/2019/03/09/关于闭包的理解/" rel="next" title="关于闭包的部分理解">
+                <i class="fa fa-chevron-left"></i> 关于闭包的部分理解
               </a>
             
           </div>
@@ -398,10 +343,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/17/CSS布局/" rel="prev" title="CSS布局">
-                CSS布局 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -524,7 +465,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是算法（-算法-）"><span class="nav-number">1.</span> <span class="nav-text">什么是算法（ 算法 ）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是数据结构（数据结构）"><span class="nav-number">2.</span> <span class="nav-text">什么是数据结构（数据结构）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#apply-call-bind-是用来给函数指定-this-。"><span class="nav-number">1.</span> <span class="nav-text">apply call bind 是用来给函数指定 this 。</span></a></li></ol></div>
             
 
           </div>
