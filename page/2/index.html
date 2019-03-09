@@ -229,6 +229,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/CSS布局/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/17/CSS布局/" itemprop="url">CSS布局</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-17T22:08:23+08:00">
+                2019-02-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="利用-float-左右或左中右布局"><a href="#利用-float-左右或左中右布局" class="headerlink" title="利用 float 左右或左中右布局"></a>利用 float 左右或左中右布局</h1><p>CSS中块级元素，每一个块占用一行，从上往下依次流动，如果需要让块级元素实现左右布局，一个方法是给每个元素添加 float 属性。<br>如图，给 c1，c2，c3 添加 float 属性，使其左右依次排列。<br><img src="/2019/02/17/CSS布局/1.png" alt=""></p>
+<p><img src="/2019/02/17/CSS布局/2.png" alt=""></p>
+<p>如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。<strong>因为块级元素的高度由其内部文档流元素的高度总和决定</strong>，添加 float 属性后，这三个 div 脱离了文档流，所以其父元素就没有高度了。要解决这个问题，可以给浮动元素的父元素上边添加一个叫做 clearfix 的类。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
+<p>上述代码通过伪类 :after 在父级元素后边添加内容，来实现清除浮动从而实现左右布局。<br><img src="/2019/02/17/CSS布局/3.png" alt=""></p>
+<p>上图中有三个 div，如果要实现分布均匀的左中右布局，可以使其中一个元素向左浮动，另外一个元素向右浮动，剩下的一个元素通过设置边距使其居中，从而实现左中右布局。</p>
+<p><img src="/2019/02/17/CSS布局/4.png" alt=""></p>
+<h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><ol>
+<li><p>内联元素水平居中<br> 使用 text-align: center 可以使块级元素内部的内联元素水平居中。此方法对内联元素(inline), 内联块(inline-block), 内联表(inline-table), inline-flex元素水平居中都有效。</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center-text</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/02/17/CSS布局/5.png" alt=""></p>
+</li>
+<li><p>块级元素水平居中</p>
+<ul>
+<li><p>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。</p>
+  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">margin</span>: 0 <span class="selector-tag">auto</span>;</span><br></pre></td></tr></table></figure>
+<p>  <img src="/2019/02/17/CSS布局/6.png" alt=""></p>
+</li>
+<li><p>多块级元素水平居中</p>
+<ol>
+<li><p>设置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）</p>
+ <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inline-block</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <img src="/2019/02/17/CSS布局/7.png" alt=""></p>
+</li>
+<li>利用 display: flex 属性<br> <code>justify-content:center;</code> 主轴居中<br> 使用flex布局使元素居中可以不设置父元素的宽高，用子内容将其撑开。<br> <img src="/2019/02/17/CSS布局/8.png" alt=""></li>
+<li>使用绝对定位</li>
+<li>使用绝对定位和transform</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><ol>
+<li>单行文本进行垂直居中<br> 父级元素高度确定，行内元素为单行文本，设置父元素的 line-height 属性与 height 相等即可。<br> 需要特别注意的是，line-height 的值不能设为100%，因为这里的百分比并不是相对于父元素尺寸而言，而是相对于字体尺寸来讲的。<br> <img src="/2019/02/17/CSS布局/9.png" alt=""></li>
+<li>使用绝对定位和负外边距对块级元素进行垂直居中<br> 此方法必须提前知道被居中元素的尺寸。<br> <img src="/2019/02/17/CSS布局/10.png" alt=""></li>
+<li>使用绝对定位和 transform<br>因为 transform 中 translate 偏移的百分比就是相对于元素自身的尺寸确定的，所以此方法不需要知道被居中元素的尺寸。<br><img src="/2019/02/17/CSS布局/11.png" alt=""></li>
+<li>使用绝对定位和 margin<br> 把要垂直居中的元素相对于父元素绝对定位，top和bottom设为相等的值，margin 设置为 auto 即可。如果被居中元素自身包含元素尺寸（比如图片），可以不用设置宽高。<br> <img src="/2019/02/17/CSS布局/12.png" alt=""></li>
+<li>flex布局（<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">阮一峰老师关于flex布局的blog</a>）<br> 在 flex 布局中，align-items 属性定义项目在交叉轴上如何对齐。可以将其属性设置为 center：交叉轴的中点对齐，实现垂直居中，对于块级元素和行内元素都可以生效。<br> <img src="/2019/02/17/CSS布局/13.png" alt=""></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/16/数据结构与算法相关/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1599,139 +1756,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/11/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T08:25:17+08:00">
-                2019-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1777,7 +1806,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

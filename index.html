@@ -229,6 +229,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/关于闭包的理解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/09/关于闭包的理解/" itemprop="url">关于闭包的部分理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-09T17:17:09+08:00">
+                2019-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h1><p>如果一个函数，用了它范围外的变量，那么（这个函数 + 这个变量）就叫做闭包，闭包有权访问其包含函数内部的所有变量，闭包的作用域链包含自己的作用域、包含函数的作用域和全局作用域。当函数返回一个闭包时，这个函数的作用域将会一直存在于内存中，直到闭包不存在。</p>
+<h1 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h1><ol>
+<li><p>模仿块级作用域（匿名自执行函数）</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countNumber</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'i1'</span>,i)</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'i2'</span>,i)</span><br><span class="line">&#125;  <span class="comment">// i2 5</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countNumber</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'i1'</span>,i)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)()</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'i2'</span>,i)</span><br><span class="line">&#125;  <span class="comment">// i2 i is not defined</span></span><br></pre></td></tr></table></figure>
+<p> 在第二个函数中，在 for 循环外部插入了一个块级作用域。原因是在匿名函数中定义的任何变量，都会在执行结束时被销毁，因此变量 i 只能在循环中使用，使用后即被销毁。这个块级作用域能访问变量 n，是因为这个匿名函数是一个闭包，它能够访问包含作用域中（也就是 countNumber 函数）中的所有变量。<strong>这个方法可以尽量避免在全局环境中添加过多变量和函数。也可以减少闭包占用内存的问题，因为没有指向匿名函数的引用。</strong></p>
+</li>
+<li><p>访问私有变量<br> 任何在函数中定义的变量，都可以认为是私有变量，因为不能在函数的外部访问这些变量。私有变量包括函数的参数、局部变量和在函数内部定义的其他函数。</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n1, n2</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> sum = n1 + n2</span><br><span class="line">	<span class="keyword">return</span> sum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 在这个函数内部，有3个私有变量：n1、n2 和 sum。函数内部可以访问这几个变量，但是函数外部则不能访问它们。如果在这个函数内部创建一个闭包，则可以通过闭包访问这些变量。</p>
+<ul>
+<li><p>从外部读取函数内部的变量</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> n = <span class="number">1</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> n</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> f2</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">var</span> result = f1()</span><br><span class="line">result() <span class="comment">//1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对象的继承</p>
+<ul>
+<li><p>构造函数定义公有方法</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyObject</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">//私有变量和私有函数</span></span><br><span class="line">	<span class="keyword">var</span> privateVariable = <span class="number">10</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">privateFunction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//公有方法</span></span><br><span class="line">	<span class="keyword">this</span>.variable = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> privateVariable++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">this</span>.function = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> privateFunction()</span><br><span class="line">	&#125;</span><br><span class="line">			</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> MyObject()</span><br><span class="line">obj.variable()<span class="comment">// 10</span></span><br><span class="line">obj.variable()<span class="comment">// 11</span></span><br><span class="line">obj.function()<span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p> 利用这个方法，可以隐藏不想被直接修改的数据，比如：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">this</span>.setName = <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">		name = value</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person(<span class="string">'yang'</span>)</span><br><span class="line">person.getName() <span class="comment">//yang</span></span><br><span class="line">person.setName(<span class="string">'zhang'</span>) </span><br><span class="line">person.getName() <span class="comment">//zhang</span></span><br></pre></td></tr></table></figure>
+<p> 在上述代码中，定义了两个公有方法：getName() 和 setName()。这两个函数都可以在函数外部使用，而且它们都是在构造函数内部定义的，作为闭包都可以访问私有变量 <code>name</code>。在构造函数外部，没有任何办法访问到<code>name</code>。<strong>需要注意的是这个方法的私有变量 name 在每个 Person 实例中都会不同，因为每次调用构造函数都会重新创建这两个方法。</strong></p>
+<ul>
+<li>原型模式（静态私有变量）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>结果缓存</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">count</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> n++;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> c1 = count(<span class="number">1</span>);</span><br><span class="line">c1() <span class="comment">// 1</span></span><br><span class="line">c1() <span class="comment">// 2</span></span><br><span class="line">c1() <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p> 闭包的一个特点就是只要存在引用函数内部变量的可能，JavaScript就需要在内存中保留这些变量。而且JavaScript运行时需要跟踪这个内部变量的所有外部引用，直到最后一个引用被解除（主动把外部引用赋为 null 或者页面关闭），JavaScript的垃圾收集器才能释放相应的内存空间，所以闭包不会释放外部的引用，从而函数内部的值可以得以保留。</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/DOM事件模型相关笔记/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1610,168 +1763,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/CSS布局/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/17/CSS布局/" itemprop="url">CSS布局</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-17T22:08:23+08:00">
-                2019-02-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="利用-float-左右或左中右布局"><a href="#利用-float-左右或左中右布局" class="headerlink" title="利用 float 左右或左中右布局"></a>利用 float 左右或左中右布局</h1><p>CSS中块级元素，每一个块占用一行，从上往下依次流动，如果需要让块级元素实现左右布局，一个方法是给每个元素添加 float 属性。<br>如图，给 c1，c2，c3 添加 float 属性，使其左右依次排列。<br><img src="/2019/02/17/CSS布局/1.png" alt=""></p>
-<p><img src="/2019/02/17/CSS布局/2.png" alt=""></p>
-<p>如图所示三个 div 实现了左右依次浮动，但是它们的父元素却因为没高度而塌陷了。<strong>因为块级元素的高度由其内部文档流元素的高度总和决定</strong>，添加 float 属性后，这三个 div 脱离了文档流，所以其父元素就没有高度了。要解决这个问题，可以给浮动元素的父元素上边添加一个叫做 clearfix 的类。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">&#125;</span><br><span class="line">```</span><br></pre></td></tr></table></figure></p>
-<p>上述代码通过伪类 :after 在父级元素后边添加内容，来实现清除浮动从而实现左右布局。<br><img src="/2019/02/17/CSS布局/3.png" alt=""></p>
-<p>上图中有三个 div，如果要实现分布均匀的左中右布局，可以使其中一个元素向左浮动，另外一个元素向右浮动，剩下的一个元素通过设置边距使其居中，从而实现左中右布局。</p>
-<p><img src="/2019/02/17/CSS布局/4.png" alt=""></p>
-<h1 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h1><ol>
-<li><p>内联元素水平居中<br> 使用 text-align: center 可以使块级元素内部的内联元素水平居中。此方法对内联元素(inline), 内联块(inline-block), 内联表(inline-table), inline-flex元素水平居中都有效。</p>
- <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.center-text</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p> <img src="/2019/02/17/CSS布局/5.png" alt=""></p>
-</li>
-<li><p>块级元素水平居中</p>
-<ul>
-<li><p>把块级元素的 margin-left 和 margin-right 设成 auto，就可以使块级元素水平居中。</p>
-  <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">margin</span>: 0 <span class="selector-tag">auto</span>;</span><br></pre></td></tr></table></figure>
-<p>  <img src="/2019/02/17/CSS布局/6.png" alt=""></p>
-</li>
-<li><p>多块级元素水平居中</p>
-<ol>
-<li><p>设置块级元素的显示类型为inline-block和父容器的text-align属性从而使多块级元素水平居中。（bug未解决）</p>
- <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.inline-block</span> &#123;</span><br><span class="line">	<span class="attribute">display</span>: inline-block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <img src="/2019/02/17/CSS布局/7.png" alt=""></p>
-</li>
-<li>利用 display: flex 属性<br> <code>justify-content:center;</code> 主轴居中<br> 使用flex布局使元素居中可以不设置父元素的宽高，用子内容将其撑开。<br> <img src="/2019/02/17/CSS布局/8.png" alt=""></li>
-<li>使用绝对定位</li>
-<li>使用绝对定位和transform</li>
-</ol>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h1><ol>
-<li>单行文本进行垂直居中<br> 父级元素高度确定，行内元素为单行文本，设置父元素的 line-height 属性与 height 相等即可。<br> 需要特别注意的是，line-height 的值不能设为100%，因为这里的百分比并不是相对于父元素尺寸而言，而是相对于字体尺寸来讲的。<br> <img src="/2019/02/17/CSS布局/9.png" alt=""></li>
-<li>使用绝对定位和负外边距对块级元素进行垂直居中<br> 此方法必须提前知道被居中元素的尺寸。<br> <img src="/2019/02/17/CSS布局/10.png" alt=""></li>
-<li>使用绝对定位和 transform<br>因为 transform 中 translate 偏移的百分比就是相对于元素自身的尺寸确定的，所以此方法不需要知道被居中元素的尺寸。<br><img src="/2019/02/17/CSS布局/11.png" alt=""></li>
-<li>使用绝对定位和 margin<br> 把要垂直居中的元素相对于父元素绝对定位，top和bottom设为相等的值，margin 设置为 auto 即可。如果被居中元素自身包含元素尺寸（比如图片），可以不用设置宽高。<br> <img src="/2019/02/17/CSS布局/12.png" alt=""></li>
-<li>flex布局（<a href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html" target="_blank" rel="noopener">阮一峰老师关于flex布局的blog</a>）<br> 在 flex 布局中，align-items 属性定义项目在交叉轴上如何对齐。可以将其属性设置为 center：交叉轴的中点对齐，实现垂直居中，对于块级元素和行内元素都可以生效。<br> <img src="/2019/02/17/CSS布局/13.png" alt=""></li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1817,7 +1813,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
