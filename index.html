@@ -229,6 +229,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/JSONP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/14/JSONP/" itemprop="url">JSONP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-14T14:00:19+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-什么是-JSONP"><a href="#1-什么是-JSONP" class="headerlink" title="1. 什么是 JSONP"></a>1. 什么是 JSONP</h1><p>JSONP是服务器与客户端跨源通信的常用方法。最大特点就是简单适用，老式浏览器全部支持，服务器改造非常小。<br>它的基本思想是，网页通过添加一个\&lt;script>元素，向服务器请求JSON数据，这种做法不受同源政策限制；服务器收到请求后，将数据放在一个指定名字的回调函数里传回来。<br>具体用法：<br>请求方：frank.com 的前端程序员（浏览器）<br>响应方：jack.com 的后端程序员（服务器）</p>
+<ol>
+<li>请求方创建 script，src 指向响应方，同时传一个查询参数 ?callbackName=yyy</li>
+<li>响应方根据查询参数callbackName，构造形如<br>  i. yyy.call(undefined, ‘你要的数据’)<br>  ii. yyy(‘你要的数据’)<br> 这样的响应</li>
+<li>浏览器接收到响应，就会执行 yyy.call(undefined, ‘你要的数据’)</li>
+<li>那么请求方就知道了他要的数据<br>这就是 JSONP<br>约定：</li>
+<li>callbackName -> callback</li>
+<li>yyy -> 随机数 frank12312312312321325()<br>jQuery 用法<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line"> url: <span class="string">"http://jack.com:8002/pay"</span>,</span><br><span class="line"> dataType: <span class="string">"jsonp"</span>,</span><br><span class="line"> success: <span class="function"><span class="keyword">function</span>(<span class="params"> response </span>) </span>&#123;</span><br><span class="line">     <span class="keyword">if</span>(response === <span class="string">'success'</span>)&#123;</span><br><span class="line">     amount.innerText = amount.innerText - <span class="number">1</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1 id="2-JSONP-为什么不支持-POST"><a href="#2-JSONP-为什么不支持-POST" class="headerlink" title="2. JSONP 为什么不支持 POST"></a>2. JSONP 为什么不支持 POST</h1><p>1.JSONP  是通过动态创建 script 实现的。<br>2 动态创建 script 的时候只能用 GET ，不能用 POST。</p>
+<h1 id="JSONP-demo"><a href="#JSONP-demo" class="headerlink" title="JSONP-demo"></a><a href="https://github.com/l1stens/JSONP-demo" target="_blank" rel="noopener">JSONP-demo</a></h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/常见-HTTP-状态码/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -319,8 +449,7 @@
 <li>301 Moved Permanently<br>  被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一。</li>
 <li>302 Move temporarily<br>  请求的资源临时从不同的 URI响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。</li>
 <li>303 See Other<br>  对应当前请求的响应可以在另一个 URI 上被找到，而且客户端应当采用 GET 的方式访问那个资源。</li>
-</ul>
-<h1 id="4XX代表客户端错误信息"><a href="#4XX代表客户端错误信息" class="headerlink" title="4XX代表客户端错误信息"></a>4XX代表客户端错误信息</h1><ul>
+<li>304 Not Modified<br>  如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。<h1 id="4XX代表客户端错误信息"><a href="#4XX代表客户端错误信息" class="headerlink" title="4XX代表客户端错误信息"></a>4XX代表客户端错误信息</h1></li>
 <li>400 Bad Request<ul>
 <li>语义有误，当前请求无法被服务器理解。除非进行修改，否则客户端不应该重复提交这个请求。</li>
 <li>请求参数有误。</li>
@@ -1512,151 +1641,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/22/JavaScript-数据类型转换/" itemprop="url">JavaScript 数据类型转换</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T19:34:19+08:00">
-                2019-02-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><em>JavaScript 一共有七种数据类型，分别是：string、number、boolean、object、symbol、null、undefined，它们在一定情况下可以相互转换。</em></p>
-<h1 id="1-转换为string"><a href="#1-转换为string" class="headerlink" title="1. 转换为string"></a>1. 转换为string</h1><ul>
-<li><code>toString()</code><br>  每个对象都有一个 toString() 方法，返回该对象的字符串形式（该方法不能转换<code>null</code> 和 <code>undefined</code>）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/1.png" alt=""></li>
-<li><code>String()</code><br>  String函数可以将任意类型的值转化成字符串（包括Symbol类型），转换规则如下。<ul>
-<li>数值：转为相应的字符串。</li>
-<li>字符串：转换后还是原来的值。</li>
-<li>布尔值：<code>true</code>转为字符串<code>&quot;true&quot;</code>，<code>false</code>转为字符串<code>&quot;false&quot;</code>。</li>
-<li>undefined：转为字符串<code>&quot;undefined&quot;</code>。</li>
-<li>null：转为字符串<code>&quot;null&quot;</code>。<br><code>String()</code>方法在转换Object类型时，无论Object中的键值为何，只会转换成字符串 <code>&quot;[object Object]&quot;</code>。<br><img src="/2019/02/22/JavaScript-数据类型转换/2.png" alt=""></li>
-</ul>
-</li>
-<li><code>被转换值 + ’’</code>（空字符串）<strong> 推荐使用</strong><br> <img src="/2019/02/22/JavaScript-数据类型转换/3.png" alt=""><br> 需要注意的是这种方法不能转换Symbol类型的值。    </li>
-</ul>
-<h1 id="2-转换为Boolean"><a href="#2-转换为Boolean" class="headerlink" title="2. 转换为Boolean"></a>2. 转换为Boolean</h1><ul>
-<li><code>Boolean()</code><br>  <img src="/2019/02/22/JavaScript-数据类型转换/4.png" alt=""></li>
-<li><p><code>!!</code> <strong>推荐使用</strong><br>  <code>!</code>运算符表示取反，会将数据转换为其Boolean值相反的值，两次取反操作即可得到数据自身的Boolean值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/5.png" alt="">  </p>
-<p>  falsy(虚值)是在 Boolean 上下文中已认定可转换为「假」的值。常见的五个虚值有：<code>0</code>，<code>NaN</code>，<code>undefined</code>，<code>null</code>，<code>&#39;&#39;或&quot;&quot;</code>。</p>
-</li>
-</ul>
-<h1 id="3-转换为Number"><a href="#3-转换为Number" class="headerlink" title="3. 转换为Number"></a>3. 转换为Number</h1><ul>
-<li><code>Number()</code><br>  使用<code>Number</code>函数，可以将任意类型的值转化成数值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/6.png" alt=""><br>  需要注意的是，<code>Number</code>函数将字符串转为数值，要比<code>parseInt</code>函数严格很多。基本上，只要有一个字符无法转成数值，整个字符串就会被转为<code>NaN</code>。当<code>Number</code>方法的参数是对象时，将返回<code>NaN</code>，除非是包含单个数值的数组。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/7.png" alt=""></li>
-<li><code>parseInt()</code><br>  <code>parseInt</code>方法用于将字符串转为整数。字符串转为整数的时候，是一个个字符依次转换，如果遇到不能转为数字的字符，就不再进行下去，返回已经转好的部分（<code>Numer</code>方法则会返回<code>NaN</code>）。如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回NaN。如果字符串以0x或0X开头，parseInt会将其按照十六进制数解析。无法转换科学记数法表示的数字和自动会被JS转化为科学记数法的数字。如果转换小数，则会自动忽略小数部分。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/8.png" alt=""><br>  <code>parseInt</code>方法还可以接受第二个参数（2到36之间，超出范围返回<code>NaN</code> ，如果第二个参数是0、undefined和null，则直接忽略。），表示被解析的值的进制，返回该值对应的十进制数。默认情况下，parseInt的第二个参数为10，即默认是十进制转十进制（ES5）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/9.png" alt=""></li>
-<li><code>parseFloat</code><br>  <code>parseFloat</code>方法用于将一个字符串转为浮点数， 如果字符串符合科学计数法，则会进行相应的转换，会将空字符串、布尔值和<code>null</code>转为<code>NaN</code>。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/10.png" alt=""><br>  如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回NaN。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/11.png" alt=""></li>
-<li><code>-0</code>  <strong>推荐使用</strong><br>  <code>-0</code> 方法在转换数字字符串时可以将其转换为数字，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/12.png" alt=""></li>
-<li><code>+</code><br>  和<code>+0</code>方法类似，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/13.png" alt=""> </li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1707,7 +1691,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

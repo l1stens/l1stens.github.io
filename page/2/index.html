@@ -229,6 +229,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/22/JavaScript-数据类型转换/" itemprop="url">JavaScript 数据类型转换</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-22T19:34:19+08:00">
+                2019-02-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><em>JavaScript 一共有七种数据类型，分别是：string、number、boolean、object、symbol、null、undefined，它们在一定情况下可以相互转换。</em></p>
+<h1 id="1-转换为string"><a href="#1-转换为string" class="headerlink" title="1. 转换为string"></a>1. 转换为string</h1><ul>
+<li><code>toString()</code><br>  每个对象都有一个 toString() 方法，返回该对象的字符串形式（该方法不能转换<code>null</code> 和 <code>undefined</code>）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/1.png" alt=""></li>
+<li><code>String()</code><br>  String函数可以将任意类型的值转化成字符串（包括Symbol类型），转换规则如下。<ul>
+<li>数值：转为相应的字符串。</li>
+<li>字符串：转换后还是原来的值。</li>
+<li>布尔值：<code>true</code>转为字符串<code>&quot;true&quot;</code>，<code>false</code>转为字符串<code>&quot;false&quot;</code>。</li>
+<li>undefined：转为字符串<code>&quot;undefined&quot;</code>。</li>
+<li>null：转为字符串<code>&quot;null&quot;</code>。<br><code>String()</code>方法在转换Object类型时，无论Object中的键值为何，只会转换成字符串 <code>&quot;[object Object]&quot;</code>。<br><img src="/2019/02/22/JavaScript-数据类型转换/2.png" alt=""></li>
+</ul>
+</li>
+<li><code>被转换值 + ’’</code>（空字符串）<strong> 推荐使用</strong><br> <img src="/2019/02/22/JavaScript-数据类型转换/3.png" alt=""><br> 需要注意的是这种方法不能转换Symbol类型的值。    </li>
+</ul>
+<h1 id="2-转换为Boolean"><a href="#2-转换为Boolean" class="headerlink" title="2. 转换为Boolean"></a>2. 转换为Boolean</h1><ul>
+<li><code>Boolean()</code><br>  <img src="/2019/02/22/JavaScript-数据类型转换/4.png" alt=""></li>
+<li><p><code>!!</code> <strong>推荐使用</strong><br>  <code>!</code>运算符表示取反，会将数据转换为其Boolean值相反的值，两次取反操作即可得到数据自身的Boolean值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/5.png" alt="">  </p>
+<p>  falsy(虚值)是在 Boolean 上下文中已认定可转换为「假」的值。常见的五个虚值有：<code>0</code>，<code>NaN</code>，<code>undefined</code>，<code>null</code>，<code>&#39;&#39;或&quot;&quot;</code>。</p>
+</li>
+</ul>
+<h1 id="3-转换为Number"><a href="#3-转换为Number" class="headerlink" title="3. 转换为Number"></a>3. 转换为Number</h1><ul>
+<li><code>Number()</code><br>  使用<code>Number</code>函数，可以将任意类型的值转化成数值。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/6.png" alt=""><br>  需要注意的是，<code>Number</code>函数将字符串转为数值，要比<code>parseInt</code>函数严格很多。基本上，只要有一个字符无法转成数值，整个字符串就会被转为<code>NaN</code>。当<code>Number</code>方法的参数是对象时，将返回<code>NaN</code>，除非是包含单个数值的数组。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/7.png" alt=""></li>
+<li><code>parseInt()</code><br>  <code>parseInt</code>方法用于将字符串转为整数。字符串转为整数的时候，是一个个字符依次转换，如果遇到不能转为数字的字符，就不再进行下去，返回已经转好的部分（<code>Numer</code>方法则会返回<code>NaN</code>）。如果字符串的第一个字符不能转化为数字（后面跟着数字的正负号除外），返回NaN。如果字符串以0x或0X开头，parseInt会将其按照十六进制数解析。无法转换科学记数法表示的数字和自动会被JS转化为科学记数法的数字。如果转换小数，则会自动忽略小数部分。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/8.png" alt=""><br>  <code>parseInt</code>方法还可以接受第二个参数（2到36之间，超出范围返回<code>NaN</code> ，如果第二个参数是0、undefined和null，则直接忽略。），表示被解析的值的进制，返回该值对应的十进制数。默认情况下，parseInt的第二个参数为10，即默认是十进制转十进制（ES5）。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/9.png" alt=""></li>
+<li><code>parseFloat</code><br>  <code>parseFloat</code>方法用于将一个字符串转为浮点数， 如果字符串符合科学计数法，则会进行相应的转换，会将空字符串、布尔值和<code>null</code>转为<code>NaN</code>。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/10.png" alt=""><br>  如果字符串包含不能转为浮点数的字符，则不再进行往后转换，返回已经转好的部分。如果参数不是字符串，或者字符串的第一个字符不能转化为浮点数，则返回NaN。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/11.png" alt=""></li>
+<li><code>-0</code>  <strong>推荐使用</strong><br>  <code>-0</code> 方法在转换数字字符串时可以将其转换为数字，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/12.png" alt=""></li>
+<li><code>+</code><br>  和<code>+0</code>方法类似，返回值基本都等同于<code>Number</code> 方法。<br>  <img src="/2019/02/22/JavaScript-数据类型转换/13.png" alt=""> </li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/javaScript/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -520,6 +665,8 @@
 <h1 id="添加阴影、元素缩放（CSS）"><a href="#添加阴影、元素缩放（CSS）" class="headerlink" title="添加阴影、元素缩放（CSS）"></a>添加阴影、元素缩放（CSS）</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">box-shadow</span>: 0 0 3<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(0,0,0,0<span class="selector-class">.5</span>);</span><br><span class="line"><span class="selector-tag">transform</span>: <span class="selector-tag">scale</span>(1<span class="selector-class">.2</span>);</span><br></pre></td></tr></table></figure>
 <h1 id="图片使用flex布局后拉伸解决"><a href="#图片使用flex布局后拉伸解决" class="headerlink" title="图片使用flex布局后拉伸解决"></a>图片使用<code>flex</code>布局后拉伸解决</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.images</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: flex;</span><br><span class="line">	<span class="attribute">align-items</span>: flex-start;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="设置变形过度时间"><a href="#设置变形过度时间" class="headerlink" title="设置变形过度时间"></a>设置变形过度时间</h1><p><code>transition: all 0.2s;</code></p>
+<h1 id="offset"><a href="#offset" class="headerlink" title="offset()"></a>offset()</h1><p>可以阻止浏览器合并前后两个紧挨的事件。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$slides.css(&#123;<span class="attr">transform</span>:<span class="string">'translateX(-1600px)'</span>&#125;)</span><br><span class="line">	.one(<span class="string">'transitionend'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	$slides.hide()</span><br><span class="line">		.offset()</span><br><span class="line">	$slides.css(&#123;<span class="attr">transform</span>:<span class="string">'translateX(-400px)'</span>&#125;)</span><br><span class="line">		.show()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码如果直接写，浏览器会忽略掉<code>.hide()</code>，中间加<code>offset()</code>则可以实现<code>CSS</code> 的先隐藏后显示。</p>
 <h1 id="解决触屏设备上页面整体跟着手指滑动（未解决）"><a href="#解决触屏设备上页面整体跟着手指滑动（未解决）" class="headerlink" title="解决触屏设备上页面整体跟着手指滑动（未解决）"></a>解决触屏设备上页面整体跟着手指滑动（未解决）</h1><p>禁掉页面的滚动条即可<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="保存canvas图片到本地"><a href="#保存canvas图片到本地" class="headerlink" title="保存canvas图片到本地"></a>保存canvas图片到本地</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">downLoad.onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> url = canvas.toDataURL(<span class="string">'image/png'</span>)</span><br><span class="line">    <span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(a)</span><br><span class="line">    a.href = url</span><br><span class="line">    a.download = <span class="string">'myPicture'</span></span><br><span class="line">    a.target = <span class="string">'_blank'</span></span><br><span class="line">    a.click()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="浮动元素内文本不换行"><a href="#浮动元素内文本不换行" class="headerlink" title="浮动元素内文本不换行"></a>浮动元素内文本不换行</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.topNavBar</span> <span class="selector-class">.subMenu</span> &gt; <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">white-space</span>: nowrap;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -575,6 +722,9 @@
 </ol>
 <h1 id="从-10-100-中取-10-个随机数组成数组"><a href="#从-10-100-中取-10-个随机数组成数组" class="headerlink" title="从 10 - 100 中取 10 个随机数组成数组"></a>从 10 - 100 中取 10 个随机数组成数组</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> randomArr = <span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> arr = []</span><br><span class="line">    a = <span class="built_in">Math</span>.min(a)</span><br><span class="line">    b = <span class="built_in">Math</span>.max(b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> n = <span class="built_in">Math</span>.random() * (b - a) + a</span><br><span class="line">        <span class="keyword">let</span> num = <span class="built_in">Math</span>.ceil(n)</span><br><span class="line">        arr.push(num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="样式分离"><a href="#样式分离" class="headerlink" title="样式分离"></a>样式分离</h1><p>HTML：内容<br>CSS：样式<br>JS：行为<br>如果不样式分离，会使代码杂乱无章，不好区分代码的逻辑结构，也不容易维护。</p>
+<h1 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event.stopPropagation()</span><br></pre></td></tr></table></figure>
+<h1 id="在冒泡过程中，可以向上级元素添加事件。（常见bug）"><a href="#在冒泡过程中，可以向上级元素添加事件。（常见bug）" class="headerlink" title="在冒泡过程中，可以向上级元素添加事件。（常见bug）"></a>在冒泡过程中，可以向上级元素添加事件。（常见bug）</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$(button).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">  $(popover).show()</span><br><span class="line">  $(<span class="built_in">document</span>).one(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">'2'</span>)</span><br><span class="line">    $(popover).hide()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+<p>上边代码中，在点击<code>button</code>按钮时，第二个<code>ciick</code>事件会在点击的一瞬间添加到<code>document</code>元素上，同时因为浏览器默认事件冒泡，第二个事件会在第一个事件执行完毕后立即执行（几乎没有间隔）。<br><img src="/2019/02/21/杂七杂八的笔记/1.png" alt=""><br>解决方法之一：<code>setTimeout(fn(){},0)</code><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(clicked).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'1'</span>)</span><br><span class="line">  $(popover).show()</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="built_in">document</span>).one(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      $(popover).hide()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,<span class="number">0</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1773,139 +1923,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/初识命令行/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/11/初识命令行/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T15:03:48+08:00">
-                2019-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: 初识命令行<br>date: 2019-02-11 11:16:24</p>
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><p>进入目录         cd<br>显示当前目录     pwd<br>创建目录         mkdir<br>创建多级目录     mkdir -p </p>
-<hr>
-<p>查看目标路径     ls 路径<br>查看当前路径     ls<br>查看所有文件     ls -a<br>查看更多信息     ls -l   ls -la</p>
-<hr>
-<p>创建文件         echo ‘内容’ > 文件路径<br>强制创建文件     echo ‘内容’ >! 文件路径<br>追加内容         echo ‘内容’ >> 文件路径<br>创建文件         touch file<br>更新文件改变时间 touch file</p>
-<hr>
-<p>查看文件内容     cat file.txt<br>合并文件         cat file1.txt file2.txt > file3.txt</p>
-<hr>
-<p>重命名文件       mv file1 file2<br>移动文件到目录   mv file directory</p>
-<hr>
-<p>使用expainshell.com<br>在网站搜索框中直接输入想查找的shell命令即可查找该命令含义。<br>比如 cat  命令<br>cat: concatenate files and print on the standard output.</p>
-<h1 id="英语单词"><a href="#英语单词" class="headerlink" title="英语单词"></a>英语单词</h1><p>linear 线性<br>gradient 变化率<br>generator 形成 产生者</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1956,7 +1973,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
