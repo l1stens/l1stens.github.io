@@ -229,6 +229,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/普通类型和对象的区别/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/24/普通类型和对象的区别/" itemprop="url">普通类型和对象的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T11:07:30+08:00">
+                2019-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>JavaScript 一共有七种数据类型，其中六种 string、number、boolean、undefined、symbol、null 称为普通类型（原始类型），object（对象）称为复杂类型（引用类型）。<br>当我们打开浏览器时（以Chrome为例），Chrome 打开即占用一定大小的内存，当我们打开多个页面时，Chrome 给每个网页分配一定数量的内存，这些内存要分给页面渲染器、网络模块、浏览器外壳和 JS 引擎（V8引擎），<strong>JS 引擎将内存分为代码区和数据区</strong>，我们只研究数据区。</p>
+<h1 id="1-两种类型在内存中的形式"><a href="#1-两种类型在内存中的形式" class="headerlink" title="1. 两种类型在内存中的形式"></a>1. 两种类型在内存中的形式</h1><p> 数据区分为<strong> Stack（栈内存） </strong>和 <strong>Heap（堆内存）</strong>，普通类型的数据直接存在 Stack 里，复杂类型的数据是把 Heap 地址存在 Stack 里，如图：<br><img src="/2019/02/24/普通类型和对象的区别/1.png" alt=""><br>上图中，变量 a、b、c 都是普通类型的数据，它们的数据都存在 Stack 里，数字使用64位存储，字符使用16位（32位）。而 o1 和 o2 为复杂类型，它们的 Satck 存储数据的 Heap 地址，真正的数据存储在地址所对应的 Heap 中。</p>
+<h2 id="为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。"><a href="#为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。" class="headerlink" title="为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。"></a>为了更清楚的理解普通类型和复杂类型在内中的作用机制，可以通过面试题的几个代码举例。</h2><h3 id="面试题1："><a href="#面试题1：" class="headerlink" title="面试题1："></a>面试题1：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="number">2</span></span><br><span class="line">请问 a 显示是几？</span><br></pre></td></tr></table></figure>
+<p>首先，浏览器通过声明提升，先声明变量 <code>a</code> 和 <code>b</code> ，都是 undefined，然后再将 <code>1</code> 赋给 <code>a</code>，此时 <code>a = 1</code>，再将 <code>a</code> 的值 赋给 <code>b</code>，此时 <code>b = 1</code>，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/2.png" alt=""><br>执行第三行代码时，将 <code>2</code> 赋给 <code>b</code>，也就是说 <code>b</code> 的 Stack 里的 <code>1</code>，变成了<code>2</code>，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/3.png" alt=""><br>所以，<code>a</code> 的值到最后还是 <code>1</code>。 </p>
+<h3 id="面试题2："><a href="#面试题2：" class="headerlink" title="面试题2："></a>面试题2：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = &#123;<span class="attr">name</span>: <span class="string">'b'</span>&#125;</span><br><span class="line">请问现在 a.name 是多少？</span><br></pre></td></tr></table></figure>
+<p>第一行代码将一个对象赋给 <code>a</code>，此时 <code>a</code> 的 Stack 里边存的是该对象数据所在 Heap 的地址，Heap 里边存储着对应地址的具体数据。<br>第二行代码将 <code>a</code> 的 Stack 里边的内容复制一份，赋给了 <code>b</code>，也就是放到了 <code>b</code> 的 Stack中，此时<code>a</code>和<code>b</code>的 Stack 共同指向同一个 Heap 地址，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/4.png" alt=""><br>第三行代码将一个新的对象 <code>{name: &#39;b&#39;}</code> 赋给了<code>b</code>，因为<code>{name: &#39;b&#39;}</code>是一个新的对象值，它在 Heap 中会有一个新的地址，所以 <code>b</code> 的 Stack 的值也会是一个指向新 Heap 的地址，在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/5.png" alt=""><br>所以，<code>a.name</code> 的值是 <code>&#39;a&#39;</code>。</p>
+<h3 id="面试题3："><a href="#面试题3：" class="headerlink" title="面试题3："></a>面试题3：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b.name = <span class="string">'b'</span></span><br><span class="line">请问现在 a.name 是多少？</span><br></pre></td></tr></table></figure>
+<p> 前两行代码同面试题2一样，<code>a</code>和<code>b</code>的 Stack 共同指向同一个 Heap 地址，当运行到第三行代码时，<code>b.name</code> 访问的是 heap 中该对象的key：<code>&#39;name&#39;</code> ，并且将 <code>&#39;b&#39;</code> 赋值给了所对应的 value，也就是改变了该键值对的值，在内存中可表示为：<br> <img src="/2019/02/24/普通类型和对象的区别/6.png" alt=""><br>所以，<code>a.name</code> 的值是 <code>&#39;b&#39;</code>。</p>
+<h3 id="面试题4："><a href="#面试题4：" class="headerlink" title="面试题4："></a>面试题4：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="literal">null</span></span><br><span class="line">请问现在 a 是什么？</span><br></pre></td></tr></table></figure>
+<p>前两行代码同之前一样，<code>a</code>和<code>b</code>的 Stack 共同指向同一个 Heap 地址，当运行到第三行代码时，将 <code>null</code> 赋给了 <code>b</code>，由于 <code>null</code> 是普通类型的值，所以这个值会保存在 <code>b</code> 的 Stack 中，而 <code>a</code> 和 Heap 都没有变化。在内存中可表示为：<br><img src="/2019/02/24/普通类型和对象的区别/7.png" alt=""><br>所以，<code>a</code> 的值还是<code>{name: &#39;a&#39;}</code>。</p>
+<h3 id="面试题5："><a href="#面试题5：" class="headerlink" title="面试题5："></a>面试题5：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">n</span>:<span class="number">1</span> &#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">a.x = a = &#123; <span class="attr">n</span>:<span class="number">2</span> &#125;</span><br><span class="line"></span><br><span class="line">alert(a.x) <span class="comment">//   --&gt;undefined</span></span><br><span class="line">alert(b.x) <span class="comment">//   --&gt;[object Object]</span></span><br></pre></td></tr></table></figure>
+<p>执行第一行和第二行代码之后，<code>a</code> 和 <code>b</code> 的 Stack 中的地址都指向 Heap 中的<code>{ n:1 }</code>（ADD:369），在执行第三行代码时，浏览器先从左往右阅读代码，此时 <code>a.x</code> 中的 <code>a</code> 和 <code>=</code> 后边的 <code>a</code> 的值相等（ADD:369）。<br><img src="/2019/02/24/普通类型和对象的区别/8.png" alt=""><br>然后浏览器从右往左计算（赋值），先执行<code>a = { n:2 }</code>，将 <code>{ n:2 }</code> 赋给了中间的<code>a</code>，此时，<code>a</code> 的 Stack 中的地址因为指向新赋予的对象已经改变为（ADD:567）。<br><img src="/2019/02/24/普通类型和对象的区别/9.png" alt=""><br>再计算<code>a.x = a</code> ，而<code>a.x</code> 中 <code>a</code> 中的地址仍然是之前保存 <code>{ n:1 }</code> 的地址，所以这一步计算在之前的 Heap 里，添加了一个新的键值对，key 是 <code>x</code>，值是存有 <code>{ n:2 }</code> 的 Heap 地址。<br><img src="/2019/02/24/普通类型和对象的区别/10.png" alt=""><br>最终的结果为：<br><img src="/2019/02/24/普通类型和对象的区别/11.png" alt=""><br>所以，<code>a.x</code> 的结果为<code>undefined</code>，<code>b.x</code> 的结果为<code>[object Object]</code>。在代码中要尽量避免<code>a.x = a = { n: 2}</code> 这种写法。</p>
+<h2 id="普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"><a href="#普通类型在栈内存中存储，复杂类型是在-Stack-内存中存储-Heap-地址，在地址所对应的-Heap-地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。" class="headerlink" title="普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。"></a>普通类型在栈内存中存储，复杂类型是在 Stack 内存中存储 Heap 地址，在地址所对应的 Heap 地址中存储该类型，通过引用建立关系。值类型之间传递的是值，引用类型之间传递的是地址（引用）。值类型作为函数的参数传递的是值，引用类型作为函数的参数传递的是地址（引用）。</h2><h1 id="2-深拷贝与浅拷贝"><a href="#2-深拷贝与浅拷贝" class="headerlink" title="2.深拷贝与浅拷贝"></a>2.深拷贝与浅拷贝</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b = <span class="number">2</span> <span class="comment">//这个时候改变 b</span></span><br><span class="line">a 完全不受 b 的影响</span><br><span class="line">那么我们就说这是一个深拷贝</span><br></pre></td></tr></table></figure>
+<p>对于简单类型的数据来说，赋值就是深拷贝。<br>对于复杂类型的数据（对象）来说，才要区分浅拷贝和深拷贝。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;<span class="attr">name</span>: <span class="string">'a'</span>&#125;</span><br><span class="line"><span class="keyword">var</span> b = a</span><br><span class="line">b.name = <span class="string">'b'</span></span><br><span class="line">a.name === <span class="string">'b'</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p>上述代码对 <code>b</code> 操作后，<code>a</code> 也变了，所以是浅拷贝。<br>对 Heap 内存进行完全的拷贝，称为深拷贝。</p>
+<h1 id="3-GC-垃圾回收机制"><a href="#3-GC-垃圾回收机制" class="headerlink" title="3. GC 垃圾回收机制"></a>3. GC 垃圾回收机制</h1><p>在浏览器给 JS 分配的内存中，如果 Heap 中的某个对象没有被任何其他对象或者变量进行引用，则会被浏览器视为垃圾，删除该对象，回收该内存地址。</p>
+<h1 id="4-为什么简单类型也可以调用方法"><a href="#4-为什么简单类型也可以调用方法" class="headerlink" title="4. 为什么简单类型也可以调用方法"></a>4. 为什么简单类型也可以调用方法</h1><p>在我们使用 JavaScript 的时候，通过 <code>var</code> 声明一个普通类型的时候，发现也可以调用相关的方法，如图所示。<br><img src="/2019/02/24/普通类型和对象的区别/12.png" alt=""><img src="/2019/02/24/普通类型和对象的区别/13.png" alt=""><br>但普通类型并不具有方法，这是因为当我们执行<code>n.toString()</code> 的时候，JS 会在内存中创建一个临时的对象 <code>temp = new Numer(n)</code>，<code>temp</code> 是 n 的复杂类型的封装，实际上<code>n.toString()</code> 等于 <code>temp.toString()</code>，然后把<code>temp.toString()</code> 的值作为<code>n.toString()</code> 的值返回，然后再消除掉<code>temp</code> 这个临时对象。同理，其他普通类型的的方法也都是这样。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/JavaScript-数据类型转换/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -706,7 +842,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">animate</span>(<span class="params">time</span>) </span>&#123;</span><br><span class="line">    requestAnimationFrame(animate)</span><br><span class="line">    TWEEN.update(time)</span><br><span class="line">&#125;</span><br><span class="line">requestAnimationFrame(animate)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> coords = &#123;<span class="attr">y</span>: <span class="number">0</span> &#125;</span><br><span class="line"><span class="keyword">var</span> tween = <span class="keyword">new</span> TWEEN.Tween(coords)</span><br><span class="line">        .to(&#123;<span class="attr">y</span>: <span class="number">200</span> &#125;, <span class="number">1000</span>)</span><br><span class="line">        .easing(TWEEN.Easing.Quadratic.InOut) </span><br><span class="line">        .onUpdate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">				</span><br><span class="line">        &#125;)</span><br><span class="line">        .start()</span><br></pre></td></tr></table></figure>
 <h1 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> cd = <span class="literal">false</span></span><br><span class="line">button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!cd) &#123;</span><br><span class="line">	 <span class="comment">//cd 中</span></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fn()</span><br><span class="line">		cd = <span class="literal">true</span></span><br><span class="line"> 		<span class="keyword">var</span> timerId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">			cd = <span class="literal">false</span></span><br><span class="line">		&#125;,<span class="number">3000</span>)		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="函数防抖"><a href="#函数防抖" class="headerlink" title="函数防抖"></a>函数防抖</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> timerId = <span class="literal">null</span></span><br><span class="line">button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(timerId) &#123;</span><br><span class="line">		<span class="built_in">window</span>.clearTimeout(timerId)</span><br><span class="line">	&#125;</span><br><span class="line">	timeId = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">	fn()</span><br><span class="line">	timerId = <span class="literal">null</span></span><br><span class="line">	&#125;,<span class="number">5000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">request.open(<span class="string">'GET'</span>, <span class="string">'/XXXX'</span>)</span><br><span class="line">request.readystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">request.open(<span class="string">'GET'</span>, <span class="string">'/XXXX'</span>)</span><br><span class="line">request.readystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(request.readyState === <span class="number">4</span>) &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'请求完成'</span>)</span><br><span class="line">		<span class="keyword">if</span>(request.response.status &gt;= <span class="number">200</span> &amp;&amp; request.response.status &lt; <span class="number">300</span>) &#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'请求成功'</span>)</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">request.send()</span><br></pre></td></tr></table></figure>
 <h1 id="this"><a href="#this" class="headerlink" title="this"></a>this</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1 fn()</span></span><br><span class="line"><span class="keyword">this</span> =&gt; <span class="built_in">window</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//2 obj.fn()</span></span><br><span class="line"><span class="keyword">this</span> =&gt; obj</span><br><span class="line"></span><br><span class="line"><span class="comment">//3 fn.call(xx)</span></span><br><span class="line"><span class="keyword">this</span> =&gt; xx</span><br><span class="line"></span><br><span class="line"><span class="comment">//4 fn.apply(xx)</span></span><br><span class="line"><span class="keyword">this</span> =&gt; xx</span><br><span class="line"></span><br><span class="line"><span class="comment">//5 fn.bind(xx)</span></span><br><span class="line"><span class="keyword">this</span> =&gt; xx</span><br><span class="line"></span><br><span class="line"><span class="comment">//6 new Fn()</span></span><br><span class="line"><span class="keyword">this</span> =&gt; 新的对象</span><br><span class="line"></span><br><span class="line"><span class="comment">//7 fn = () =&gt; &#123;&#125;</span></span><br><span class="line"><span class="keyword">this</span> =&gt; 外边的对象</span><br></pre></td></tr></table></figure>
 <h1 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h1><ol>
 <li>递归</li>
@@ -1795,134 +1931,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/11/git-基本命令/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="myBlog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/11/git-基本命令/" itemprop="url">git 基本命令</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-11T15:37:45+08:00">
-                2019-02-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<h1 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h1><ul>
-<li>创建新的git仓库：创建新目录，进入目录，执行 git init。</li>
-<li>生成.git目录，该目录为本地仓库<br>  <img src="/2019/02/11/git-基本命令/init.png" alt="init .png"></li>
-</ul>
-<h1 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h1><ul>
-<li>git 仓库工作区，缓存区 ，仓库，在工作区进行文件的添加修改之后，再提交到仓库之前，需要先添加到缓存区。<br>  <img src="/2019/02/11/git-基本命令/add.png" alt="add.png"><h1 id="git-commit-v"><a href="#git-commit-v" class="headerlink" title="git commit -v"></a>git commit -v</h1></li>
-<li>git add 命令将文件提交到缓存区，提交到仓库需要使用 git commit 命令，记录对存储库的更改，使用 git commit -v 进入 vim 在顶部输入message后退出可将文件提交到本地仓库。<br>  <img src="/2019/02/11/git-基本命令/commit.png" alt="commit.png"></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1973,7 +1981,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
